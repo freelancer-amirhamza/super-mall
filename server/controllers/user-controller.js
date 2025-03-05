@@ -145,6 +145,9 @@ const loginUser = async (req, res) => {
 
         const refreshToken = await generateRefreshToken(user._id);
         const accessToken = await generateAccessToken(user._id);
+        const updateUser = await UserModal.findByIdAndUpdate(user._id, {
+            last_login_date: new Date()
+        })
 
         const cookiesOption = {
             httpOnly: true,
@@ -358,6 +361,11 @@ const verifyForgotPasswordOtp = async (req, res) => {
             })
         };
 
+        const updateUser = await UserModal.findByIdAndUpdate(user._id, {
+            forgot_password_otp: "",
+            forgot_password_expire: ""
+        })
+
 
         res.status(200).json({
             success: true,
@@ -473,6 +481,34 @@ const refreshToken = async (req, res) => {
             message: error.message || "something is wrong!"
         })
     }
+};
+
+const getUserDetails = async(req, res)=>{
+    try {
+        const userId = req.userId;
+        const user = await UserModal.findById(userId).select('-password -refresh_token ')
+
+        if(!user){
+            res.status(404).json({
+                success: false,
+                error: true,
+                message: "this user is not found"
+            })
+        }
+
+        res.status(200).json({
+            success:true,
+            error: false,
+            message: "the user found successfully!",
+            data: user,
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: true,
+            message: error.message || "something is wrong"
+        })
+    }
 }
 module.exports = {
     registerUser,
@@ -483,4 +519,5 @@ module.exports = {
     resetPassword,
     verifyForgotPasswordOtp,
     refreshToken,
+    getUserDetails
 };    
