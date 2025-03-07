@@ -5,6 +5,9 @@ import Axios from "../utils/Axios";
 import SummeryApi from "../common/SummeryApi";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import fetchUserDetails from "../utils/fetchUserDetails";
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "../store/userSlice";
 
 
 const initialFormData = {
@@ -15,6 +18,7 @@ const Login = () => {
   const [formData, setFormData] = useState(initialFormData);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -35,11 +39,14 @@ const Login = () => {
         toast.success(response.data.message);
         localStorage.setItem("accessToken", response?.data?.accessToken)
         localStorage.setItem("refreshToken", response?.data?.refreshToken)
+        const userDetails = await fetchUserDetails();
+        dispatch(setUserDetails(userDetails.data));
+        setFormData(initialFormData);
+        navigate("/")
       } else {
         toast.error(response.data.message);
       }
-      setFormData(initialFormData);
-      navigate("/")
+
     } catch (error) {
       AxiosToastError(error);
     }
@@ -98,8 +105,8 @@ const Login = () => {
             type="submit"
             disabled={!validValue}
             className={` ${validValue
-                ? "bg-secondary cursor-pointer hover:bg-green-700 "
-                : "bg-gray-400 cursor-not-allowed"
+              ? "bg-secondary cursor-pointer hover:bg-green-700 "
+              : "bg-gray-400 cursor-not-allowed"
               } text-center 
             w-full  text-white tracking-widest p-2 text-xl font-medium  rounded-md `}
           >

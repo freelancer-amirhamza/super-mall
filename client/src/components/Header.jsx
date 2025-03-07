@@ -14,7 +14,18 @@ const Header = () => {
   const isSearchPage = location.pathname === "/search";
   const navigate = useNavigate();
   const user  = useSelector((state)=> state.user.user);
-  const [showUserMenu, setShowUserMenu] = useState(false)
+  const [showUserMenu, setShowUserMenu] = useState(false);
+
+  const handleCloseUserMenu = ()=>{
+    setShowUserMenu(false)
+  }
+  const handleMobileUser = ()=>{
+    if(!user){
+      navigate("/login")
+      return;
+    }
+    navigate("/user")
+  }
 
   console.log(user, "user details")
   return (
@@ -34,8 +45,8 @@ const Header = () => {
                 <Search />
               </div>
               {/* login and cart box */}
-              <div className="flex lg:hidden">
-                <button className="text-3xl text-neutral-600">
+              <div  className="flex lg:hidden">
+                <button onClick={handleMobileUser} className="text-3xl cursor-pointer text-neutral-600">
                   <FaRegUserCircle />
                 </button>
               </div>
@@ -44,13 +55,13 @@ const Header = () => {
                 {user ? (
                     <div className="relative">
                       <button onClick={()=> setShowUserMenu(!showUserMenu)}
-                    className="text-md flex items-center font-medium  hover:bg-neutral-200 px-3 py-2 rounded  text-neutral-800"> 
+                    className="text-md flex items-center font-medium cursor-pointer hover:bg-neutral-200 px-3 py-2 rounded  text-neutral-800"> 
                     <p>Account</p>
                     {showUserMenu ? (<GoTriangleUp size={20} />) : (<GoTriangleDown size={20} />)}
                     </button>
                     {showUserMenu && 
                     <div className="absolute top-12 right-0 bg-white shadow-md w-40 rounded-sm transition-all duration-500">
-                    <UserMenu/>
+                    <UserMenu  close={handleCloseUserMenu} />
                   </div>
                     }
                     </div>

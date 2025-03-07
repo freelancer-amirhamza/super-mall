@@ -53,7 +53,6 @@ const Search = () => {
                         1000,
                         'Search "Onion"',
                         1000,
-
                     ]}
                     wrapper="span"
                     speed={50}

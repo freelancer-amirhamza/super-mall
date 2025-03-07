@@ -1,17 +1,18 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Divider from './Devider'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import AxiosToastError from '../utils/AxiosToastError'
 import Axios from '../utils/Axios'
 import SummeryApi from '../common/SummeryApi'
 import { logout } from '../store/userSlice'
+import { FaExternalLinkAlt } from "react-icons/fa";
 import toast from 'react-hot-toast'
 
-const UserMenu = () => {
+const UserMenu = ({close}) => {
     const dispatch  = useDispatch();
     const user = useSelector((state)=> state.user.user)
-
+    const navigate = useNavigate()
 
     const handleLogout =async (e)=>{
         try {
@@ -19,9 +20,13 @@ const UserMenu = () => {
                 ...SummeryApi.logout
             })
             if(response.data.success){
+                if(close){
+                    close()
+                }
                 dispatch(logout())
                 localStorage.clear();
                 toast.success(response.data.message)
+                navigate("/")
             }
         } catch (error) {
             AxiosToastError(error)
@@ -32,13 +37,18 @@ const UserMenu = () => {
         <div>
             <div className="flex flex-col pt-3 gap-1.5  ">   
                 <h2 className="font-semibold px-2 text-neutral-800 ">My Account</h2>
-                <h2 className="text-neutral-700 font-medium px-2">{user.name} </h2>
+                <div className="text-neutral-700 flex gap-4 cursor-pointer hover:bg-amber-100 items-center  font-medium px-2">
+                    <span className="">
+                        {user?.name || user?.mobile}
+                    </span>
+                    <FaExternalLinkAlt size={16}/>
+                </div>
                 <Divider/>
                 <div className="grid">
-                <Link to={"/account"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-gray-200'>My Orders</Link>
-                <Link to={"/account"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-gray-200'>Save Address</Link>
+                <Link to={"/account"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-amber-100'>My Orders</Link>
+                <Link to={"/account"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-amber-100'>Save Address</Link>
                 </div>
-                <button onClick={handleLogout} className="text-neutral-600 text-left hover:bg-gray-200 cursor-pointer mb-2 font-semibold px-2">Logout</button>
+                <button onClick={handleLogout} className="text-neutral-600 text-left hover:bg-amber-200 cursor-pointer mb-2 font-semibold px-2">Logout</button>
             </div>
         </div>
     )
