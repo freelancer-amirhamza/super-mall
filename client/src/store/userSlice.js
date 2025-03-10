@@ -11,6 +11,9 @@ const userSlice = createSlice({
         setUserDetails: (state, action)=>{
             state.user = action.payload
         },
+        updatedAvatar: (state, action)=>{
+            state.user.avatar = action.payload
+        },
 
         logout: (state)=>{
             state.user = null
@@ -18,6 +21,6 @@ const userSlice = createSlice({
     }
 })
 
-export const { setUserDetails, logout } = userSlice.actions;
+export const { setUserDetails, logout,updatedAvatar } = userSlice.actions;
 
 export default userSlice.reducer

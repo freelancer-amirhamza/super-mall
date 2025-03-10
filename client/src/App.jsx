@@ -14,7 +14,6 @@ const App = () => {
   const fetchUser = async ()=>{
     const userData = await fetchUserDetails()
     dispatch(setUserDetails(userData?.data))
-    console.log(userData.data, "suer")
   }
   useEffect(()=>{
     fetchUser()

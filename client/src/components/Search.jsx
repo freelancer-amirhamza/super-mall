@@ -13,7 +13,6 @@ const Search = () => {
         const isSearch = location.pathname === "/search"
         setIsSearchPage(isSearch)
     }, [location])
-    console.log("search", isSearchPage)
     return (
         <div onClick={() => navigate("/search")} className='flex w-full border gap-2 group lg:min-w-[420px] bg-slate-100 focus-within:bg-amber-50 h-11 items-center 
          min-w-[300px] rounded-md border-neutral-300  focus-within:border-primary'>

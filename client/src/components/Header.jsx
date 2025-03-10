@@ -26,8 +26,6 @@ const Header = () => {
     }
     navigate("/user")
   }
-
-  console.log(user, "user details")
   return (
     <header>
       <div className="flex w-full bg-white flex-col h-28  justify-center lg:h-20 gap-1  shadow-md items-center sticky top-0  ">

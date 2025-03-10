@@ -32,21 +32,27 @@ const UserMenu = ({close}) => {
             AxiosToastError(error)
         }
     }
+
+    const handleCloseMenu = ()=>{
+        if(close){
+            close()
+        }
+    }
     
     return (
         <div>
-            <div className="flex flex-col pt-3 gap-1.5  ">   
+            <div className="flex  flex-col pt-3 gap-1.5  ">   
                 <h2 className="font-semibold px-2 text-neutral-800 ">My Account</h2>
-                <div className="text-neutral-700 flex gap-4 cursor-pointer hover:bg-amber-100 items-center  font-medium px-2">
+                <Link onClick={handleCloseMenu} to={'/dashboard/profile'} className="text-neutral-700 flex gap-4 cursor-pointer hover:bg-amber-100 items-center  font-medium px-2">
                     <span className="">
                         {user?.name || user?.mobile}
                     </span>
                     <FaExternalLinkAlt size={16}/>
-                </div>
+                </Link>
                 <Divider/>
                 <div className="grid">
-                <Link to={"/account"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-amber-100'>My Orders</Link>
-                <Link to={"/account"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-amber-100'>Save Address</Link>
+                <Link onClick={handleCloseMenu} to={"/dashboard/my-orders"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-amber-100'>My Orders</Link>
+                <Link onClick={handleCloseMenu} to={"/dashboard/address"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-amber-100'>Save Address</Link>
                 </div>
                 <button onClick={handleLogout} className="text-neutral-600 text-left hover:bg-amber-200 cursor-pointer mb-2 font-semibold px-2">Logout</button>
             </div>
