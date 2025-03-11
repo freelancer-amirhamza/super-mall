@@ -36,7 +36,7 @@ const UserProfileAvatarEdit = ({close}) => {
   }
   return (
     <section className="bg-neutral-900/60 fixed top-0 left-0 flex justify-center items-center right-0 bottom-0  z-50">
-           <div className=" p-5 rounded-md min-w-sm bg-amber-50">
+          <div className=" p-5 rounded-md min-w-sm bg-amber-50">
             <form  onSubmit={handleSubmit} className='flex flex-col items-center gap-4'>
               <button className="flex w-fit ml-auto cursor-pointer text-amber-600 hover:bg-amber-600 hover:text-white rounded-full   " onClick={()=> close()}>
                 <IoCloseCircleOutline size={26} />

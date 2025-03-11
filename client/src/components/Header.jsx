@@ -34,8 +34,8 @@ const Header = () => {
             <div className="container mx-auto items-center justify-between max-sm:px-3  w-full flex  ">
               {/* logo */}
               <Link to={"/"} className="flex sm:text-4xl text-3xl font-bold font-display">
-                <span className="text-secondary">Hut</span>
-                <span className="text-primary">Bazaar</span>
+                <span className="text-secondary">Deshi</span>
+                <span className="text-primary">Motors</span>
               </Link>
               
               {/* search box */}

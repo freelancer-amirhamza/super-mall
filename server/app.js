@@ -7,6 +7,8 @@ const morgan = require('morgan');
 require('dotenv').config();
 require('./config/database');
 const userRouter = require("./routes/user-routes.js");
+const categoryRouter = require("./routes/category-routes.js")
+const uploadImageRouter = require("./routes/uploadImage-routes.js")
 
 app.use(cors({
     origin: process.env.CLIENT_URL,
@@ -22,6 +24,8 @@ app.use(helmet({
 
 
 
-app.use("/api/user", userRouter)
+app.use("/api/user", userRouter);
+app.use("/api/category", categoryRouter);
+app.use("/api/file", uploadImageRouter);
 
 module.exports = app;

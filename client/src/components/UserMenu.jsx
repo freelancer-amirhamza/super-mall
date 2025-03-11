@@ -50,9 +50,13 @@ const UserMenu = ({close}) => {
                     <FaExternalLinkAlt size={16}/>
                 </Link>
                 <Divider/>
-                <div className="grid">
-                <Link onClick={handleCloseMenu} to={"/dashboard/my-orders"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-amber-100'>My Orders</Link>
-                <Link onClick={handleCloseMenu} to={"/dashboard/address"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-amber-100'>Save Address</Link>
+                <div className="grid gap-2">
+                <Link onClick={handleCloseMenu} to={"/dashboard/category"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-amber-200'>Category</Link>
+                <Link onClick={handleCloseMenu} to={"/dashboard/sub-category"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-amber-200'>Sub Category</Link>
+                <Link onClick={handleCloseMenu} to={"/dashboard/admin-products"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-amber-200'>Products</Link>
+                <Link onClick={handleCloseMenu} to={"/dashboard/upload-product"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-amber-200'>Upload Product</Link>
+                <Link onClick={handleCloseMenu} to={"/dashboard/my-orders"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-amber-200'>My Orders</Link>
+                <Link onClick={handleCloseMenu} to={"/dashboard/address"} className='text-neutral-600 px-2 font-medium cursor-pointer hover:bg-amber-200'>Save Address</Link>
                 </div>
                 <button onClick={handleLogout} className="text-neutral-600 text-left hover:bg-amber-200 cursor-pointer mb-2 font-semibold px-2">Logout</button>
             </div>
