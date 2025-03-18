@@ -26,7 +26,11 @@ const CategoryPage = () => {
   const allCategory = useSelector(state => state.product.allCategory)
   console.log("All category ", allCategory)
 
+<<<<<<< HEAD
   // const categoryData = async()=>{
+=======
+  // const fetchCategory = async()=>{
+>>>>>>> master
   //   try {
   //     setLoading(true)
   //     const response = await Axios({
@@ -102,8 +106,13 @@ const CategoryPage = () => {
         })}
       </div>
       }
+<<<<<<< HEAD
       {showUploadCategoryModel &&  <UploadCategoryModel fetchData={categoryData} close={()=> setShowUploadCategoryModel(false)}/>}
       {openEditData && <EditCategoryModel data={editData} close={()=>setOpenEditData(false)} fetchData={categoryData} />}
+=======
+      {showUploadCategoryModel &&  <UploadCategoryModel fetchData={fetchCategory} close={()=> setShowUploadCategoryModel(false)}/>}
+      {openEditData && <EditCategoryModel data={editData} close={()=>setOpenEditData(false)} fetchData={fetchCategory} />}
+>>>>>>> master
       {openConfirmBox && <ConfirmBox close={()=> setOpenConfirmBox(false)} confirm={handleCategoryDelete} data={deleteCategoryData} />}
     </section>
   )

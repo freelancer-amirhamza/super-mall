@@ -18,6 +18,10 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
     });
 
     const allCategory = useSelector(state => state?.product?.allCategory);
+<<<<<<< HEAD
+=======
+    console.log("sub category page", allCategory)
+>>>>>>> master
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         setFormData((formData) => {
@@ -33,7 +37,11 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
         if (!file) return;
         setLoading(true)
         const response = await uploadImage(file);
+<<<<<<< HEAD
         setFormData((formData)=>({
+=======
+        setFormData((formData) => ({
+>>>>>>> master
             ...formData,
             image: response?.data?.data?.url
         }));
@@ -45,7 +53,11 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
         try {
             setLoading(true)
             const response = await Axios({
+<<<<<<< HEAD
                 ...SummeryApi.addSubCategory,
+=======
+                ...SummeryApi.addCategory,
+>>>>>>> master
                 data: formData,
             })
             if (response?.data?.success) {
@@ -96,7 +108,11 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
                         <div className="flex h-36 items-center justify-center  border border-neutral-400 mt-1 bg-blue-50 rounded">
                             {
                                 formData.image ? <div className="flex items-start justify-center w-full h-full">
+<<<<<<< HEAD
                                     <img src={formData?.image} alt="subCategory"
+=======
+                                    <img src={formData.image} alt="subCategory"
+>>>>>>> master
                                         className="h-36 p-1  object-cover rounded" />
                                     <button onClick={handleClearImage} className="text-lg rounded-full m-4 text-red-600 cursor-pointer hover:bg-red-600 hover:text-white transition-colors duration-300" >
                                         <IoMdCloseCircleOutline size={23} />
@@ -157,8 +173,12 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
                     </div>
 
                     <div className="flex justify-between mt-4">
+<<<<<<< HEAD
                         <div onClick={handleSubmit} className={`${!formData?.name || !formData?.image ? "cursor-not-allowed text-neutral-400 " : "hover:bg-amber-600 hover:text-white border-amber-600 cursor-pointer"} 
                          border  px-2 py-1 rounded-sm  transition-colors duration-300`} >Add Sub Category</div>
+=======
+                        <div onClick={handleSubmit} className={`${!formData?.name || !formData?.image ? "cursor-not-allowed text-neutral-400 " : "hover:bg-amber-600 hover:text-white border-amber-600 cursor-pointer"}  border  px-2 py-1 rounded-sm  transition-colors duration-300`} >Add Category</div>
+>>>>>>> master
                         <button className="border border-red-600 px-2 py-1 rounded-sm hover:bg-red-600 hover:text-white transition-colors duration-300" onClick={() => close()}>Cancel</button>
                     </div>
                 </form>

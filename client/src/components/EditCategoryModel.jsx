@@ -100,6 +100,10 @@ const EditCategoryModel = ({ close, fetchData, data }) => {
                                         </div>
                                     </div>
                             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
                         </div>
 
                     </div>

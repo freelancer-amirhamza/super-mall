@@ -3,16 +3,23 @@ import AxiosToastError from '../utils/AxiosToastError';
 import Axios from '../utils/Axios';
 import SummeryApi from '../common/SummeryApi';
 import NoData from '../components/NoData';
+<<<<<<< HEAD
+=======
+import EditCategoryModel from '../components/EditCategoryModel';
+>>>>>>> master
 import ConfirmBox from '../components/ConfirmBox';
 import toast from 'react-hot-toast';
 import UploadSubCategoryModel from '../components/UploadSubCategoryModel';
 import { useSelector } from 'react-redux';
+<<<<<<< HEAD
 import Table from '../components/Table';
 import {createColumnHelper } from "@tanstack/react-table";
 import ImageModel from '../components/ImageModel';
 import { ImPencil } from "react-icons/im";
 import { MdDelete } from "react-icons/md";
 import EditSubCategoryModel from '../components/EditSubCategoryModel';
+=======
+>>>>>>> master
 
 const SubCategoryPage = () => {
   const [showUploadSubCategoryModel, setShowUploadSubCategoryModel] = useState(false);
@@ -20,14 +27,22 @@ const SubCategoryPage = () => {
   const [subCategoryData, setSubCategoryData] = useState([])
   const [openEditData, setOpenEditData]= useState(false)
   const [openConfirmBox, setOpenConfirmBox] = useState(false);
+<<<<<<< HEAD
   const allCategory = useSelector(state => state?.product?.allCategory);
   const columnHelper = createColumnHelper();
   const [imageUrl, setImageUrl]= useState("")
+=======
+  const allCategory = useSelector(state => state?.product?.allCategory)
+>>>>>>> master
   const [editData, setEditData] = useState({
     name:"",
     image: "",
   });
+<<<<<<< HEAD
   const [deleteSubCategoryData, setDeleteSubCategoryData] = useState({
+=======
+  const [deleteCategoryData, setDeleteCategoryData] = useState({
+>>>>>>> master
     _id: "",
     name: "",
   })
@@ -36,8 +51,13 @@ const SubCategoryPage = () => {
     try {
       setLoading(true)
       const response = await Axios({
+<<<<<<< HEAD
         ...SummeryApi.getSubCategory,
         data: subCategoryData
+=======
+        ...SummeryApi.getCategory,
+        data: deleteCategoryData
+>>>>>>> master
       })
       if(response?.data?.success){
         setSubCategoryData(response?.data?.data)
@@ -50,6 +70,7 @@ const SubCategoryPage = () => {
     }
   }
 
+<<<<<<< HEAD
   const handleSubCategoryDelete=async ()=>{
     try {
       setLoading(true)
@@ -60,6 +81,18 @@ const SubCategoryPage = () => {
       if(response?.data?.success){
         toast.success(response?.data?.message)
         fetchSubCategory()
+=======
+  const handleCategoryDelete=async ()=>{
+    try {
+      setLoading(true)
+      const response = await Axios({
+        ...SummeryApi.deleteCategory,
+        data: deleteCategoryData
+      })
+      if(response?.data?.success){
+        toast.success(response?.data?.message)
+        fetchCategory()
+>>>>>>> master
         setOpenConfirmBox(false)
       }
     } catch (error) {
@@ -73,6 +106,7 @@ const SubCategoryPage = () => {
     fetchSubCategory()
   },[])
 
+<<<<<<< HEAD
   const column = [
     columnHelper.accessor("name", { header : "Name"}),
     columnHelper.accessor("image", { header: "Image",
@@ -122,6 +156,8 @@ const SubCategoryPage = () => {
 
   ]
 
+=======
+>>>>>>> master
   return (
     <section className=''>
       <div className="flex justify-between items-center shadow-md p-2 bg-white">
@@ -129,6 +165,7 @@ const SubCategoryPage = () => {
         <button onClick={()=> setShowUploadSubCategoryModel(true) }
          className="border  border-amber-600 transition-colors duration-300 px-2 py-1 rounded-sm hover:bg-amber-500 cursor-pointer hover:text-white font-medium ">Add Sub Category</button>
       </div>
+<<<<<<< HEAD
       <div className="">
         
       </div>
@@ -141,6 +178,35 @@ const SubCategoryPage = () => {
       {showUploadSubCategoryModel &&  <UploadSubCategoryModel fetchData={fetchSubCategory} close={()=> setShowUploadSubCategoryModel(false)}/>}
       {openEditData && <EditSubCategoryModel data={editData} close={()=>setOpenEditData(false)} fetchData={fetchSubCategory} />}
       {openConfirmBox && <ConfirmBox close={()=> setOpenConfirmBox(false)} confirm={handleSubCategoryDelete} data={deleteSubCategoryData} />}
+=======
+      {!subCategoryData[0] && !loading ? <NoData/> : 
+      <div className="flex flex-wrap gap-2 md:gap-4 p-4 justify-center items-center">
+        {subCategoryData && subCategoryData.map((category, index)=>{
+          
+          return(
+            <div className="  w-full rounded max-w-34 border h-58 p-1 flex flex-col items-center justify-center border-dotted border-amber-600 hover:shadow-lg overflow-hidden  " key={index} >
+              <div className="w-full  max-h-46 flex items-center  ">
+              <img src={category.image} alt="" className=" object-scale-down h-full w-full rounded-t-sm " />
+              </div>
+              <div className="flex items-center justify-between   gap-1 px-1">
+                <button onClick={()=>{
+                  setOpenEditData(true)
+                  setEditData(category)
+                }} className="border  border-green-600 transition-colors duration-300 px-2 py-1 rounded-sm hover:bg-green-500 hover:text-white font-medium">Edit</button>
+                <button onClick={()=> {
+                  setOpenConfirmBox(true)
+                  setDeleteCategoryData(category)
+                }} className="border  border-red-600 transition-colors duration-300 px-2 py-1 rounded-sm hover:bg-red-500 hover:text-white font-medium">Delete</button>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+      }
+      {showUploadSubCategoryModel &&  <UploadSubCategoryModel fetchData={fetchSubCategory} close={()=> setShowUploadSubCategoryModel(false)}/>}
+      {openEditData && <EditCategoryModel data={editData} close={()=>setOpenEditData(false)} fetchData={fetchSubCategory} />}
+      {openConfirmBox && <ConfirmBox close={()=> setOpenConfirmBox(false)} confirm={handleCategoryDelete} data={deleteCategoryData} />}
+>>>>>>> master
     </section>
   )
 }

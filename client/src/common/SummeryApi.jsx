@@ -61,6 +61,7 @@ const SummeryApi = {
     deleteCategory:{
         url: "/api/category/delete-category",
         method: "delete"
+<<<<<<< HEAD
     },
     addSubCategory:{
         url: "/api/sub-category/create",
@@ -77,6 +78,8 @@ const SummeryApi = {
     deleteSubCategory: {
         url: "/api/sub-category/delete",
         method: "delete"
+=======
+>>>>>>> master
     }
 
 }
