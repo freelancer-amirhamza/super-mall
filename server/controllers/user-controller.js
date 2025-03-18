@@ -109,7 +109,6 @@ const verifyEmail = async (req, res) => {
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
-
         if (!email || !password) {
             return res.status(400).json({
                 success: false,
@@ -133,7 +132,6 @@ const loginUser = async (req, res) => {
                 message: "This User is not active, Please Contact to Admin"
             })
         }
-
         const checkPassword = await bcryptjs.compare(password, user.password);
         if (!checkPassword) {
             return res.status(400).json({

@@ -53,6 +53,30 @@ const SummeryApi = {
     getCategory: {
         url: "/api/category/get-category",
         method:"get"
+    }, 
+    updateCategory: {
+        url: "/api/category/update-category",
+        method: "put",
+    },
+    deleteCategory:{
+        url: "/api/category/delete-category",
+        method: "delete"
+    },
+    addSubCategory:{
+        url: "/api/sub-category/create",
+        method: "post"
+    },
+    getSubCategory: {
+        url: "/api/sub-category/get",
+        method: "post",
+    },
+    updateSubCategory: {
+        url: "/api/sub-category/update",
+        method: "put"
+    },
+    deleteSubCategory: {
+        url: "/api/sub-category/delete",
+        method: "delete"
     }
 
 }

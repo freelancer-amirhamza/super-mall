@@ -61,12 +61,12 @@ const Profile = () => {
     <section className="">
       <div className="container mx-auto">
         {/* edit avatar image */}
-        <div className="flex flex-col items-center pt-10">
-          <div className="w-20 h-20 ml-4  rounded-full">
-            {user ? (
+        <div className="flex flex-col items-center justify-center w-full pt-10">
+          <div className="w-20 h-20   rounded-full">
+            {user?.avatar ? (
               <img
-                src={user.avatar}
-                alt={user.name}
+                src={user?.avatar}
+                alt={user?.name}
                 className="w-full object-fill border-2 border-amber-400 h-full rounded-full"
               />
             ) : (
@@ -74,7 +74,8 @@ const Profile = () => {
             )}
           </div>
           <div className="pt-4">
-            <button onClick={()=> setShowProfileEdit(true)} className=" border-2 px-2 py-1 rounded-full border-amber-300 hover:bg-orange-500 hover:text-white font-semibold ">Edit Profile</button>
+            <button onClick={()=> setShowProfileEdit(true)}
+             className=" border-2 px-2 py-1 rounded-full border-amber-300 hover:bg-orange-500 hover:text-white font-semibold ">Edit Profile</button>
           </div>
           {showProfileEdit && <UserProfileAvatarEdit close={()=>setShowProfileEdit(false)} />}
         </div>

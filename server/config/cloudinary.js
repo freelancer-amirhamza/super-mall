@@ -13,7 +13,7 @@ const uploadImageCloudinary = async (image)=>{
 
     const uploadImage = await new Promise((resolve, reject)=>{
         cloudinary.uploader.upload_stream(
-            {folder: "hutBazaar"},(error, uploadResult)=>{
+            {folder: "deshimotors"},(error, uploadResult)=>{
                 if(uploadResult){
                     return resolve(uploadResult);
                 }else{
