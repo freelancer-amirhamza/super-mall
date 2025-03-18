@@ -1,20 +1,26 @@
 import React, { useState } from 'react'
 import { FaCloudUploadAlt } from 'react-icons/fa'
-import { IoMdCloseCircleOutline } from 'react-icons/io'
+import { IoMdCloseCircleOutline } from 'react-icons/io';
+import uploadImage from '../components/UploadImage';
+
+
+const initialsFormData = {
+  name: "",
+  image: [],
+  category: [],
+  subCategory: [],
+  unit: [],
+  stock: "",
+  price: "",
+  discount: "",
+  description: "",
+  more_details : {},
+}
 
 const UploadProduct = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    image: [],
-    category: [],
-    subCategory: [],
-    unit: [],
-    stock: "",
-    price: "",
-    discount: "",
-    description: "",
-    more_details : {},
-  })
+
+  const [formData, setFormData] = useState(initialsFormData)
+  const [loading, setLoading] = useState(false)
 console.log("formData", formData)
   const handleOnChange = (e)=>{
     e.preventDefault()
@@ -27,10 +33,26 @@ console.log("formData", formData)
     })
   }
 
-  const handleUploadImage = (e)=>{
-    const image = e.target.files[0]
+  const handleUploadImage = async(e)=>{
+    const file = e.target.files[0]
+    if(!file) return;
+    setLoading(true);
+    const response = await uploadImage(file);
+    setFormData((formData)=>{
+      return{
+        ...formData,
+        image: response?.data?.data?.url
+      }
+    })
+    setLoading(false)
     
   }
+  const handleClearImage = () => {
+    setFormData((formData) => ({
+        ...formData,
+        image: ''
+    }));
+}
   return (
     <section className=''>
       <div className="flex justify-between items-center shadow-md p-2 bg-white">
@@ -54,32 +76,29 @@ console.log("formData", formData)
           </div>
           <div className="grid gap-2">
             <label className='text-xl font-medium text-neutral-700' htmlFor="imageUpload">Image:</label>
-           <div className="">
-            <label htmlFor="image" className="text-xl font-medium text-neutral-700">Image</label>
-                                    <div className="flex h-36 items-center justify-center  border border-neutral-400 mt-1 bg-blue-50 rounded">
-                                        {
-                                            formData.image ? <div className="flex items-start justify-center w-full h-full">
-                                                <img src={formData.image} alt="category"
-                                                    className="h-36 p-1  object-cover rounded" />
-                                                <button onClick={handleClearImage} className="text-lg rounded-full m-4 text-red-600 cursor-pointer hover:bg-red-600 hover:text-white transition-colors duration-300" >
-                                                    <IoMdCloseCircleOutline size={23} />
-                                                </button>
-                                            </div> :
-                                                <div>
-                                                    <input type="file" onChange={handleUploadImage} id="uploadImage" name="image" className="hidden" />
-                                                    <div className={` `}>
-                                                        <label htmlFor="uploadImage" disabled={!formData.name} className={` ${!formData.name ? "cursor-not-allowed text-neutral-400" : "text-amber-700 border-dotted border  cursor-pointer"} p-7 rounded text-lg w-full items-center flex font-semibold`} >
-                                                            <FaCloudUploadAlt size={30} />
-                                                            <span className="ml-2">
-                                                                {loading ? "Uploading..." : "Upload Image"}
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                        }
-            
-                                    </div>
-           </div>
+            <div className="flex h-36 items-center justify-center  border border-neutral-400 mt-1 bg-blue-50 rounded">
+                {
+                    formData.image ? <div className="flex items-start justify-center w-full h-full">
+                        <img src={formData.image} alt="category"
+                            className="h-36 p-1  object-cover rounded" />
+                        <button onClick={handleClearImage} className="text-lg rounded-full m-4 text-red-600 cursor-pointer hover:bg-red-600 hover:text-white transition-colors duration-300" >
+                            <IoMdCloseCircleOutline size={23} />
+                        </button>
+                    </div> :
+                        <div>
+                            <input type="file" onChange={handleUploadImage} id="uploadImage" name="image" className="hidden" />
+                            <div className={` `}>
+                                <label htmlFor="uploadImage" disabled={!formData.name} className={` ${!formData.name ? "cursor-not-allowed text-neutral-400" : "text-amber-700 border-dotted border  cursor-pointer"} p-7 rounded text-lg w-full items-center flex font-semibold`} >
+                                    <FaCloudUploadAlt size={30} />
+                                    <span className="ml-2">
+                                        {loading ? "Uploading..." : "Upload Image"}
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                }
+
+            </div>
           </div>
         </div>
       </form>
