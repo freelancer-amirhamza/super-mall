@@ -5,6 +5,7 @@ import Axios from '../utils/Axios';
 import AxiosToastError from '../utils/AxiosToastError';
 import { updatedAvatar } from '../store/userSlice';
 import { IoCloseCircleOutline } from "react-icons/io5";
+import { FaRegUserCircle } from 'react-icons/fa';
 
 const UserProfileAvatarEdit = ({close}) => {
   const user = useSelector((state)=> state.user.user);
@@ -36,17 +37,17 @@ const UserProfileAvatarEdit = ({close}) => {
   }
   return (
     <section className="bg-neutral-900/60 fixed top-0 left-0 flex justify-center items-center right-0 bottom-0  z-50">
-          <div className=" p-5 rounded-md min-w-sm bg-amber-50">
-            <form  onSubmit={handleSubmit} className='flex flex-col items-center gap-4'>
+          <div className=" p-5 flex flex-col  rounded-md min-w-sm bg-amber-50">
+            <form  onSubmit={handleSubmit} className='flex flex-col justify-center items-center gap-4'>
               <button className="flex w-fit ml-auto cursor-pointer text-amber-600 hover:bg-amber-600 hover:text-white rounded-full   " onClick={()=> close()}>
                 <IoCloseCircleOutline size={26} />
               </button>
-              <div className="h-24 w-24 rounded-full ">
+              <div className="h-24 w-24 justify-center flex rounded-full ">
                 {
-                  user ? (
+                  user?.avatar ? (
                     <img
-                      src={user.avatar}
-                      alt={user.name}
+                      src={user?.avatar}
+                      alt={user?.name}
                       className="w-full object-fill border-4 border-amber-400 h-full rounded-full"
                     />
                   ) : (
