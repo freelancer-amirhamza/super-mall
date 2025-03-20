@@ -5,6 +5,7 @@ import uploadImage from '../components/UploadImage';
 import ImageModel from '../components/ImageModel';
 import { useSelector } from "react-redux";
 import { IoMdClose } from 'react-icons/io';
+import AddMoreField from '../components/AddMoreField';
 
 
 const initialsFormData = {
@@ -21,7 +22,6 @@ const initialsFormData = {
 }
 
 const UploadProduct = () => {
-
   const [formData, setFormData] = useState(initialsFormData)
   const [loading, setLoading] = useState(false);
   const [viewImageURL, setViewImageURL] = useState("")
@@ -29,6 +29,8 @@ const UploadProduct = () => {
   const allSubCategory = useSelector(state=> state.product.allSubCategory)
   const [selectCategory, setSelectCategory] = useState("");
   const [selectSubCategory, setSelectSubCategory] = useState("");
+  const [openAddField, setOpenAddField]= useState(false);
+  const [fieldName,setFieldName] = useState("")
 
 
   console.log("formData", formData)
@@ -76,6 +78,18 @@ const UploadProduct = () => {
     setFormData((formData)=>({
       ...formData,
     }))
+  }
+
+  const handleFieldSubmit = ()=>{
+    setFormData((formData)=>({
+      ...formData,
+      more_details : {
+        ...formData.more_details,
+        [fieldName] : ""
+      }
+    }))
+    setFieldName("")
+    setOpenAddField(false)
   }
   return (
     <section className=''>
@@ -215,9 +229,60 @@ const UploadProduct = () => {
               </div>
             </div>
           </div>
+          {/* unit  */}
+          <div className="grid gap-2">
+          <label className='text-xl font-medium text-neutral-700' htmlFor="unit">Unit:</label>
+          <input className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 ' 
+          type="text" name='unit' id='unit' placeholder='Enter Product Unit' onChange={handleOnChange} value={formData?.unit} />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="stock">Stock:</label>
+            <input className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 ' 
+          type="number" name='stock' id='stock' placeholder='Enter Product Discount' onChange={handleOnChange} value={formData?.stock} />
+          </div>
+          <div className="grid gap-2">
+          <label className='text-xl font-medium text-neutral-700' htmlFor="price">Price:</label>
+          <input className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 ' 
+          type="number" name='price' id='price' placeholder='Enter Product Price' onChange={handleOnChange} value={formData?.price} />
+          </div>
+          <div className="grid gap-2">
+          <label className='text-xl font-medium text-neutral-700' htmlFor="discount">Discount:</label>
+          <input className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 ' 
+          type="number" name='discount' id='discount' placeholder='Enter Product Discount' onChange={handleOnChange} value={formData?.discount} />
+          </div>
+          {/* Add more details fields */}
+          <div className="grid gap-2">
+            {Object?.keys(formData?.more_details).map((key, index)=>{
+              return(
+                <div className="grid gap-2">
+                  <label className='text-xl font-medium text-neutral-700' htmlFor="price">{key}:</label>
+                  <input className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 ' 
+                  placeholder={`Enter Product ${key}`}
+                  type="text"
+                  id={key}
+                  value={formData?.more_details[key]}
+                  onChange={(e)=>{
+                    const value = e.target.value;
+                    setFormData((formData)=>({
+                      ...formData,
+                      more_details : {
+                        ...formData?.more_details,
+                        [key] : value
+                      }
+                    }))
+                  }}
+                  />
+                </div>
+              )
+            })}
+            <div className=' w-fit border px-2 py-1 rounded cursor-pointer font-medium border-neutral-600 text-neutral-800 hover:text-white hover:bg-amber-600 hover:border-amber-600 hover:shadow-2xl'
+            onClick={()=> setOpenAddField(true)}
+            >Add Field</div>
+          </div>
         </div>
       </form>
       {viewImageURL && <ImageModel url={viewImageURL} close={() => setViewImageURL("")} />}
+        {openAddField && <AddMoreField value={fieldName} onChange={(e)=> setFieldName(e.target.value)} submit={handleFieldSubmit} close={()=>setOpenAddField(false)} />}
     </section>
   )
 }
