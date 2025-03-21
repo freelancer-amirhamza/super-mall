@@ -9,14 +9,16 @@ const productSchema = new mongoose.Schema({
         type: Array,
         default: [],
     },
-    category: {
-        type: mongoose.Schema.ObjectId,
-        ref: "Category",
-    },
-    subCategory: {
+    category: [
+        {
+            type: mongoose.Schema.ObjectId,
+            ref: "Category",
+        }
+    ],
+    subCategory: [{
         type: mongoose.Schema.ObjectId,
         ref: "subCategory",
-    },
+    }],
     unit: {
         type: String,
         default: ""

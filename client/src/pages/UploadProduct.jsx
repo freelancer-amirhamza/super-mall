@@ -6,6 +6,10 @@ import ImageModel from '../components/ImageModel';
 import { useSelector } from "react-redux";
 import { IoMdClose } from 'react-icons/io';
 import AddMoreField from '../components/AddMoreField';
+import AxiosToastError from '../utils/AxiosToastError';
+import Axios from '../utils/Axios';
+import SummeryApi from '../common/SummeryApi';
+import successAlert from '../utils/SuccessAlert';
 
 
 const initialsFormData = {
@@ -91,20 +95,33 @@ const UploadProduct = () => {
     setFieldName("")
     setOpenAddField(false)
   }
+  const handleSubmit =async (e)=>{
+    e.preventDefault()
+    try {
+      const response = await Axios({
+        ...SummeryApi.addProduct,
+        data: formData,
+      })
+      if(response?.data?.success){
+        successAlert(response?.data?.message);
+        setFormData(initialsFormData)
+      }
+    } catch (error) {
+      AxiosToastError(error)
+    }
+  }
   return (
     <section className=''>
       <div className="flex justify-between items-center shadow-md p-2 bg-white">
         <h1 className="text-xl font-semibold text-neutral-700">Upload Products</h1>
-        <button onClick={() => setShowUploadSubCategoryModel(true)}
-          className="border  border-amber-600 transition-colors duration-300 px-2 py-1 rounded-sm hover:bg-amber-500 cursor-pointer hover:text-white font-medium ">Add Sub Category</button>
       </div>
-      <form className=''>
+      <form className='' onSubmit={handleSubmit} >
         <div className="grid gap-3 p-3 ">
           <div className="grid gap-2">
             <label className='text-xl font-medium text-neutral-700' htmlFor="name">Name:</label>
             <input onChange={handleOnChange} value={formData?.name}
               className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 '
-              type="text" id='name' name='name' placeholder='Enter Product name' />
+              type="text" id='name' name='name' required placeholder='Enter Product name' />
           </div>
           <div className="grid gap-2">
             <label className='text-xl font-medium text-neutral-700' htmlFor="description">Description:</label>
@@ -232,22 +249,22 @@ const UploadProduct = () => {
           {/* unit  */}
           <div className="grid gap-2">
           <label className='text-xl font-medium text-neutral-700' htmlFor="unit">Unit:</label>
-          <input className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 ' 
+          <input className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 ' required
           type="text" name='unit' id='unit' placeholder='Enter Product Unit' onChange={handleOnChange} value={formData?.unit} />
           </div>
           <div className="grid gap-2">
             <label htmlFor="stock">Stock:</label>
-            <input className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 ' 
+            <input className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 ' required
           type="number" name='stock' id='stock' placeholder='Enter Product Discount' onChange={handleOnChange} value={formData?.stock} />
           </div>
           <div className="grid gap-2">
           <label className='text-xl font-medium text-neutral-700' htmlFor="price">Price:</label>
-          <input className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 ' 
+          <input className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 ' required
           type="number" name='price' id='price' placeholder='Enter Product Price' onChange={handleOnChange} value={formData?.price} />
           </div>
           <div className="grid gap-2">
           <label className='text-xl font-medium text-neutral-700' htmlFor="discount">Discount:</label>
-          <input className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 ' 
+          <input className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 ' required
           type="number" name='discount' id='discount' placeholder='Enter Product Discount' onChange={handleOnChange} value={formData?.discount} />
           </div>
           {/* Add more details fields */}
@@ -280,6 +297,8 @@ const UploadProduct = () => {
             >Add Field</div>
           </div>
         </div>
+          <button className=' w-full border px-2 py-1 rounded cursor-pointer font-medium text-white bg-green-600 hover:bg-green-700 border-green-600 hover:shadow-2xl' type="submit" >Upload Product</button>
+        
       </form>
       {viewImageURL && <ImageModel url={viewImageURL} close={() => setViewImageURL("")} />}
         {openAddField && <AddMoreField value={fieldName} onChange={(e)=> setFieldName(e.target.value)} submit={handleFieldSubmit} close={()=>setOpenAddField(false)} />}

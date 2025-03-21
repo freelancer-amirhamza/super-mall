@@ -123,12 +123,7 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
                                     <input type="file" onChange={handleUploadImage} id="uploadImage" name="image" className="hidden" />
                                     <label
                                         htmlFor="uploadImage"
-                                        disabled={!formData.name}
-                                        className={`${
-                                            !formData.name
-                                                ? "cursor-not-allowed text-neutral-400"
-                                                : "text-amber-700 border-dotted border cursor-pointer"
-                                        } p-7 rounded text-lg w-full items-center flex font-semibold`}
+                                        className={`text-amber-700 border-dotted border cursor-pointer p-7 rounded text-lg w-full items-center flex font-semibold`}
                                     >
                                         <FaCloudUploadAlt size={30} />
                                         <span className="ml-2">{loading ? "Uploading..." : "Upload Image"}</span>
@@ -139,20 +134,7 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
                     </div>
                     <div className="flex flex-col gap-4 mt-2">
                         <label className="text-xl font-medium text-neutral-700" htmlFor="selectCategory">Select Category</label>
-                        <div className="flex flex-wrap rounded border-neutral-500 gap-2 p-2 border">
-                            {formData?.category?.map((categoryItems) => (
-                                <span
-                                    key={categoryItems._id}
-                                    className="flex items-center gap-1 px-1 rounded border shadow-md border-neutral-500"
-                                >
-                                    {categoryItems?.name}
-                                    <IoIosClose
-                                        className="cursor-pointer text-2xl"
-                                        onClick={() => handleRemoveSelectedCategory(categoryItems?._id)}
-                                    />
-                                </span>
-                            ))}
-                        </div>
+                        
                         <div>
                             <select
                                 className="flex w-full p-2 focus-within:border-amber-300 rounded border border-neutral-600 outline-none justify-between"
@@ -175,25 +157,30 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
                                 ))}
                             </select>
                         </div>
+                        <div className="flex flex-wrap gap-2 p-2 ">
+                            {formData?.category?.map((categoryItems) => (
+                                <span
+                                    key={categoryItems._id}
+                                    className="flex items-center gap-1 px-1 rounded border shadow-md border-neutral-500"
+                                >
+                                    {categoryItems?.name}
+                                    <IoIosClose
+                                        className="cursor-pointer text-2xl"
+                                        onClick={() => handleRemoveSelectedCategory(categoryItems?._id)}
+                                    />
+                                </span>
+                            ))}
+                        </div>
                     </div>
-                    <div className="flex justify-between mt-4">
                         <div
                             onClick={handleSubmit}
                             className={`${
-                                !formData?.name || !formData?.image
-                                    ? "cursor-not-allowed text-neutral-400"
-                                    : "hover:bg-amber-600 hover:text-white border-amber-600 cursor-pointer"
-                            } border px-2 py-1 rounded-sm transition-colors duration-300`}
+                                !formData?.name || !formData?.image ? "cursor-not-allowed text-neutral-400"
+                                    : "hover:bg-green-600 hover:text-white border-green-600 w-full cursor-pointer"
+                            } border p-1 mt-4 text-center text-xl rounded-sm transition-colors font-medium duration-300`}
                         >
                             Add Sub Category
                         </div>
-                        <button
-                            className="border border-red-600 px-2 py-1 rounded-sm hover:bg-red-600 hover:text-white transition-colors duration-300"
-                            onClick={close}
-                        >
-                            Cancel
-                        </button>
-                    </div>
                 </form>
             </div>
         </section>
