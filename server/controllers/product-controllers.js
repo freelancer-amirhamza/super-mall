@@ -31,7 +31,7 @@ const addProduct = async (req, res) =>{
 }
 const getProduct = async(req, res)=>{
     try {
-        const {page, limit, search} = req.body;
+        let {page, limit, search} = req.body;
 
         if(!page){
             page= 1
@@ -40,10 +40,34 @@ const getProduct = async(req, res)=>{
         if(!limit){
             limit = 10
         }
+        const query = search ? {
+            $text : {
+                $search : search
+            }
+        } : {}
+
+        const skip = (page - 1) * limit;
+        const [data,totalCount] = await Promise.all([
+            Product.find(query).sort({createdAt : -1 }).skip(skip).limit(limit).populate('category subCategory'),
+            Product.countDocuments(query)
+        ])
+
+        return res.status(200).json({
+            message : "Product data",
+            error : false,
+            success : true,
+            totalCount : totalCount,
+            totalNoPage : Math.ceil( totalCount / limit),
+            data : data
+        })
     } catch (error) {
-        
+        return res.status(500).json({
+            success: false,
+            error: true,
+            message: error.message || "Internal server error!",
+        })
     }
 }
 
 
-module.exports = {addProduct, }
+module.exports = {addProduct, getProduct }

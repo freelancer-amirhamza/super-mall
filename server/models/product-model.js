@@ -54,11 +54,11 @@ const productSchema = new mongoose.Schema({
 // create a text index
 
 productSchema.index({
-    name: "text",
-    description: "text",
-}, {
-    name: 10,
-    description: 5
+    name  : "text",
+    description : 'text'
+},{
+    name : 10,
+    description : 5
 })
 
 
