@@ -69,5 +69,34 @@ const getProduct = async(req, res)=>{
     }
 }
 
+const getProductByCategory = async(req, res)=>{
+   try {
+    const {id} = req.body;
+    if(!id){
+        return res.status(400).json({
+            success: false,
+            error: true,
+            message: "Category id not found!"
+        })
+    }
+    const product = await Product.find({
+        category : {$in : id}
+    }).limit(20)
 
-module.exports = {addProduct, getProduct }
+    return res.status(200).json({
+        success: true,
+        error: false,
+        message: "Product by category",
+        data: product
+    })
+   } catch (error) {
+    return res.status(500).json({
+        success: false,
+        error: true,
+        message: error.message || "Internal server error!",
+    })
+   }
+
+}
+
+module.exports = {addProduct, getProduct, getProductByCategory }

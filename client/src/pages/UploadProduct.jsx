@@ -271,7 +271,7 @@ const UploadProduct = () => {
           <div className="grid gap-2">
             {Object?.keys(formData?.more_details).map((key, index)=>{
               return(
-                <div className="grid gap-2">
+                <div className="grid gap-2" key={index + key}>
                   <label className='text-xl font-medium text-neutral-700' htmlFor="price">{key}:</label>
                   <input className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 ' 
                   placeholder={`Enter Product ${key}`}

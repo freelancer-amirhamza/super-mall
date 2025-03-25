@@ -6,9 +6,9 @@ import Footer from './components/Footer'
 import {Toaster} from "react-hot-toast";
 import fetchUserDetails from './utils/fetchUserDetails';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, } from 'react-redux';
 import { setUserDetails } from './store/userSlice';
-import { setAllCategory, setAllSubCategory } from './store/productSlice';
+import { setAllCategory, setAllSubCategory,setLoadingCategory } from './store/productSlice';
 import SummeryApi from './common/SummeryApi';
 import AxiosToastError from './utils/AxiosToastError';
 import Axios from './utils/Axios';
@@ -22,6 +22,7 @@ const App = () => {
   
   const fetchCategory = async()=>{
     try {
+      dispatch(setLoadingCategory(true))
       const response = await Axios({
         ...SummeryApi.getCategory,
       })
@@ -30,8 +31,12 @@ const App = () => {
       }
     } catch (error) {
       AxiosToastError(error)
+    }finally{
+      dispatch(setLoadingCategory(false))
     }
-  }
+  };
+
+
 
   const fetchSubCategory = async()=>{
     try {
@@ -45,6 +50,8 @@ const App = () => {
       AxiosToastError(error)
     }
   }
+
+
 
   useEffect(()=>{
     fetchUser()
@@ -62,8 +69,7 @@ const App = () => {
     toastOptions={{
     success: {
       style: {
-        // background: '#DCEDC8',
-        // color:'white',
+        
         fontWeight: "bold"
       },
     },
