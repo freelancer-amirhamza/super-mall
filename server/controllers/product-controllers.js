@@ -98,5 +98,35 @@ const getProductByCategory = async(req, res)=>{
    }
 
 }
+const getProductByCategoryAndSubCategory = (req, res)=>{
+    try {
+        const {categoryId, subCategoryId, page, limit} =req.body;
+
+        if(!categoryId || !subCategoryId ){
+            return res.status(400).json({
+                success: false,
+                error: true,
+                message: "category id or sub category id not founded!"
+            })
+        }
+
+        if(!page){
+            page = 1
+        }
+
+        if(!limit){
+            limit =10
+        }
+
+        
+
+    } catch (error) {
+        return res.status(500).json({
+            success:false,
+            error: true,
+            message: error.message || "Internal server error!"
+        })
+    }
+}
 
 module.exports = {addProduct, getProduct, getProductByCategory }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import AxiosToastError from '../utils/AxiosToastError';
 import Axios from "../utils/Axios";
@@ -10,6 +10,7 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 const CategoryWiseProductDisplay = ({id, name}) => {
     const [data, setData] = useState([]);
     const [loading, setLoading]= useState(false);
+    const containerRef = useRef()
 
 console.log(data, "data")
     const fetchCategoryWiseProduct = async()=>{
@@ -30,6 +31,13 @@ console.log(data, "data")
             setLoading(false)
         }
     }
+    const handleScrollRight = () => {
+        containerRef.current.scrollLeft += 200
+    }
+
+    const handleScrollLeft = ()=>{
+        containerRef.current.scrollLeft -= 200
+    }
     useEffect(()=>{
         fetchCategoryWiseProduct()
     },[])
@@ -43,10 +51,10 @@ console.log(data, "data")
                         View All
                     </Link>
                 </div>
-                <div className="flex container mx-auto p-4 gap-4  justify-center items-center">
+                <div className="flex container mx-auto p-4 sm:gap-4 gap-2  items-center overflow-x-scroll no-scrollbar scroll-smooth" ref={containerRef} >
                     { loading ? loadingCardNumber.map((_, index)=>{
                         return (
-                            <CardLoader key={index}/>
+                            <CardLoader key={index + "cate"}/>
                         )
                     }) :
                      data?.map((product, index)=>{
@@ -55,9 +63,9 @@ console.log(data, "data")
                         )
                      })
                     }
-                    <div className="absolute w-full items-center lg:flex hidden left-0 right-0  container mx-auto justify-between">
-                        <button className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"> <FaAngleLeft/> </button>
-                        <button className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"> <FaAngleRight/> </button>
+                    <div className="absolute w-full items-center sm:flex hidden left-0 right-0  container mx-auto justify-between">
+                        <button onClick={handleScrollLeft} className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"> <FaAngleLeft/> </button>
+                        <button onClick={handleScrollRight} className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"> <FaAngleRight/> </button>
                     </div>
                 </div>
             
