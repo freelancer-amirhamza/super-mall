@@ -9,6 +9,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  "description": "",
+>>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cloudinary": "^2.5.1",
@@ -24,6 +31,16 @@
     "nodemon": "^3.1.9",
     "resend": "^4.1.1",
     "server": "file:"
+<<<<<<< HEAD
+<<<<<<< HEAD
+  },
+  "description": "",
+  "type": "commonjs"
+=======
+  }
+>>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
   },
   "description": ""
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
 }
