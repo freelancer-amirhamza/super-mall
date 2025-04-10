@@ -1,3 +1,4 @@
+
 export const baseUrl = "http://localhost:5000";
 
 const SummeryApi = {
@@ -87,6 +88,14 @@ const SummeryApi = {
     },
     getProductByCategory: {
         url: "/api/product/get-product-by-category",
+        method: "post"
+    },
+    getProductByCategoryAndSubCategory: {
+        url: "/api/product/get-product-by-category-and-sub-category",
+        method: "post"
+    },
+    getProductDetails: {
+        url: "/api/product/get-product-details",
         method: "post"
     },
 };

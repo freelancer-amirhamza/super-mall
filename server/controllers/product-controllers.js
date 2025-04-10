@@ -98,7 +98,7 @@ const getProductByCategory = async(req, res)=>{
    }
 
 }
-const getProductByCategoryAndSubCategory = (req, res)=>{
+const getProductByCategoryAndSubCategory = async (req, res)=>{
     try {
         const {categoryId, subCategoryId, page, limit} =req.body;
 
@@ -118,7 +118,26 @@ const getProductByCategoryAndSubCategory = (req, res)=>{
             limit =10
         }
 
-        
+        const query= {
+            category: {$in: categoryId},
+            subCategory: {$in: subCategoryId}
+
+        }
+        const skip = (page - 1) * limit;
+
+        const [data, dataCount] = await Promise.all([
+            Product.find(query).sort({createdAt: -1}).skip(skip).limit(limit),
+            Product.countDocuments(query)
+        ])
+        return res.status(200).json({
+            success: true,
+            error: false,
+            message: "Product by category and sub category",
+            data: data,
+            totalCount: dataCount,
+            page: page,
+            limit: limit,
+        })
 
     } catch (error) {
         return res.status(500).json({
@@ -129,4 +148,39 @@ const getProductByCategoryAndSubCategory = (req, res)=>{
     }
 }
 
-module.exports = {addProduct, getProduct, getProductByCategory }
+// product details
+const getProductDetails = async (req, res)=>{
+    try {
+        const {productId} = req.body;
+        if(!productId){
+            return res.status(400).json({
+                success: false,
+                error: true,
+                message: "Product id not found!"
+            })
+        }
+
+        const product = await Product.findById({_id: productId})
+        if(!product){
+            return res.status(404).json({
+                success: false,
+                error: true,
+                message: "Product not found!"
+            })
+        }
+        return res.status(200).json({
+            success: true,
+            error: false,
+            message: "Product details",
+            data: product
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: true,
+            message: error.message || "Internal server error!"
+        })
+        
+    }
+}
+module.exports = {addProduct, getProduct, getProductByCategory, getProductByCategoryAndSubCategory, getProductDetails}
