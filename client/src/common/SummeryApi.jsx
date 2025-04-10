@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+
+=======
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 9059a74e67bf3c89636b2ae135e819237efd865f
 export const baseUrl = "http://localhost:5000";
 =======
 
@@ -153,6 +157,14 @@ const SummeryApi = {
     },
     getProductByCategory: {
         url: "/api/product/get-product-by-category",
+        method: "post"
+    },
+    getProductByCategoryAndSubCategory: {
+        url: "/api/product/get-product-by-category-and-sub-category",
+        method: "post"
+    },
+    getProductDetails: {
+        url: "/api/product/get-product-details",
         method: "post"
     },
 };
