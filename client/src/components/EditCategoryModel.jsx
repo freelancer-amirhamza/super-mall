@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from 'react';
 =======
 import React, { useState } from 'react'
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+import React, { useState } from 'react';
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import uploadImage from './UploadImage';
@@ -22,11 +26,15 @@ const EditCategoryModel = ({ close, fetchData, data }) => {
     const handleOnChange = (e) => {
         const { name, value } = e.target;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
         setFormData((formData) => ({
             ...formData,
             [name]: value
         }));
     };
+<<<<<<< HEAD
 =======
         setFormData((formData) => {
             return {
@@ -36,11 +44,16 @@ const EditCategoryModel = ({ close, fetchData, data }) => {
         })
     }
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
 
     const handleUploadImage = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
         setLoading(true);
         try {
             const response = await uploadImage(file);
@@ -73,6 +86,7 @@ const EditCategoryModel = ({ close, fetchData, data }) => {
             setLoading(false);
         }
     };
+<<<<<<< HEAD
 =======
         setLoading(true)
         const response = await uploadImage(file);
@@ -102,6 +116,8 @@ const EditCategoryModel = ({ close, fetchData, data }) => {
         }
     }
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
 
     const handleClearImage = () => {
         setFormData((formData) => ({
@@ -109,6 +125,9 @@ const EditCategoryModel = ({ close, fetchData, data }) => {
             image: ''
         }));
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
     };
 
     return (
@@ -117,6 +136,7 @@ const EditCategoryModel = ({ close, fetchData, data }) => {
                 <div className="flex justify-between items-center">
                     <h1 className="text-xl font-semibold text-neutral-700">Update Category</h1>
                     <button onClick={close} className="text-lg font-semibold hover:text-amber-600 cursor-pointer text-neutral-700">
+<<<<<<< HEAD
 =======
     }
 
@@ -127,6 +147,8 @@ const EditCategoryModel = ({ close, fetchData, data }) => {
                     <h1 className="text-xl font-semibold text-neutral-700">Update Category</h1>
                     <button onClick={() => close()} className="text-lg font-semibold hover:text-amber-600 cursor-pointer text-neutral-700" >
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
                         <IoMdCloseCircleOutline size={30} />
                     </button>
                 </div>
@@ -134,6 +156,9 @@ const EditCategoryModel = ({ close, fetchData, data }) => {
                     <div className="flex flex-col">
                         <label htmlFor="name" className="text-lg font-medium text-neutral-700">Name</label>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
                         <input
                             onChange={handleOnChange}
                             type="text"
@@ -199,6 +224,7 @@ const EditCategoryModel = ({ close, fetchData, data }) => {
                         >
                             Cancel
                         </button>
+<<<<<<< HEAD
 =======
                         <input onChange={handleOnChange} type="text" value={formData.name} placeholder='Enter Category Name..' name='name' id="name" className="border border-neutral-200 p-2 rounded-sm focus:outline-none focus:border-amber-600" />
                     </div>
@@ -236,10 +262,13 @@ const EditCategoryModel = ({ close, fetchData, data }) => {
                         <div onClick={handleSubmit} className={`${!formData?.name || !formData?.image ? "cursor-not-allowed text-neutral-400 " : "hover:bg-amber-600 hover:text-white border-amber-600 cursor-pointer"}  border  px-2 py-1 rounded-sm  transition-colors duration-300`} >Update Category</div>
                         <button className="border border-red-600 px-2 py-1 rounded-sm hover:bg-red-600 hover:text-white transition-colors duration-300" onClick={() => close()}>Cancel</button>
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
                     </div>
                 </form>
             </div>
         </section>
+<<<<<<< HEAD
 <<<<<<< HEAD
     );
 };
@@ -251,3 +280,9 @@ export default EditCategoryModel;
 
 export default EditCategoryModel
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+    );
+};
+
+export default EditCategoryModel;
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6

@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from 'react';
 =======
 import React, { useState } from 'react'
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+import React, { useState } from 'react';
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import uploadImage from './UploadImage';
@@ -23,6 +27,9 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
 
     const allCategory = useSelector(state => state?.product?.allCategory);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
 
     const handleOnChange = (e) => {
         const { name, value } = e.target;
@@ -31,6 +38,7 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
             [name]: value
         }));
     };
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -46,11 +54,16 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
         })
     }
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
 
     const handleUploadImage = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
         setLoading(true);
         try {
             const response = await uploadImage(file);
@@ -92,6 +105,7 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
             category: updatedCategories
         }));
     };
+<<<<<<< HEAD
 =======
         setLoading(true)
         const response = await uploadImage(file);
@@ -140,6 +154,8 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
         })
     }
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
 
     const handleClearImage = () => {
         setFormData((formData) => ({
@@ -147,6 +163,9 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
             image: ''
         }));
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
     };
 
     return (
@@ -155,6 +174,7 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
                 <div className="flex justify-between items-center">
                     <h1 className="text-lg font-semibold text-neutral-700">Sub Category</h1>
                     <button onClick={close} className="text-lg font-semibold hover:text-amber-600 cursor-pointer text-neutral-700">
+<<<<<<< HEAD
 =======
     }
 
@@ -165,6 +185,8 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
                     <h1 className="text-lg font-semibold text-neutral-700">Sub Category</h1>
                     <button onClick={() => close()} className="text-lg font-semibold hover:text-amber-600 cursor-pointer text-neutral-700" >
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
                         <IoMdCloseCircleOutline size={30} />
                     </button>
                 </div>
@@ -172,6 +194,9 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
                     <div className="flex flex-col">
                         <label htmlFor="name" className="text-xl font-medium text-neutral-700">Name</label>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
                         <input
                             onChange={handleOnChange}
                             type="text"
@@ -211,6 +236,7 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
                                     </label>
                                 </div>
                             )}
+<<<<<<< HEAD
 =======
                         <input onChange={handleOnChange} type="text" value={formData.name} placeholder='Enter Category Name..' name='name' id="name" className="border border-neutral-200 p-2 rounded-sm focus:outline-none focus:border-amber-600" />
                     </div>
@@ -242,11 +268,16 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
                                     </div>
                             }
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
                         </div>
                     </div>
                     <div className="flex flex-col gap-4 mt-2">
                         <label className="text-xl font-medium text-neutral-700" htmlFor="selectCategory">Select Category</label>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
                         
                         <div>
                             <select
@@ -300,6 +331,7 @@ const UploadSubCategoryModel = ({ close, fetchData }) => {
     );
 };
 
+<<<<<<< HEAD
 export default UploadSubCategoryModel;
 =======
                         {/* display selected items */}
@@ -357,3 +389,6 @@ export default UploadSubCategoryModel;
 
 export default UploadSubCategoryModel
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+export default UploadSubCategoryModel;
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6

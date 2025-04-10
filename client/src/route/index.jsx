@@ -19,10 +19,15 @@ import UploadProduct from "../pages/UploadProduct.jsx";
 import AdminProducts from "../pages/AdminProducts.jsx";
 import AdminPermission from "../pages/AdminPermission.jsx";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import ProductListPage from "../pages/ProductListPage.jsx";
 import ProductDetailsPage from "../components/ProductDetailsPage.jsx";
 =======
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+import ProductListPage from "../pages/ProductListPage.jsx";
+import ProductDetailsPage from "../components/ProductDetailsPage.jsx";
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
 
 const router = createBrowserRouter([
   {
@@ -95,6 +100,9 @@ const router = createBrowserRouter([
           }
         ]
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
       },
       {
         path: ":category",
@@ -108,8 +116,11 @@ const router = createBrowserRouter([
       {
         path: "product/:product",
         element: <ProductDetailsPage/>
+<<<<<<< HEAD
 =======
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
       }
     ],
   },

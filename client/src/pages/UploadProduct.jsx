@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { FaCloudUploadAlt } from 'react-icons/fa'
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
 import { MdDelete } from 'react-icons/md';
 import uploadImage from '../components/UploadImage';
 import ImageModel from '../components/ImageModel';
@@ -46,6 +49,7 @@ const UploadProduct = () => {
       return {
         ...formData,
         [name]: value,
+<<<<<<< HEAD
 =======
 import { IoMdCloseCircleOutline } from 'react-icons/io'
 
@@ -71,11 +75,16 @@ console.log("formData", formData)
         ...formData,
         [name] : value,
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
       }
     })
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
   const handleUploadImage = async (e) => {
     const file = e.target.files[0]
     if (!file) return;
@@ -136,16 +145,20 @@ console.log("formData", formData)
     } catch (error) {
       AxiosToastError(error)
     }
+<<<<<<< HEAD
 =======
   const handleUploadImage = (e)=>{
     const image = e.target.files[0]
     
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
   }
   return (
     <section className=''>
       <div className="flex justify-between items-center shadow-md p-2 bg-white">
         <h1 className="text-xl font-semibold text-neutral-700">Upload Products</h1>
+<<<<<<< HEAD
 <<<<<<< HEAD
       </div>
       <form className='' onSubmit={handleSubmit} >
@@ -155,11 +168,18 @@ console.log("formData", formData)
       </div>
       <form className=''>
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+      </div>
+      <form className='' onSubmit={handleSubmit} >
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
         <div className="grid gap-3 p-3 ">
           <div className="grid gap-2">
             <label className='text-xl font-medium text-neutral-700' htmlFor="name">Name:</label>
             <input onChange={handleOnChange} value={formData?.name}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
               className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 '
               type="text" id='name' name='name' required placeholder='Enter Product name' />
           </div>
@@ -343,6 +363,7 @@ console.log("formData", formData)
       {viewImageURL && <ImageModel url={viewImageURL} close={() => setViewImageURL("")} />}
         {openAddField && <AddMoreField value={fieldName} onChange={(e)=> setFieldName(e.target.value)} submit={handleFieldSubmit} close={()=>setOpenAddField(false)} />}
     </section>
+<<<<<<< HEAD
 =======
             className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 '
             type="text" id='name' name='name' placeholder='Enter Product name' />
@@ -386,6 +407,8 @@ console.log("formData", formData)
       </form>
       </section>
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
   )
 }
 

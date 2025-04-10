@@ -1,9 +1,13 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 export const baseUrl = "http://localhost:5000";
 =======
 
 export const baseUrl= "http://localhost:5000" ;
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+export const baseUrl = "http://localhost:5000";
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
 
 const SummeryApi = {
     register: {
@@ -23,10 +27,14 @@ const SummeryApi = {
         method: "put"
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
     reset_password: {
 =======
     reset_password:{
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+    reset_password: {
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
         url: "/api/user/reset-password",
         method: "put",
     },
@@ -43,6 +51,7 @@ const SummeryApi = {
         method: "get",
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
     uploadAvatar: {
         url: "/api/user/upload-image",
         method: "put",
@@ -54,15 +63,22 @@ const SummeryApi = {
     addCategory: {
 =======
     uploadAvatar:{
+=======
+    uploadAvatar: {
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
         url: "/api/user/upload-image",
         method: "put",
     },
-    updateUserDetails:{
+    updateUserDetails: {
         url: "/api/user/update-user",
         method: "put"
     },
+<<<<<<< HEAD
     addCategory:{
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+    addCategory: {
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
         url: "/api/category/add-category",
         method: "post"
     },
@@ -73,22 +89,31 @@ const SummeryApi = {
     getCategory: {
         url: "/api/category/get-category",
 <<<<<<< HEAD
+<<<<<<< HEAD
         method: "get"
     },
 =======
         method:"get"
     }, 
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+        method: "get"
+    },
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
     updateCategory: {
         url: "/api/category/update-category",
         method: "put",
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
     deleteCategory: {
         url: "/api/category/delete-category",
         method: "delete"
     },
     addSubCategory: {
+<<<<<<< HEAD
 =======
     deleteCategory:{
         url: "/api/category/delete-category",
@@ -97,6 +122,8 @@ const SummeryApi = {
     },
     addSubCategory:{
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
         url: "/api/sub-category/create",
         method: "post"
     },
@@ -112,6 +139,9 @@ const SummeryApi = {
         url: "/api/sub-category/delete",
         method: "delete"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
     },
     addProduct: {
         url: "/api/product/create",
@@ -126,6 +156,7 @@ const SummeryApi = {
         method: "post"
     },
 };
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> master
@@ -134,5 +165,7 @@ const SummeryApi = {
 }
 
 >>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
+=======
+>>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
 
 export default SummeryApi;
