@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react'
 import Axios from '../utils/Axios'
 import AxiosToastError from '../utils/AxiosToastError'
@@ -103,6 +104,13 @@ const AdminProducts = () => {
         </div>}
       </div>
     </section>
+=======
+import React from 'react'
+
+const AdminProducts = () => {
+  return (
+    <div>AdminProducts</div>
+>>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
   )
 }
 

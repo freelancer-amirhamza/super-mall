@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import banner from '../assets/banner.jpg';
 import bannerMobile from '../assets/banner-mobile.jpg';
@@ -108,3 +109,14 @@ const Home = () => {
 };
 
 export default Home;
+=======
+import 'react'
+
+const Home = () => {
+    return (
+        <div className='flex  container mx-auto  w-full text-center '>Welcome to Home page</div>
+    )
+}
+
+export default Home
+>>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
