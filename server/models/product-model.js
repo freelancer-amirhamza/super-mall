@@ -9,10 +9,6 @@ const productSchema = new mongoose.Schema({
         type: Array,
         default: [],
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
     category: [
         {
             type: mongoose.Schema.ObjectId,
@@ -20,25 +16,10 @@ const productSchema = new mongoose.Schema({
         }
     ],
     subCategory: [{
-<<<<<<< HEAD
         type: mongoose.Schema.ObjectId,
         ref: "subCategory",
     }],
-=======
-    category: {
-        type: mongoose.Schema.ObjectId,
-        ref: "Category",
-    },
-    subCategory: {
-        type: mongoose.Schema.ObjectId,
-        ref: "subCategory",
-    },
->>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
-=======
-        type: mongoose.Schema.ObjectId,
-        ref: "subCategory",
-    }],
->>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
+    
     unit: {
         type: String,
         default: ""
@@ -74,25 +55,16 @@ const productSchema = new mongoose.Schema({
 // create a text index
 
 productSchema.index({
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
     name  : "text",
     description : 'text'
 },{
     name : 10,
-    description : 5
-<<<<<<< HEAD
-=======
+    description : 5,
     name: "text",
     description: "text",
 }, {
     name: 10,
     description: 5
->>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
-=======
->>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
 })
 
 

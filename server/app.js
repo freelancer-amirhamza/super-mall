@@ -10,14 +10,7 @@ const userRouter = require("./routes/user-routes.js");
 const categoryRouter = require("./routes/category-routes.js")
 const uploadImageRouter = require("./routes/uploadImage-routes.js")
 const subCategoryRouter = require("./routes/sub-category-routes.js");
-<<<<<<< HEAD
-<<<<<<< HEAD
 const productRouter = require("./routes/product-routes.js");
-=======
->>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
-=======
-const productRouter = require("./routes/product-routes.js");
->>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
 
 app.use(cors({
     origin: process.env.CLIENT_URL,
@@ -37,13 +30,6 @@ app.use("/api/user", userRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/file", uploadImageRouter);
 app.use("/api/sub-category", subCategoryRouter);
-<<<<<<< HEAD
-<<<<<<< HEAD
 app.use("/api/product", productRouter)
-=======
->>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
-=======
-app.use("/api/product", productRouter)
->>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
 
 module.exports = app;

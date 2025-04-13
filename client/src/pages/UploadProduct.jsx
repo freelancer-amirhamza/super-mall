@@ -1,13 +1,9 @@
-import React, { useState } from 'react'
-import { FaCloudUploadAlt } from 'react-icons/fa'
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
+import React, { useState } from 'react';
+import { FaCloudUploadAlt } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import uploadImage from '../components/UploadImage';
 import ImageModel from '../components/ImageModel';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import { IoMdClose } from 'react-icons/io';
 import AddMoreField from '../components/AddMoreField';
 import AxiosToastError from '../utils/AxiosToastError';
@@ -15,171 +11,121 @@ import Axios from '../utils/Axios';
 import SummeryApi from '../common/SummeryApi';
 import successAlert from '../utils/SuccessAlert';
 
-
 const initialsFormData = {
-  name: "",
+  name: '',
   image: [],
   category: [],
   subCategory: [],
   unit: [],
-  stock: "",
-  price: "",
-  discount: "",
-  description: "",
+  stock: '',
+  price: '',
+  discount: '',
+  description: '',
   more_details: {},
-}
+};
 
 const UploadProduct = () => {
-  const [formData, setFormData] = useState(initialsFormData)
+  const [formData, setFormData] = useState(initialsFormData);
   const [loading, setLoading] = useState(false);
-  const [viewImageURL, setViewImageURL] = useState("")
+  const [viewImageURL, setViewImageURL] = useState('');
   const allCategory = useSelector((state) => state.product.allCategory);
-  const allSubCategory = useSelector(state=> state.product.allSubCategory)
-  const [selectCategory, setSelectCategory] = useState("");
-  const [selectSubCategory, setSelectSubCategory] = useState("");
-  const [openAddField, setOpenAddField]= useState(false);
-  const [fieldName,setFieldName] = useState("")
+  const allSubCategory = useSelector((state) => state.product.allSubCategory);
+  const [selectCategory, setSelectCategory] = useState('');
+  const [selectSubCategory, setSelectSubCategory] = useState('');
+  const [openAddField, setOpenAddField] = useState(false);
+  const [fieldName, setFieldName] = useState('');
 
-
-  console.log("formData", formData)
   const handleOnChange = (e) => {
-    e.preventDefault()
     const { name, value } = e.target;
-    setFormData(() => {
-      return {
-        ...formData,
-        [name]: value,
-<<<<<<< HEAD
-=======
-import { IoMdCloseCircleOutline } from 'react-icons/io'
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-const UploadProduct = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    image: [],
-    category: [],
-    subCategory: [],
-    unit: [],
-    stock: "",
-    price: "",
-    discount: "",
-    description: "",
-    more_details : {},
-  })
-console.log("formData", formData)
-  const handleOnChange = (e)=>{
-    e.preventDefault()
-    const {name, value} = e.target;
-    setFormData(()=>{
-      return {
-        ...formData,
-        [name] : value,
->>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
-=======
->>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
-      }
-    })
-  }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
   const handleUploadImage = async (e) => {
-    const file = e.target.files[0]
+    const file = e.target.files[0];
     if (!file) return;
     setLoading(true);
-    const response = await uploadImage(file);
-    const imageUrl = response?.data?.data?.url
-    setFormData((formData) => {
-      return {
-        ...formData,
-        image: [...formData.image, imageUrl]
-      }
-    })
-    setLoading(false)
+    try {
+      const response = await uploadImage(file);
+      const imageUrl = response?.data?.data?.url;
+      setFormData((prev) => ({
+        ...prev,
+        image: [...prev.image, imageUrl],
+      }));
+    } catch (error) {
+      AxiosToastError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  }
   const handleDeleteImage = (index) => {
-    formData.image.splice(index, 1)
-    setFormData((formData) => ({
-      ...formData
+    const updatedImages = [...formData.image];
+    updatedImages.splice(index, 1);
+    setFormData((prev) => ({
+      ...prev,
+      image: updatedImages,
     }));
-  }
+  };
+
   const handleRemoveCategory = (index) => {
-    formData.category.splice(index, 1)
-    setFormData((formData) => ({
-      ...formData
-    }))
-  }
+    const updatedCategories = [...formData.category];
+    updatedCategories.splice(index, 1);
+    setFormData((prev) => ({
+      ...prev,
+      category: updatedCategories,
+    }));
+  };
 
-  const handleRemoveSubCategory = (index)=>{
-    formData.subCategory.splice(index, 1)
-    setFormData((formData)=>({
-      ...formData,
-    }))
-  }
+  const handleRemoveSubCategory = (index) => {
+    const updatedSubCategories = [...formData.subCategory];
+    updatedSubCategories.splice(index, 1);
+    setFormData((prev) => ({
+      ...prev,
+      subCategory: updatedSubCategories,
+    }));
+  };
 
-  const handleFieldSubmit = ()=>{
-    setFormData((formData)=>({
-      ...formData,
-      more_details : {
-        ...formData.more_details,
-        [fieldName] : ""
-      }
-    }))
-    setFieldName("")
-    setOpenAddField(false)
-  }
-  const handleSubmit =async (e)=>{
-    e.preventDefault()
+  const handleFieldSubmit = () => {
+    setFormData((prev) => ({
+      ...prev,
+      more_details: {
+        ...prev.more_details,
+        [fieldName]: '',
+      },
+    }));
+    setFieldName('');
+    setOpenAddField(false);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       const response = await Axios({
         ...SummeryApi.addProduct,
         data: formData,
-      })
-      if(response?.data?.success){
+      });
+      if (response?.data?.success) {
         successAlert(response?.data?.message);
-        setFormData(initialsFormData)
+        setFormData(initialsFormData);
       }
     } catch (error) {
-      AxiosToastError(error)
+      AxiosToastError(error);
     }
-<<<<<<< HEAD
-=======
-  const handleUploadImage = (e)=>{
-    const image = e.target.files[0]
-    
->>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
-=======
->>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
-  }
+  };
+
   return (
-    <section className=''>
+    <section>
       <div className="flex justify-between items-center shadow-md p-2 bg-white">
         <h1 className="text-xl font-semibold text-neutral-700">Upload Products</h1>
-<<<<<<< HEAD
-<<<<<<< HEAD
       </div>
-      <form className='' onSubmit={handleSubmit} >
-=======
-        <button onClick={()=> setShowUploadSubCategoryModel(true) }
-         className="border  border-amber-600 transition-colors duration-300 px-2 py-1 rounded-sm hover:bg-amber-500 cursor-pointer hover:text-white font-medium ">Add Sub Category</button>
-      </div>
-      <form className=''>
->>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
-=======
-      </div>
-      <form className='' onSubmit={handleSubmit} >
->>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
+      <form onSubmit={handleSubmit}>
         <div className="grid gap-3 p-3 ">
           <div className="grid gap-2">
             <label className='text-xl font-medium text-neutral-700' htmlFor="name">Name:</label>
             <input onChange={handleOnChange} value={formData?.name}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
               className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 '
               type="text" id='name' name='name' required placeholder='Enter Product name' />
           </div>
@@ -363,53 +309,7 @@ console.log("formData", formData)
       {viewImageURL && <ImageModel url={viewImageURL} close={() => setViewImageURL("")} />}
         {openAddField && <AddMoreField value={fieldName} onChange={(e)=> setFieldName(e.target.value)} submit={handleFieldSubmit} close={()=>setOpenAddField(false)} />}
     </section>
-<<<<<<< HEAD
-=======
-            className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 '
-            type="text" id='name' name='name' placeholder='Enter Product name' />
-          </div>
-          <div className="grid gap-2">
-            <label className='text-xl font-medium text-neutral-700' htmlFor="description">Description:</label>
-            <textarea rows={3}  onChange={handleOnChange} value={formData?.description} multiline
-            className='outline-none border border-neutral-500 rounded p-2 focus-within:border-amber-300 resize-none '
-            type="text" id='description' name='description' placeholder='Enter Product description' />
-          </div>
-          <div className="grid gap-2">
-            <label className='text-xl font-medium text-neutral-700' htmlFor="imageUpload">Image:</label>
-           <div className="">
-            <label htmlFor="image" className="text-xl font-medium text-neutral-700">Image</label>
-                                    <div className="flex h-36 items-center justify-center  border border-neutral-400 mt-1 bg-blue-50 rounded">
-                                        {
-                                            formData.image ? <div className="flex items-start justify-center w-full h-full">
-                                                <img src={formData.image} alt="category"
-                                                    className="h-36 p-1  object-cover rounded" />
-                                                <button onClick={handleClearImage} className="text-lg rounded-full m-4 text-red-600 cursor-pointer hover:bg-red-600 hover:text-white transition-colors duration-300" >
-                                                    <IoMdCloseCircleOutline size={23} />
-                                                </button>
-                                            </div> :
-                                                <div>
-                                                    <input type="file" onChange={handleUploadImage} id="uploadImage" name="image" className="hidden" />
-                                                    <div className={` `}>
-                                                        <label htmlFor="uploadImage" disabled={!formData.name} className={` ${!formData.name ? "cursor-not-allowed text-neutral-400" : "text-amber-700 border-dotted border  cursor-pointer"} p-7 rounded text-lg w-full items-center flex font-semibold`} >
-                                                            <FaCloudUploadAlt size={30} />
-                                                            <span className="ml-2">
-                                                                {loading ? "Uploading..." : "Upload Image"}
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                        }
-            
-                                    </div>
-           </div>
-          </div>
-        </div>
-      </form>
-      </section>
->>>>>>> 47ed607a7eace895734d1871ced19da3b4feec70
-=======
->>>>>>> 48281d2a96db3e1806e058228bf00ac89c2990c6
-  )
-}
+  );
+};
 
-export default UploadProduct
+export default UploadProduct;
