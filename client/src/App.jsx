@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -8,15 +8,40 @@ import fetchUserDetails from './utils/fetchUserDetails';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserDetails } from './store/userSlice';
+import { setAllCategory } from './store/productSlice';
+import SummeryApi from './common/SummeryApi';
+import AxiosToastError from './utils/AxiosToastError';
+import Axios from './utils/Axios';
 
 const App = () => {
   const dispatch = useDispatch()
+  const [loading, setLoading] = useState()
   const fetchUser = async ()=>{
     const userData = await fetchUserDetails()
     dispatch(setUserDetails(userData?.data))
   }
+
+  const fetchCategory = async()=>{
+    try {
+      setLoading(true)
+      const response = await Axios({
+        ...SummeryApi.getCategory,
+      })
+      if(response?.data?.success){
+        dispatch(setAllCategory(response?.data?.data))
+      }
+
+    } catch (error) {
+      AxiosToastError(error)
+    }finally{
+      setLoading(false);
+    }
+  }
+
+
   useEffect(()=>{
     fetchUser()
+    fetchCategory()
   },[])
   return (
     <div>

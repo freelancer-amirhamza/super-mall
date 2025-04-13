@@ -17,6 +17,7 @@ body {
   font-family: "Poppins", serif;
   @apply bg-amber-50
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 
 @layer utilities {
@@ -39,4 +40,6 @@ body {
   @apply bg-blue-100 rounded-full
 =======
 >>>>>>> parent of 0581c08 (filter)
+=======
+>>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
 }

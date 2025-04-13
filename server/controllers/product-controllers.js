@@ -99,6 +99,10 @@ const getProductByCategory = async(req, res)=>{
 
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
 const getProductByCategoryAndSubCategory = async (req, res)=>{
     try {
         const {categoryId, subCategoryId, page, limit} =req.body;
@@ -150,6 +154,11 @@ const getProductByCategoryAndSubCategory = async (req, res)=>{
 }
 =======
 >>>>>>> parent of 0581c08 (filter)
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> parent of 0581c08 (filter)
+>>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
 
 // product details
 const getProductDetails = async (req, res)=>{

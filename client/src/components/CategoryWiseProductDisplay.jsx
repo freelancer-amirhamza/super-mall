@@ -38,6 +38,10 @@ console.log(data, "data")
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
     const handleScrollRight = () => {
         containerRef.current.scrollLeft += 200
     }
@@ -46,6 +50,11 @@ console.log(data, "data")
     }
     useEffect(() => {
 =======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> parent of 0581c08 (filter)
+>>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
     useEffect(()=>{
 >>>>>>> parent of 0581c08 (filter)
         fetchCategoryWiseProduct()
@@ -61,15 +70,30 @@ console.log(data, "data")
                     </Link>
                 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
                 <div className="flex container mx-auto p-4 sm:gap-4 gap-2  items-center overflow-x-scroll no-scrollbar scroll-smooth" ref={containerRef} >
                     {loading ? loadingCardNumber.map((_, index) => {
                         return (
                             <CardLoader key={index + "category"} />
 =======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> parent of 0581c08 (filter)
+>>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
                 <div className="flex container mx-auto p-4 gap-4  justify-center items-center">
                     { loading ? loadingCardNumber.map((_, index)=>{
                         return (
                             <CardLoader key={index}/>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> parent of 0581c08 (filter)
+=======
+>>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
 >>>>>>> parent of 0581c08 (filter)
                         )
                     }) :
@@ -80,6 +104,10 @@ console.log(data, "data")
                         })
                     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
                     <div className="absolute w-full items-center sm:flex hidden left-0 right-0  container mx-auto justify-between">
                         <button onClick={handleScrollLeft} className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"> <FaAngleLeft /> </button>
                         <button onClick={handleScrollRight} className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"> <FaAngleRight /> </button>
@@ -88,6 +116,14 @@ console.log(data, "data")
                         <button className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"> <FaAngleLeft/> </button>
                         <button className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"> <FaAngleRight/> </button>
 >>>>>>> parent of 0581c08 (filter)
+<<<<<<< HEAD
+=======
+=======
+                    <div className="absolute w-full items-center lg:flex hidden left-0 right-0  container mx-auto justify-between">
+                        <button className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"> <FaAngleLeft/> </button>
+                        <button className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"> <FaAngleRight/> </button>
+>>>>>>> parent of 0581c08 (filter)
+>>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
                     </div>
                 </div>
             </div>
