@@ -1,4 +1,5 @@
-export const baseUrl = "http://localhost:5000";
+
+export const baseUrl= "http://localhost:5000" ;
 
 const SummeryApi = {
     register: {
@@ -17,7 +18,7 @@ const SummeryApi = {
         url: "/api/user/verify-forgot-password-otp",
         method: "put"
     },
-    reset_password: {
+    reset_password:{
         url: "/api/user/reset-password",
         method: "put",
     },
@@ -33,15 +34,15 @@ const SummeryApi = {
         url: "/api/user/logout",
         method: "get",
     },
-    uploadAvatar: {
+    uploadAvatar:{
         url: "/api/user/upload-image",
         method: "put",
     },
-    updateUserDetails: {
+    updateUserDetails:{
         url: "/api/user/update-user",
         method: "put"
     },
-    addCategory: {
+    addCategory:{
         url: "/api/category/add-category",
         method: "post"
     },
@@ -51,17 +52,17 @@ const SummeryApi = {
     },
     getCategory: {
         url: "/api/category/get-category",
-        method: "get"
-    },
+        method:"get"
+    }, 
     updateCategory: {
         url: "/api/category/update-category",
         method: "put",
     },
-    deleteCategory: {
+    deleteCategory:{
         url: "/api/category/delete-category",
         method: "delete"
     },
-    addSubCategory: {
+    addSubCategory:{
         url: "/api/sub-category/create",
         method: "post"
     },
@@ -76,27 +77,9 @@ const SummeryApi = {
     deleteSubCategory: {
         url: "/api/sub-category/delete",
         method: "delete"
-    },
-    addProduct: {
-        url: "/api/product/create",
-        method: "post"
-    },
-    getProduct: {
-        url: "/api/product/get",
-        method: "post"
-    },
-    getProductByCategory: {
-        url: "/api/product/get-product-by-category",
-        method: "post"
-    },
-    getProductByCategoryAndSubCategory: {
-        url: "/api/product/get-product-by-category-and-sub-category",
-        method: "post"
-    },
-    getProductDetails: {
-        url: "/api/product/get-product-details",
-        method: "post"
-    },
-};
+    }
+
+}
+
 
 export default SummeryApi;

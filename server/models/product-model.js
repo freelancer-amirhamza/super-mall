@@ -9,17 +9,14 @@ const productSchema = new mongoose.Schema({
         type: Array,
         default: [],
     },
-    category: [
-        {
-            type: mongoose.Schema.ObjectId,
-            ref: "Category",
-        }
-    ],
-    subCategory: [{
+    category: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Category",
+    },
+    subCategory: {
         type: mongoose.Schema.ObjectId,
         ref: "subCategory",
-    }],
-    
+    },
     unit: {
         type: String,
         default: ""
@@ -55,11 +52,6 @@ const productSchema = new mongoose.Schema({
 // create a text index
 
 productSchema.index({
-    name  : "text",
-    description : 'text'
-},{
-    name : 10,
-    description : 5,
     name: "text",
     description: "text",
 }, {
