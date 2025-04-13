@@ -98,6 +98,7 @@ const getProductByCategory = async(req, res)=>{
    }
 
 }
+<<<<<<< HEAD
 const getProductByCategoryAndSubCategory = async (req, res)=>{
     try {
         const {categoryId, subCategoryId, page, limit} =req.body;
@@ -147,6 +148,8 @@ const getProductByCategoryAndSubCategory = async (req, res)=>{
         })
     }
 }
+=======
+>>>>>>> parent of 0581c08 (filter)
 
 // product details
 const getProductDetails = async (req, res)=>{

@@ -16,6 +16,7 @@
 body {
   font-family: "Poppins", serif;
   @apply bg-amber-50
+<<<<<<< HEAD
 }
 
 @layer utilities {
@@ -36,4 +37,6 @@ body {
 }
 .customScrollbar::-webkit-scrollbar-thumb{
   @apply bg-blue-100 rounded-full
+=======
+>>>>>>> parent of 0581c08 (filter)
 }
