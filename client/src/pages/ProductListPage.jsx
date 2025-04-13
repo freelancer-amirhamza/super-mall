@@ -64,6 +64,7 @@ const ProductListPage = () => {
   }, [params, allSubCategory]);
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
     <section className='sticky top-24 lg:top-20'>
       <div className="container sticky top-24 w-full  mx-auto flex  ">
         {/* sidebar */}
@@ -112,6 +113,9 @@ const ProductListPage = () => {
         </div>
       </div>
     </section>
+=======
+    <div>ProductListPage</div>
+>>>>>>> parent of 0581c08 (filter)
 =======
     <div>ProductListPage</div>
 >>>>>>> parent of 0581c08 (filter)

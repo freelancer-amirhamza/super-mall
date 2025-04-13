@@ -38,6 +38,7 @@ console.log(data, "data")
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     const handleScrollRight = () => {
         containerRef.current.scrollLeft += 200
     }
@@ -46,6 +47,8 @@ console.log(data, "data")
     }
     useEffect(() => {
 =======
+=======
+>>>>>>> parent of 0581c08 (filter)
     useEffect(()=>{
 >>>>>>> parent of 0581c08 (filter)
         fetchCategoryWiseProduct()
@@ -61,15 +64,21 @@ console.log(data, "data")
                     </Link>
                 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <div className="flex container mx-auto p-4 sm:gap-4 gap-2  items-center overflow-x-scroll no-scrollbar scroll-smooth" ref={containerRef} >
                     {loading ? loadingCardNumber.map((_, index) => {
                         return (
                             <CardLoader key={index + "category"} />
 =======
+=======
+>>>>>>> parent of 0581c08 (filter)
                 <div className="flex container mx-auto p-4 gap-4  justify-center items-center">
                     { loading ? loadingCardNumber.map((_, index)=>{
                         return (
                             <CardLoader key={index}/>
+<<<<<<< HEAD
+>>>>>>> parent of 0581c08 (filter)
+=======
 >>>>>>> parent of 0581c08 (filter)
                         )
                     }) :
@@ -80,9 +89,15 @@ console.log(data, "data")
                         })
                     }
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <div className="absolute w-full items-center sm:flex hidden left-0 right-0  container mx-auto justify-between">
                         <button onClick={handleScrollLeft} className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"> <FaAngleLeft /> </button>
                         <button onClick={handleScrollRight} className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"> <FaAngleRight /> </button>
+=======
+                    <div className="absolute w-full items-center lg:flex hidden left-0 right-0  container mx-auto justify-between">
+                        <button className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"> <FaAngleLeft/> </button>
+                        <button className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"> <FaAngleRight/> </button>
+>>>>>>> parent of 0581c08 (filter)
 =======
                     <div className="absolute w-full items-center lg:flex hidden left-0 right-0  container mx-auto justify-between">
                         <button className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"> <FaAngleLeft/> </button>
