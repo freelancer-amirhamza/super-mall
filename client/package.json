@@ -24,10 +24,7 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.1.5",
     "react-type-animation": "^3.2.0",
-<<<<<<< HEAD
     "sweetalert2": "^11.17.2",
-=======
->>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
     "tailwindcss": "^4.0.5"
   },
   "devDependencies": {
@@ -41,14 +38,10 @@
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
     "vite": "^6.1.0"
-<<<<<<< HEAD
   },
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
   "main": "eslint.config.js",
   "keywords": [],
   "author": "",
   "license": "ISC"
-=======
-  }
->>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
 }

@@ -63,11 +63,6 @@ const ProductListPage = () => {
     setDisplaySubCategory(sub);
   }, [params, allSubCategory]);
   return (
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
     <section className='sticky top-24 lg:top-20'>
       <div className="container sticky top-24 w-full  mx-auto flex  ">
         {/* sidebar */}
@@ -116,15 +111,6 @@ const ProductListPage = () => {
         </div>
       </div>
     </section>
-=======
-    <div>ProductListPage</div>
->>>>>>> parent of 0581c08 (filter)
-<<<<<<< HEAD
-=======
-=======
-    <div>ProductListPage</div>
->>>>>>> parent of 0581c08 (filter)
->>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
   )
 }
 

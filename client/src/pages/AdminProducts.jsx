@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import Axios from '../utils/Axios';
 import AxiosToastError from '../utils/AxiosToastError';
@@ -116,14 +115,5 @@ const AdminProducts = () => {
     </section>
   );
 };
-=======
-import React from 'react'
-
-const AdminProducts = () => {
-  return (
-    <div>AdminProducts</div>
-  )
-}
->>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
 
 export default AdminProducts;

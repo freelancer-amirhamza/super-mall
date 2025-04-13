@@ -18,11 +18,8 @@ import Products from "../pages/AdminProducts.jsx";
 import UploadProduct from "../pages/UploadProduct.jsx";
 import AdminProducts from "../pages/AdminProducts.jsx";
 import AdminPermission from "../pages/AdminPermission.jsx";
-<<<<<<< HEAD
 import ProductListPage from "../pages/ProductListPage.jsx";
 import ProductDetailsPage from "../components/ProductDetailsPage.jsx";
-=======
->>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
 
 const router = createBrowserRouter([
   {
@@ -94,7 +91,6 @@ const router = createBrowserRouter([
             element: <AdminPermission><UploadProduct/></AdminPermission>,
           }
         ]
-<<<<<<< HEAD
       },
       {
         path: ":category",
@@ -108,8 +104,6 @@ const router = createBrowserRouter([
       {
         path: "product/:product",
         element: <ProductDetailsPage/>
-=======
->>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
       }
     ],
   },

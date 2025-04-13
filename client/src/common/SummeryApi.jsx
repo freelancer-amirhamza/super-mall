@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 export const baseUrl = "http://localhost:5000";
-=======
-
-export const baseUrl= "http://localhost:5000" ;
->>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
 
 const SummeryApi = {
     register: {
@@ -22,16 +17,8 @@ const SummeryApi = {
         url: "/api/user/verify-forgot-password-otp",
         method: "put",
     },
-<<<<<<< HEAD
     reset_password: {
-=======
-    reset_password:{
->>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
-        url: "/api/user/reset-password",
         method: "put",
-    },
-    refreshToken: {
-        url: "/api/user/refresh-token",
         method: "post",
     },
     user_details: {
@@ -42,7 +29,6 @@ const SummeryApi = {
         url: "/api/user/logout",
         method: "get",
     },
-<<<<<<< HEAD
     uploadAvatar: {
         url: "/api/user/upload-image",
         method: "put",
@@ -52,17 +38,6 @@ const SummeryApi = {
         method: "put",
     },
     addCategory: {
-=======
-    uploadAvatar:{
-        url: "/api/user/upload-image",
-        method: "put",
-    },
-    updateUserDetails:{
-        url: "/api/user/update-user",
-        method: "put"
-    },
-    addCategory:{
->>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
         url: "/api/category/add-category",
         method: "post",
     },
@@ -72,30 +47,17 @@ const SummeryApi = {
     },
     getCategory: {
         url: "/api/category/get-category",
-<<<<<<< HEAD
         method: "get",
     },
-=======
-        method:"get"
-    }, 
->>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
     updateCategory: {
         url: "/api/category/update-category",
         method: "put",
     },
-<<<<<<< HEAD
     deleteCategory: {
         url: "/api/category/delete-category",
         method: "delete",
     },
     addSubCategory: {
-=======
-    deleteCategory:{
-        url: "/api/category/delete-category",
-        method: "delete"
-    },
-    addSubCategory:{
->>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
         url: "/api/sub-category/create",
         method: "post",
     },
@@ -109,7 +71,6 @@ const SummeryApi = {
     },
     deleteSubCategory: {
         url: "/api/sub-category/delete",
-<<<<<<< HEAD
         method: "delete",
     },
     addProduct: {
@@ -133,12 +94,5 @@ const SummeryApi = {
         method: "post",
     },
 };
-=======
-        method: "delete"
-    }
-
-}
-
->>>>>>> 243ced43ca22adea7b7b8447d17f8411a1f22396
 
 export default SummeryApi;
