@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 const ProductCard = ({data}) => {
-    const url = `product/${validURLConvert(data.name)}-${validURLConvert(data._id)}`
+    const url = `/product/${validURLConvert(data.name)}-${(data._id)}`
   return (
     <Link to={url} className=' border border-blue-200 p-2 grid gap-3 max-w-56 rounded '>
         <div className="min-h-20 rounded">

@@ -15,7 +15,7 @@
 
 body {
   font-family: "Poppins", serif;
-  @apply bg-amber-50
+  @apply bg-green-50;
 }
 
 @layer utilities {
@@ -32,7 +32,7 @@ body {
 }
 .customScrollbar::-webkit-scrollbar{
   width: 10px;
-  @apply bg-slate-100;
+  @apply bg-slate-100
 }
 .customScrollbar::-webkit-scrollbar-thumb{
   @apply bg-blue-100 rounded-full

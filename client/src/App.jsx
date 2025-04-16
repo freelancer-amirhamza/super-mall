@@ -8,7 +8,7 @@ import fetchUserDetails from './utils/fetchUserDetails';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserDetails } from './store/userSlice';
-import { setAllCategory } from './store/productSlice';
+import { setAllCategory, setAllSubCategory } from './store/productSlice';
 import SummeryApi from './common/SummeryApi';
 import AxiosToastError from './utils/AxiosToastError';
 import Axios from './utils/Axios';
@@ -37,12 +37,43 @@ const App = () => {
       setLoading(false);
     }
   }
+const fetchSubCategory = async()=>{
+    try {
+      setLoading(true)
+      const response = await Axios({
+        ...SummeryApi.getSubCategory,
+      })
+      if(response?.data?.success){
+        dispatch(setAllSubCategory(response?.data?.data))
+      }
 
+    } catch (error) {
+      AxiosToastError(error)
+    }finally{
+      setLoading(false);
+    }
+  }
 
   useEffect(()=>{
     fetchUser()
     fetchCategory()
+    fetchSubCategory()
   },[])
+  useEffect(() => {
+    const handleScroll = (event) => {
+      if (event.deltaY > 0) {
+        event.currentTarget.scrollLeft += 100;
+      } else {
+        event.currentTarget.scrollLeft -= 100;
+      }
+    };
+
+    window.addEventListener('wheel', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('wheel', handleScroll);
+    };
+  }, []);
   return (
     <div>
       <Header/>
@@ -69,6 +100,6 @@ const App = () => {
   }}/>
     </div>
   )
-}
+} 
 
 export default App

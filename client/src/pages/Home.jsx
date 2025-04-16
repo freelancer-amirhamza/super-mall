@@ -17,6 +17,7 @@ const Home = () => {
         const subcategory = allSubCategory.find((sub) => {
             return sub.category.some((cat) => cat._id === categoryId);
         });
+        console.log(allSubCategory, "subcategory");
 
         if (!subcategory) {
             AxiosToastError({ response: { data: { message: "No subcategory found" } } });
