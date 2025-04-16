@@ -103,8 +103,8 @@ const ProductDetailsPage = () => {
       </div>
       <Divider/>
       <div className="grid gap-2">
-        <h1 className="text-2xl font-medium text-neutral-800">Product Description</h1>
-        <p className="text-base font-medium">{data?.description}</p>
+        <h1 className="text-2xl font-medium text-neutral-700">Product Description</h1>
+        <p className="text-sm text font-light">{data?.description}</p>
       </div>
     </div>
     <div className="col-span-1">
@@ -131,7 +131,11 @@ const ProductDetailsPage = () => {
           </div>
           )}
         </div>
-        <button className='w-fit bg-green-500 py-1 px-3 text-xl rounded text-white' >Add</button>
+        {data?.stock === 0 ? (
+          <p className="text-orange-500 font-semibold text-xl">Out of Stock</p>
+        ): (
+        <button className='w-fit bg-green-600 hover:bg-green-700 transition-colors duration-200  py-1 px-3 text-xl rounded text-white' >Add</button>
+        )}
       </div>
       <Divider/>
       <div className="grid gap-2">
