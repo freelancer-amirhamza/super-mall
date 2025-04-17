@@ -13,7 +13,7 @@ import successAlert from "../utils/SuccessAlert";
 
 
 
-const EditProductModal = ({close, product}) => {
+const EditProductModal = ({close, product, fetchProductData}) => {
     const [loading, setLoading] = useState(false);
     const [viewImageURL, setViewImageURL] = useState("");
     const allCategory = useSelector((state) => state.product.allCategory);
@@ -23,6 +23,7 @@ const EditProductModal = ({close, product}) => {
     const [openAddField, setOpenAddField] = useState(false);
     const [fieldName, setFieldName] = useState("");
     const [formData, setFormData] = useState({
+        _id: product?._id,
         name:product?.name,
         image: product?.image,
         category:product?.category,
@@ -34,6 +35,18 @@ const EditProductModal = ({close, product}) => {
         description: product?.description,
         more_details:product?.more_details || {},
     });
+    const initialsFormData = {
+        name: "",
+        image: [],
+        category: [],
+        subCategory: [],
+        unit: "",
+        stock: "",
+        price: "",
+        discount: "",
+        description: "",
+        more_details: {},
+    }
 
     console.log("formData", formData);
     const handleOnChange = (e) => {
@@ -96,11 +109,13 @@ const EditProductModal = ({close, product}) => {
         e.preventDefault();
         try {
             const response = await Axios({
-                ...SummeryApi.addProduct,
+                ...SummeryApi.updateProduct,
                 data: formData,
             });
             if (response?.data?.success) {
                 successAlert(response?.data?.message);
+                if(close) close();
+                fetchProductData();
                 setFormData(initialsFormData);
             }
         } catch (error) {

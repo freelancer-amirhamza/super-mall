@@ -89,7 +89,7 @@ const AdminProducts = () => {
           <div className="p-4 bg-blue-50 min-h-[75vh] flex flex-col justify-between">
             <div className="flex flex-wrap gap-4 items-center justify-center">
               {productData.map((product, index) => (
-                <AdminProductCard key={index} product={product} />
+                <AdminProductCard fetchProductData={fetchProductData} key={index} product={product} />
               ))}
             </div>
             <div className="flex items-center justify-between mt-4 bg-white p-1 rounded shadow-sm">

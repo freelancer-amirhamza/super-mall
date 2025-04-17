@@ -97,6 +97,11 @@ const SummeryApi = {
         url: "/api/product/update-product",
         method: "put",
     },
+    deleteProduct: {
+        url: "/api/product/delete-product",
+        method: "delete",
+    }
+    
 };
 
 export default SummeryApi;

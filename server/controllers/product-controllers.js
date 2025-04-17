@@ -173,7 +173,7 @@ const getProductDetails = async (req, res) => {
 };
 
 // update product details
-const updateProduct = async()=>{
+const updateProduct = async(req, res)=>{
     try {
         const {_id} = req.body;
         if (!_id) {
@@ -207,6 +207,40 @@ const updateProduct = async()=>{
     }
 }
 
+
+// delete product
+const deleteProduct = async(req, res)=>{
+    try {
+        const {_id} = req.body;
+        if(!_id){
+            return res.status(400).json({
+                success: false,
+                error: true,
+                message: "Product id not found!",
+            })
+        }
+        const deleteProduct = await Product.findByIdAndDelete({_id: _id});
+        if(!deleteProduct){
+            return res.status(404).json({
+                success: false,
+                error: true,
+                message: "Product not found!",
+            })
+        }
+        return res.status(200).json({
+            success: true,
+            error: false,
+            message: "Product deleted successfully!",
+            data: deleteProduct,
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: true,
+            message: error.message || "Internal server error!",
+        })
+    }
+}
 module.exports = {
     addProduct,
     getProduct,
@@ -214,4 +248,5 @@ module.exports = {
     getProductByCategory,
     getProductByCategoryAndSubCategory,
     getProductDetails,
+    deleteProduct,
 };

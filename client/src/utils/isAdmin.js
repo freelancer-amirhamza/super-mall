@@ -2,7 +2,7 @@
 
 
 const isAdmin = (s)=>{
-    if(s === 'ADMIN'){
+    if(s === 'admin'){
         return true
     }
 
