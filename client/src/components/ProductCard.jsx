@@ -2,6 +2,7 @@ import React from 'react';
 import { DisplayPriceInTaka } from '../utils/DisplayPriceInTaka';
 import { validURLConvert } from '../utils/validURLConvart';
 import { Link } from 'react-router-dom';
+import { priceWithDiscount } from '../utils/priceWithDiscount';
 
 
 const ProductCard = ({data}) => {
@@ -13,13 +14,15 @@ const ProductCard = ({data}) => {
         </div>
         <div className="flex items-center justify-between gap-0.5">
         <div className="bg-orange-200/70  p-0.5 rounded text-orange-900  text-sm">{data?.stock} Left</div>
-        <div className="bg-green-200/70  p-0.5 rounded text-green-900 text-sm"> {data.discount}% Discount</div>
+        {data?.discount > 0 && <div className="bg-green-200/70  p-0.5 rounded text-green-900 text-sm"> {data.discount}% Discount</div> }
+        
         </div>
         <div className="text-neutral-800 text-md text-ellipsis line-clamp-2 rounded">{data?.name} </div>
         <div className=" text-neutral-800 text-md text-ellipsis line-clamp-2 rounded  ">Unit: {data?.unit} </div>
         <div className="flex items-center justify-between gap-3">
-        <div className="p-1 bg-blue-100/80 rounded  "> {DisplayPriceInTaka(data.price)} </div>
-        <button className="px-2 py-1 rounded text-white font-medium hover:bg-green-700 bg-green-600  ">Add </button>
+        <div className="p-1 bg-blue-100/80 rounded  "> {DisplayPriceInTaka(priceWithDiscount(data?.price, data?.discount))} </div>
+        {data?.stock ==0 ? ( <p className="text-orange-600 text-sm font-light ">Stock Out!</p> 
+      ) : (<button className="px-2 py-1 rounded text-white font-medium hover:bg-green-700 bg-green-600  ">Add </button>)}
         </div>
     </Link>
   )
