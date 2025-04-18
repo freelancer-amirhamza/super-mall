@@ -9,7 +9,7 @@ const auth = async(req, res, next)=>{
             return res.status(404).json({
                 success:false,
                 error: true,
-                message: "Token is mandatory"
+                message: "You have not logged!"
             })
         }
         const decode =await jwt.verify(token, process.env.SECRET_KEY_ACCESS_TOKEN)
@@ -27,7 +27,7 @@ const auth = async(req, res, next)=>{
         res.status(500).json({
             success: false,
             error:true,
-            message: error.message,
+            message:  error.message,
         })
     }
 }

@@ -9,6 +9,14 @@ const Search = () => {
     const location = useLocation()
     const [isSearchPage, setIsSearchPage] = useState(false);
     const isMobile = useMobile();
+    const params = useLocation();
+    const searchText = params?.search?.slice(7);
+
+    const handleOnChange = (e)=>{
+        const value = e.target.value;
+        const url = `/search?query=${value}`
+        navigate(url)
+    }
     useEffect(() => {
         const isSearch = location.pathname === "/search"
         setIsSearchPage(isSearch)
@@ -62,8 +70,11 @@ const Search = () => {
             ) : (
                 <input type="text"
                     onFocus
+                    defaultValue={searchText}
+                    onChange={handleOnChange}
                     className='w-full h-full bg-transparent outline-none placeholder-gray-400 '
                     placeholder="Search like egg, sugar and more.. " />
+                    
             )}
         </div>
     )

@@ -274,7 +274,7 @@ const searchProduct = async (req, res) => {
         return res.status(500).json({
             success: false,
             error: true,
-            message: error.message || "Internal server error!"
+            message:  "Internal server error!" || error.message 
         })
     }
 }

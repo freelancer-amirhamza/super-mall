@@ -104,6 +104,15 @@ const SummeryApi = {
     searchProduct: {
         url: "/api/product/search-product",
         method: "post",
+    },
+    addToCartItem: {
+        url: "/api/cart/create",
+        method: "post",
+    },
+    getCartItems:{
+        url: "/api/cart/get-carts",
+        method: "get",
+
     }
     
 };

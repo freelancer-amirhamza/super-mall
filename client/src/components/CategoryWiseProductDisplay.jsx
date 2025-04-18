@@ -14,19 +14,14 @@ const CategoryWiseProductDisplay = ({ id, name }) => {
     const [loading, setLoading] = useState(false);
     const containerRef = useRef();
     const allSubCategory = useSelector((state) => state.product.allSubCategory);
-    const navigate = useNavigate();
 
     const handleRedirectProductListPage  = () => {
         const subcategory = allSubCategory.find((sub) => {
             return sub.category.some((cat) => cat._id === id);
         });
 
-        if (!subcategory) {
-            AxiosToastError({ response: { data: { message: "The Product Not found" } } });
-            return;
-        }
 
-        const url = `/${validURLConvert(name)}-${id}/${validURLConvert(subcategory.name)}-${subcategory._id}`;
+        const url = `/${validURLConvert(name)}-${id}/${validURLConvert(subcategory?.name)}-${subcategory?._id}`;
         return url;
     };
     const fetchCategoryWiseProduct = async () => {

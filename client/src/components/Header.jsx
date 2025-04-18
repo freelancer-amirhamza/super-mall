@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Search from './Search'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaRegUserCircle } from 'react-icons/fa'
@@ -7,6 +7,7 @@ import { BsCart4 } from "react-icons/bs";
 import {useSelector} from "react-redux"
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import UserMenu from './UserMenu'
+import { DisplayPriceInTaka } from '../utils/DisplayPriceInTaka'
 
 const Header = () => {
   const isMobile  = useMobile();
@@ -15,7 +16,10 @@ const Header = () => {
   const navigate = useNavigate();
   const user  = useSelector((state)=> state.user.user);
   const [showUserMenu, setShowUserMenu] = useState(false);
-
+  const cartItems = useSelector((state)=> state.cartItems.cart);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalQty, setTotalQty] = useState(0);
+console.log(cartItems, "cartitems")
   const handleCloseUserMenu = ()=>{
     setShowUserMenu(false)
   }
@@ -26,6 +30,17 @@ const Header = () => {
     }
     navigate("/user")
   }
+
+  useEffect(()=>{
+    const qty = cartItems.reduce((prev,curr)=>{
+      return prev + curr.quantity;
+    },0);
+    setTotalQty(qty);
+    const tPrice = cartItems.reduce((preve,curr)=>{
+              return preve + (curr.productId.price * curr.quantity)
+          },0)
+          setTotalPrice(tPrice)
+  },[cartItems])
   return (
     <header>
       <div className="flex w-full bg-white flex-col h-28  justify-center lg:h-20 gap-1  shadow-md items-center sticky top-0  ">
@@ -76,7 +91,13 @@ const Header = () => {
                   <BsCart4 size={28} />
                   </div>
                   <div className=" font-bold">
-                    <p>My Cart</p>
+                    {cartItems[0] ? (
+                      <div>
+                      <p>{totalQty} Items</p>
+                      <p>{DisplayPriceInTaka(totalPrice)}</p>
+                  </div>
+                    ): (<p>My Cart</p>)}
+                    
                   </div>
                 </div>
               </div>
