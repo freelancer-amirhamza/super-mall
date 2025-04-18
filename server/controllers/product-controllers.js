@@ -38,10 +38,10 @@ const getProduct = async (req, res) => {
 
         const query = search
             ? {
-                  $text: {
-                      $search: search,
-                  },
-              }
+                $text: {
+                    $search: search,
+                },
+            }
             : {};
 
         const skip = (page - 1) * limit;
@@ -173,9 +173,9 @@ const getProductDetails = async (req, res) => {
 };
 
 // update product details
-const updateProduct = async(req, res)=>{
+const updateProduct = async (req, res) => {
     try {
-        const {_id} = req.body;
+        const { _id } = req.body;
         if (!_id) {
             return res.status(400).json({
                 success: false,
@@ -183,15 +183,15 @@ const updateProduct = async(req, res)=>{
                 message: "Product id not found!",
             });
         }
-        const updateProduct = await Product.findByIdAndUpdate({_id: _id}, {...req.body});
-        if(!updateProduct){
+        const updateProduct = await Product.findByIdAndUpdate({ _id: _id }, { ...req.body });
+        if (!updateProduct) {
             return res.status(404).json({
                 success: false,
                 error: true,
                 message: "Product not found!",
             })
         }
-        
+
         return res.status(200).json({
             success: true,
             error: false,
@@ -209,18 +209,18 @@ const updateProduct = async(req, res)=>{
 
 
 // delete product
-const deleteProduct = async(req, res)=>{
+const deleteProduct = async (req, res) => {
     try {
-        const {_id} = req.body;
-        if(!_id){
+        const { _id } = req.body;
+        if (!_id) {
             return res.status(400).json({
                 success: false,
                 error: true,
                 message: "Product id not found!",
             })
         }
-        const deleteProduct = await Product.findByIdAndDelete({_id: _id});
-        if(!deleteProduct){
+        const deleteProduct = await Product.findByIdAndDelete({ _id: _id });
+        if (!deleteProduct) {
             return res.status(404).json({
                 success: false,
                 error: true,
@@ -241,6 +241,44 @@ const deleteProduct = async(req, res)=>{
         })
     }
 }
+
+// srearch products
+const searchProduct = async (req, res) => {
+    try {
+        let { search, page, limit } = req.body;
+        if (!page) page = 1;
+        if (!limit) limit = 10;
+        const query = search ? {
+            $text: {
+                $search : search,
+            },
+        }: {}
+
+        const skip = (page -1) * limit;
+        const [data, dataCount] = await Promise.all([
+            Product.find(query).sort({createdAt: -1}).skip(skip).limit(limit).populate("category subCategory"),
+            Product.countDocuments(query),
+        ])
+        return res.status(200).json({
+            success: true,
+            error: false,
+            message: "The product found successfully!",
+            totalNoPage: Math.ceil(dataCount / limit),
+            totalCount: dataCount,
+            page: page,
+            limit,
+            data,
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: true,
+            message: error.message || "Internal server error!"
+        })
+    }
+}
+
 module.exports = {
     addProduct,
     getProduct,
@@ -249,4 +287,5 @@ module.exports = {
     getProductByCategoryAndSubCategory,
     getProductDetails,
     deleteProduct,
+    searchProduct,
 };

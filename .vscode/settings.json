@@ -1,0 +1,15 @@
+{
+    "github.copilot.editor.enableCodeActions": false,
+    "github.copilot.renameSuggestions.triggerAutomatically": false,
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "github.copilot.inlineSuggest.enable": false
+    },
+    "github.copilot.advanced": {
+        "github.copilot.inlineSuggest.enable": false,
+        "github.copilot.suggest.enable": false,
+    }
+}
