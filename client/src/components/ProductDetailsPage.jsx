@@ -10,6 +10,7 @@ import image1 from "../assets/minute_delivery-Bu9utzxK.png"
 import image2 from "../assets/Best_Prices_Offers-CbMh73zQ.png"
 import image3 from "../assets/Wide_Assortment-CbRiDBkF.png";
 import { priceWithDiscount } from '../utils/priceWithDiscount';
+import AddToCartButton from './AddToCartButton';
 
 const ProductDetailsPage = () => {
   const params = useParams();
@@ -145,7 +146,8 @@ const ProductDetailsPage = () => {
             {data?.stock === 0 ? (
               <p className="text-orange-500 font-semibold text-xl">Out of Stock</p>
             ) : (
-              <button className='w-fit bg-green-600 hover:bg-green-700 transition-colors duration-200  py-1 px-3 text-xl rounded text-white' >Add</button>
+              // <button className='w-fit bg-green-600 hover:bg-green-700 transition-colors duration-200  py-1 px-3 text-xl rounded text-white' >Add</button>
+              <AddToCartButton data={data}/>
             )}
           </div>
           <Divider />

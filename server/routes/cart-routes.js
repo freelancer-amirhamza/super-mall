@@ -1,5 +1,5 @@
 const express = require("express");
-const { addToCartItem, getCartItems, updateCartItem } = require("../controllers/cart-controllers");
+const { addToCartItem, getCartItems, updateCartItem, deleteCartItem } = require("../controllers/cart-controllers");
 const auth = require("../middleware/auth");
 const router = express.Router();
 
@@ -9,6 +9,8 @@ router.post("/create", auth, addToCartItem);
 router.get("/get-carts", auth, getCartItems);
 // update cart items 
 router.put("/update-cart", auth, updateCartItem);
+// delete cart items 
+router.delete("/delete-cart",auth,deleteCartItem)
 
 
 

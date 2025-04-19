@@ -19,7 +19,6 @@ const Header = () => {
   const cartItems = useSelector((state)=> state.cartItems.cart);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQty, setTotalQty] = useState(0);
-console.log(cartItems, "cartitems")
   const handleCloseUserMenu = ()=>{
     setShowUserMenu(false)
   }

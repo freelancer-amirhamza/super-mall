@@ -78,8 +78,8 @@ const getCartItems = async(req, res)=>{
 const updateCartItem = async(req, res)=>{
     try {
         const userId = req.userId;
-        const {qty, _id} = req.body;
-        if(!qty || !_id){
+        const {_id, qty} = req.body;
+        if(!_id || !qty ){
             return res.status(400).json({
                 success: false,
                 error: true,
@@ -105,5 +105,30 @@ const updateCartItem = async(req, res)=>{
         })
     }
 }
+const deleteCartItem = async(req,res)=>{
+    try {
+        const {_id} = req.body;
+        if(!_id){
+            return res.status(400).json({
+                success: false,
+                error: true,
+                message: "Please provide the product id!",
+            })
+        }
+        const deleteCartItem = await Cart.deleteOne({_id:_id})
+        return res.status(200).json({
+            success: true,
+            error: false,
+            message: "The cart item deleted successfully!",
+            data: deleteCartItem,
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: true,
+            message: error.message || "Inter server error",
+        })
+    }
+}
 
-module.exports = {addToCartItem,getCartItems, updateCartItem }
+module.exports = {addToCartItem,getCartItems, updateCartItem, deleteCartItem }

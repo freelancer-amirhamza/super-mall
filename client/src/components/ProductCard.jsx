@@ -7,10 +7,10 @@ import AddToCartButton from './AddToCartButton';
 
 
 const ProductCard = ({data}) => {
-    const url = `/product/${validURLConvert(data.name)}-${(data._id)}`
+    const url = `/product/${validURLConvert(data.name)}-${(data._id)}` 
     
   return (
-    <Link to={url} className=' border border-blue-200 p-2 grid gap-3 max-w-56 rounded '>
+    <Link to={url} className=' border border-blue-200 p-2 grid gap-1 max-w-56 min-w-48 max-h-88 min-h-88 rounded '>
         <div className="min-h-20 rounded">
         <img src={data.image[0] } alt={data?.name} className='w-full h-full object-scale-down' />
         </div>
@@ -21,7 +21,7 @@ const ProductCard = ({data}) => {
         </div>
         <div className="text-neutral-800 text-md text-ellipsis line-clamp-2 rounded">{data?.name} </div>
         <div className=" text-neutral-800 text-md text-ellipsis line-clamp-2 rounded  ">Unit: {data?.unit} </div>
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center justify-between gap-1">
         <div className="p-1 bg-blue-100/80 rounded  "> {DisplayPriceInTaka(priceWithDiscount(data?.price, data?.discount))} </div>
         {data?.stock ==0 ? ( <p className="text-orange-600 text-sm font-light ">Stock Out!</p> 
       ) : (<AddToCartButton data={data}/>)}

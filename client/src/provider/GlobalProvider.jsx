@@ -31,7 +31,7 @@ const GlobalProvider = ({ children }) => {
         }
     }
 
-    const updateCartItems = async({id, qty})=>{
+    const updateCartItems = async(id, qty)=>{
         try {
             setLoading(false)
             const response = await Axios({
@@ -44,6 +44,7 @@ const GlobalProvider = ({ children }) => {
             if(response.data?.success){
                 toast.success(response.data?.message)
                 fetchCartItems()
+                // return response.data
             }
         } catch (error) {
             AxiosToastError(error)
@@ -51,11 +52,28 @@ const GlobalProvider = ({ children }) => {
             setLoading(false)
         }
     }
+    const deleteCartItem = async(id)=>{
+        try {
+            setLoading(true)
+            const response = await Axios({
+                ...SummeryApi.deleteCartItem,
+                data: {
+                    _id: id,
+                }
+            })
+            if(response.data?.success){
+                toast.success(response.data?.message);
+                fetchCartItems()
+            }
+        } catch (error) {
+            AxiosToastError(error)
+        }
+    }
     useEffect(() => {
         fetchCartItems()
     }, [])
     return (
-        <GlobalContext.Provider value={{ fetchCartItems, updateCartItems}}>
+        <GlobalContext.Provider value={{ fetchCartItems, updateCartItems,deleteCartItem}}>
             {children}
         </GlobalContext.Provider>
     )
