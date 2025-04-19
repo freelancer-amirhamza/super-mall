@@ -4,6 +4,7 @@ import Axios from "../utils/Axios";
 import SummeryApi from "../common/SummeryApi";
 import { setCartItems } from "../store/cartSlice";
 import AxiosToastError from "../utils/AxiosToastError";
+import toast from "react-hot-toast";
 
 
 export const GlobalContext = createContext(null);
@@ -29,11 +30,32 @@ const GlobalProvider = ({ children }) => {
             setLoading(false)
         }
     }
+
+    const updateCartItems = async({id, qty})=>{
+        try {
+            setLoading(false)
+            const response = await Axios({
+                ...SummeryApi.updateCartItem,
+                data:{
+                    _id: id,
+                    qty: qty,
+                }
+            })
+            if(response.data?.success){
+                toast.success(response.data?.message)
+                fetchCartItems()
+            }
+        } catch (error) {
+            AxiosToastError(error)
+        }finally{
+            setLoading(false)
+        }
+    }
     useEffect(() => {
         fetchCartItems()
     }, [])
     return (
-        <GlobalContext.Provider value={{ fetchCartItems }}>
+        <GlobalContext.Provider value={{ fetchCartItems, updateCartItems}}>
             {children}
         </GlobalContext.Provider>
     )

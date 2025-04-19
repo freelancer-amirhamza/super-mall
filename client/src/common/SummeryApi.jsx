@@ -112,7 +112,10 @@ const SummeryApi = {
     getCartItems:{
         url: "/api/cart/get-carts",
         method: "get",
-
+    },
+    updateCartItem:{
+        url: "/api/cart/update-cart",
+        method: "put",
     }
     
 };

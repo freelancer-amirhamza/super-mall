@@ -6,7 +6,8 @@
         "plaintext": false,
         "markdown": false,
         "scminput": false,
-        "github.copilot.inlineSuggest.enable": false
+        "github.copilot.inlineSuggest.enable": false,
+        "javascriptreact": false
     },
     "github.copilot.advanced": {
         "github.copilot.inlineSuggest.enable": false,

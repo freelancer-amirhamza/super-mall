@@ -75,5 +75,35 @@ const getCartItems = async(req, res)=>{
     }
 }
 
+const updateCartItem = async(req, res)=>{
+    try {
+        const userId = req.userId;
+        const {qty, _id} = req.body;
+        if(!qty || !_id){
+            return res.status(400).json({
+                success: false,
+                error: true,
+                message: "Please provide the quantity or product id!"
+            })
+        }
+        const updateCartItem = await Cart.updateOne({_id: _id},
+            {
+                quantity: qty
+            }
+        )
+        return res.status(200).json({
+            success: true,
+            error: false,
+            message: "The cart items updated successfully!",
+            data: updateCartItem,
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: true,
+            message: error.message || "Internal server error!"
+        })
+    }
+}
 
-module.exports = {addToCartItem,getCartItems, }
+module.exports = {addToCartItem,getCartItems, updateCartItem }
