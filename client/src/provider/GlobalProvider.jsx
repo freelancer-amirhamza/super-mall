@@ -44,8 +44,9 @@ const GlobalProvider = ({ children }) => {
                 },
             });
             if (response.data?.success) {
-                toast.success(response.data?.message);
+                // toast.success(response.data?.message);
                 fetchCartItems();
+                return response.data
             }
         } catch (error) {
             AxiosToastError(error);

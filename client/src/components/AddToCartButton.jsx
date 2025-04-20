@@ -40,10 +40,15 @@ const AddToCartButton = ({ data }) => {
             setLoading(false)
         }
     }
-    const increaseQty= (e)=>{
+    const increaseQty= async(e)=>{
         e.preventDefault();
         e.stopPropagation();
-        updateCartItems(cartItemsDetais?._id, quantity+1)
+
+        const response = await updateCartItems(cartItemsDetais?._id, quantity+1)
+        
+        if(response?.success){
+            toast.success(response.message)
+        }
     }
     const decreaseQty = async(e)=>{
         e.preventDefault();
