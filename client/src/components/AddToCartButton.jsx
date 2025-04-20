@@ -16,7 +16,6 @@ const AddToCartButton = ({ data }) => {
     const [isAvailable, setIsAvailable] = useState(false)
     const [quantity,setQuantity]= useState(0)
     const [cartItemsDetais, setCartItemsDetails] = useState()
-    console.log(cartItemsDetais?._id, "check")
 
     const handleAddToCart = async (e) => {
         e.preventDefault();
@@ -70,7 +69,7 @@ const AddToCartButton = ({ data }) => {
         <div>
             {
                 isAvailable ? (
-                    <div className="flex items-center justify-center gap-0.5 ">
+                    <div className="flex items-center  gap-0.5 ">
                         <button onClick={decreaseQty} className='text-white bg-green-600 hover:bg-green-700 cursor-pointer rounded-sm  py-1 px-1' ><FaMinus/> </button>
                         <p className="m-1 font-semibold text-neutral-700">{quantity}</p>
                         <button onClick={increaseQty} className='text-white bg-green-600 hover:bg-green-700 cursor-pointer rounded-sm  py-1 px-1' ><FaPlus/> </button>

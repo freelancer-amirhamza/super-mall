@@ -14,6 +14,7 @@ import AxiosToastError from './utils/AxiosToastError';
 import Axios from './utils/Axios';
 import { setCartItems } from './store/cartSlice';
 import GlobalProvider from './provider/GlobalProvider';
+import MobileCart from './components/MobileCart';
 
 const App = () => {
   const dispatch = useDispatch()
@@ -102,6 +103,7 @@ const App = () => {
             },
           },
         }} />
+          <MobileCart/>
     </GlobalProvider>
   )
 }

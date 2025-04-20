@@ -151,6 +151,19 @@ const ProductDetailsPage = () => {
             )}
           </div>
           <Divider />
+          {data?.description && <div className="  grid lg:hidden gap-2">
+            <h1 className="text-2xl font-medium text-neutral-700">Product Description</h1>
+            <p className="text-sm text font-light">{data?.description}</p>
+          </div>}
+
+          {data?.more_details && Object.keys(data?.more_details).map((element, index) => {
+            return (
+              <div key={element + index} className="grid lg:hidden gap-2">
+                <h1 className="text-2xl font-medium text-neutral-700">{element}</h1>
+                <p className="text-sm text font-light">{data?.more_details[element]}</p>
+              </div>
+            )
+          })}
           <div className="grid gap-2">
             <h1 className="text-2xl font-medium text-neutral-800">Why shop from binkeyit?</h1>
             <div className="flex  gap-2 items-center">
@@ -180,19 +193,7 @@ const ProductDetailsPage = () => {
               </div>
             </div>
           </div>
-          {data?.description && <div className=" mt-5 grid lg:hidden gap-2">
-            <h1 className="text-2xl font-medium text-neutral-700">Product Description</h1>
-            <p className="text-sm text font-light">{data?.description}</p>
-          </div>}
-
-          {data?.more_details && Object.keys(data?.more_details).map((element, index) => {
-            return (
-              <div key={element + index} className="grid lg:hidden gap-2">
-                <h1 className="text-2xl font-medium text-neutral-700">{element}</h1>
-                <p className="text-sm text font-light">{data?.more_details[element]}</p>
-              </div>
-            )
-          })}
+          
         </div>
       </div>
     </section>
