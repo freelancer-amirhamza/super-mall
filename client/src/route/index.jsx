@@ -21,6 +21,7 @@ import AdminPermission from "../pages/AdminPermission.jsx";
 import ProductListPage from "../pages/ProductListPage.jsx";
 import ProductDetailsPage from "../components/ProductDetailsPage.jsx";
 import MobileCartMenu from "../pages/MobileCartMenu.jsx";
+import CheckoutPage from "../pages/CheckoutPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -109,6 +110,10 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <MobileCartMenu/>
+      },
+      {
+        path: "checkout",
+        element: <CheckoutPage/>
       }
     ],
   },

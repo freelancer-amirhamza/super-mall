@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { Toaster } from "react-hot-toast";
@@ -19,6 +19,7 @@ import MobileCart from './components/MobileCart';
 const App = () => {
   const dispatch = useDispatch()
   const [loading, setLoading] = useState()
+  const location = useLocation()
   const fetchUser = async () => {
     const userData = await fetchUserDetails()
     dispatch(setUserDetails(userData?.data))
@@ -103,7 +104,9 @@ const App = () => {
             },
           },
         }} />
-          <MobileCart/>
+      {
+        location.pathname !== "/checkout" && <MobileCart/>
+      }
     </GlobalProvider>
   )
 }

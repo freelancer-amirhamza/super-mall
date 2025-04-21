@@ -12,5 +12,9 @@
     "github.copilot.advanced": {
         "github.copilot.inlineSuggest.enable": false,
         "github.copilot.suggest.enable": false,
-    }
+    },
+    "cSpell.words": [
+        "Choase",
+        "Dalebery"
+    ]
 }

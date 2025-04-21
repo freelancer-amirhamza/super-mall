@@ -90,11 +90,17 @@ const GlobalProvider = ({ children }) => {
         },0)
         setNotDiscountPrice(notDiscountPrice);
     }, [cartItems]);
+    
+    const handleLogOut = ()=>{
+        localStorage.clear()
+        dispatch(setCartItems([]))
+    }
 
     useEffect(() => {
         if (user) {
             fetchCartItems();
         }
+        handleLogOut()
     }, [user]);
 
     return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import { IoClose } from "react-icons/io5";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { DisplayPriceInTaka } from '../utils/DisplayPriceInTaka';
 import { useGlobalContext } from '../provider/GlobalProvider';
 import { FaAngleDoubleRight } from "react-icons/fa";
@@ -12,6 +12,14 @@ import emptyCart from "../assets/empty-cart.gif"
 const CartMenu = ({ close }) => {
   const { totalPrice, notDiscountPrice,totalQty } = useGlobalContext()
   const cartItems = useSelector((state) => state.cartItems?.cart);
+  const navigate = useNavigate()
+  const user = useSelector(state=>state?.user?.user)
+  const redirectToCheckoutPage = ()=>{
+    if(user){
+      navigate("/checkout");
+      if(close)close()
+    }
+  }
   return (
     <section className="bg-neutral-900/90 top-0 z-50 fixed bottom-0 left-0 right-0 ">
       <div className="bg-white w-full max-w-sm max-h-screen min-h-screen ml-auto">
@@ -87,7 +95,7 @@ const CartMenu = ({ close }) => {
               <div>
                 {DisplayPriceInTaka(totalPrice)}
               </div>
-              <div className="flex items-center cursor-pointer justify-center gap-2">
+              <div onClick={redirectToCheckoutPage} className="flex items-center cursor-pointer justify-center gap-2">
                 <button className='cursor-pointer'>Procced</button>
                 <FaAngleDoubleRight />
               </div>
