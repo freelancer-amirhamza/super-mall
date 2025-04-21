@@ -120,6 +120,10 @@ const SummeryApi = {
     deleteCartItem:{
         url: "/api/cart/delete-cart",
         method: "delete"
+    },
+    addAddress: {
+        url: "/api/address/create",
+        method: "post",
     }
     
 };

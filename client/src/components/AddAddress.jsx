@@ -1,8 +1,36 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
+import AxiosToastError from '../utils/AxiosToastError';
+import Axios from '../utils/Axios';
+import SummeryApi from '../common/SummeryApi';
+import toast from 'react-hot-toast';
 const AddAddress = () => {
-    const { register, handleSubmit,formState: { errors }} = useForm();
-    const onSubmit = data => console.log(data, "data");
+    const { register, handleSubmit,formState: { errors }, reset} = useForm();
+    const onSubmit =async (data)=>{
+        console.log(data)
+        try {
+            const response = await Axios({
+                ...SummeryApi.addAddress,
+                data: {
+                    address_line :data.addressLine,
+                    city : data.city,
+                    state : data.state,
+                    country : data.country,
+                    pincode : data.pincode,
+                    phone : data.phone
+                }
+            })
+            if(response?.data?.success){
+                toast.success(response.data?.message);
+                if(close){
+                    close()
+                    reset()
+                }
+            }
+        } catch (error) {
+            AxiosToastError(error)
+        }
+    }
     return (
         <section className="bg-neutral-900/90 top-0 bottom-0 left-0 right-0 fixed h-screen overflow-y-scroll ">
             <div className="w-full max-w-md rounded bg-white p-4 mx-auto mt-2 ">
@@ -69,8 +97,7 @@ const AddAddress = () => {
                         {errors?.phone && <span className="text-orange-600">This field is required</span>}
                     </div>
                     <input type="submit" className='border p-2 cursor-pointer  rounded bg-green-600 text-white font-semibold hover:bg-green-700 lg:text-xl'/>
-
-                </form>
+                </form>     
             </div>
         </section>
     )

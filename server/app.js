@@ -12,6 +12,7 @@ const uploadImageRouter = require("./routes/uploadImage-routes.js")
 const subCategoryRouter = require("./routes/sub-category-routes.js");
 const productRouter = require("./routes/product-routes.js");
 const cartRouter = require("./routes/cart-routes.js");
+const addressRouter = require("./routes/address-routes.js");
 
 
 
@@ -35,5 +36,6 @@ app.use("/api/file", uploadImageRouter);
 app.use("/api/sub-category", subCategoryRouter);
 app.use("/api/product", productRouter)
 app.use("/api/cart", cartRouter);
+app.use("/api/address", addressRouter);
 
-module.exports = app;
+module.exports = app; 

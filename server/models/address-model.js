@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 
 const addressSchema = new mongoose.Schema({
-    address_line: {
+    addressLine: {
         type: String,
         default: "",
     },
@@ -14,13 +14,13 @@ const addressSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    pincode: {
+    pinCode: {
         type: String,
     },
     country: {
         type: String,
     },
-    mobile: {
+    phone: {
         type: String,
         default: null,
     },
@@ -28,13 +28,13 @@ const addressSchema = new mongoose.Schema({
         type: Boolean,
         default: true,
     },
-    userId: {
-        type: mongoose.Schema.ObjectId,
-        default: ""
-    },
+    userId : {
+        type : mongoose.Schema.ObjectId,
+        default : ""
+    }
 }, {timestamps: true})
 
 
-const Address = mongoose.model("Address", addressSchema);
+const Address = mongoose.model("address", addressSchema);
 
 module.exports = Address;
