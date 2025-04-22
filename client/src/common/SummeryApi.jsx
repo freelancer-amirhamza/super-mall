@@ -18,8 +18,8 @@ const SummeryApi = {
         method: "put",
     },
     reset_password: {
+        url: "/api/user/reset-password",
         method: "put",
-        method: "post",
     },
     user_details: {
         url: "/api/user/user-details",
@@ -124,6 +124,10 @@ const SummeryApi = {
     addAddress: {
         url: "/api/address/create",
         method: "post",
+    }, 
+    getAddress: {
+        url: "/api/address/get",
+        method: "get",
     }
     
 };

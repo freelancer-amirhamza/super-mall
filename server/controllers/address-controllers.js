@@ -30,6 +30,24 @@ const addAddress = async (req, res)=>{
         })
     }
 }
+const getAddress = async(req, res)=>{
+    try {
+        const userId = req.userId;
+        const address = await Address.find({userId: userId});
+        return res.status(200).json({
+            success: true,
+            error: false,
+            message: "Address found successfully!",
+            data: address,
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: true,
+            message: error.message || "Internal server error!",
+        })
+    }
+}
 
 
-module.exports = {addAddress, }
+module.exports = {addAddress,getAddress }
