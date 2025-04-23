@@ -128,6 +128,14 @@ const SummeryApi = {
     getAddress: {
         url: "/api/address/get",
         method: "get",
+    },
+    updateAddress: {
+        url: "/api/address/update",
+        method: "put"
+    },
+    deleteAddress : {
+        url: "/api/address/delete",
+        method: "delete"
     }
     
 };

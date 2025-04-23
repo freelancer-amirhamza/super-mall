@@ -4,19 +4,24 @@ import AxiosToastError from '../utils/AxiosToastError';
 import Axios from '../utils/Axios';
 import SummeryApi from '../common/SummeryApi';
 import toast from 'react-hot-toast';
-const AddAddress = () => {
+import { IoClose } from "react-icons/io5";
+import { useGlobalContext } from '../provider/GlobalProvider';
+
+
+const AddAddress = ({close}) => {
     const { register, handleSubmit,formState: { errors }, reset} = useForm();
+    const {fetchAddress} = useGlobalContext()
     const onSubmit =async (data)=>{
         console.log(data)
         try {
             const response = await Axios({
                 ...SummeryApi.addAddress,
                 data: {
-                    address_line :data.addressLine,
+                    addressLine :data.addressLine,
                     city : data.city,
                     state : data.state,
                     country : data.country,
-                    pincode : data.pincode,
+                    pinCode : data.pinCode,
                     phone : data.phone
                 }
             })
@@ -25,6 +30,7 @@ const AddAddress = () => {
                 if(close){
                     close()
                     reset()
+                    fetchAddress()
                 }
             }
         } catch (error) {
@@ -32,9 +38,13 @@ const AddAddress = () => {
         }
     }
     return (
-        <section className="bg-neutral-900/90 top-0 bottom-0 left-0 right-0 fixed h-screen overflow-y-scroll ">
+        <section className="bg-neutral-900/90 z-40 top-0 bottom-0 left-0 right-0 fixed h-screen overflow-y-scroll ">
             <div className="w-full max-w-md rounded bg-white p-4 mx-auto mt-2 ">
-                <h2 className="font-semibold ">Add Address</h2>
+                <div className="flex items-center justify-between ">
+                    <h2 className="font-semibold ">Add Address</h2>
+                    <button onClick={close} className="border p-1 rounded-full text-orange-600 hover:bg-orange-600 cursor-pointer hover:text-white "> <IoClose/> </button>
+                </div>
+                
                 <form className="grid " onSubmit={handleSubmit(onSubmit)} >
                     <div className="grid py-2">
                         <label htmlFor="addressLine">Address Line:</label>
