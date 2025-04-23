@@ -136,6 +136,10 @@ const SummeryApi = {
     deleteAddress : {
         url: "/api/address/delete",
         method: "delete"
+    },
+    cashOnDeliveryOrder: {
+        url: "/api/order/cash-on-delivery",
+        method: "post",
     }
     
 };

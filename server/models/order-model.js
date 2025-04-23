@@ -31,11 +31,11 @@ const orderSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: "Address"
     },
-    subTotal: {
+    subTotalAmount: {
         type: Number,
         default:0,
     },
-    total: {
+    totalAmount: {
         type:Number,
         default: 0,
     },

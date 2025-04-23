@@ -13,6 +13,8 @@ const subCategoryRouter = require("./routes/sub-category-routes.js");
 const productRouter = require("./routes/product-routes.js");
 const cartRouter = require("./routes/cart-routes.js");
 const addressRouter = require("./routes/address-routes.js");
+const orderRouter = require("./routes/order-routes.js");
+
 
 
 
@@ -37,5 +39,6 @@ app.use("/api/sub-category", subCategoryRouter);
 app.use("/api/product", productRouter)
 app.use("/api/cart", cartRouter);
 app.use("/api/address", addressRouter);
+app.use("/api/order",orderRouter);
 
 module.exports = app; 
