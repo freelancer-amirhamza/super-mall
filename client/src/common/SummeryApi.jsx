@@ -140,7 +140,12 @@ const SummeryApi = {
     cashOnDeliveryOrder: {
         url: "/api/order/cash-on-delivery",
         method: "post",
+    },
+    getOrderDetails: {
+        url: "/api/order/get-order-details",
+        method: "get",
     }
+    
     
 };
 

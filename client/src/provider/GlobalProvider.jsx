@@ -7,6 +7,7 @@ import AxiosToastError from "../utils/AxiosToastError";
 import toast from "react-hot-toast";
 import { priceWithDiscount } from "../utils/priceWithDiscount";
 import { handleAddressSlice } from "../store/addressSlice";
+import { handleOrderSlice } from "../store/orderSlice";
 
 export const GlobalContext = createContext(null);
 
@@ -110,12 +111,26 @@ const GlobalProvider = ({ children }) => {
         }
     }
 
+    const fetchOrders = async ()=>{
+        try {
+            const response = await Axios({
+                ...SummeryApi.getOrderDetails,
+            })
+            if(response.data?.success){
+                dispatch(handleOrderSlice(response.data?.data));
+            }
+        } catch (error) {
+            AxiosToastError(error)
+        }
+    }
+
     useEffect(() => {
         if (user) {
             fetchCartItems();
         }
         handleLogOut()
         fetchAddress()
+        fetchOrders()
     }, [user]);
 
     return (
@@ -123,6 +138,7 @@ const GlobalProvider = ({ children }) => {
             value={{
                 fetchCartItems,
                 fetchAddress,
+                fetchOrders,
                 updateCartItems,
                 deleteCartItem,
                 notDiscountPrice,

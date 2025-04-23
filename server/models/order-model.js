@@ -29,7 +29,7 @@ const orderSchema = new mongoose.Schema({
     },
     delivery_address: {
         type: mongoose.Schema.ObjectId,
-        ref: "Address"
+        ref: "address"
     },
     subTotalAmount: {
         type: Number,

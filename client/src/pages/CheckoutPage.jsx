@@ -6,14 +6,16 @@ import { useSelector } from 'react-redux'
 import AxiosToastError from '../utils/AxiosToastError'
 import Axios from '../utils/Axios'
 import SummeryApi from '../common/SummeryApi'
-import toast from 'react-hot-toast'
+import toast from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 
 const CheckoutPage = () => {
-  const { notDiscountPrice, totalPrice, totalQty } = useGlobalContext()
+  const { notDiscountPrice, totalPrice, totalQty, fetchCartItems } = useGlobalContext()
   const [openAddAddress, setOpenAddAddress] = useState(false);
   const addressList = useSelector(state => state.address.addressList)
   const [selectedAddress, setSelectedAddress] = useState(0)
-  const cartItemsList = useSelector(state=>state.cartItems?.cart)
+  const cartItemsList = useSelector(state => state.cartItems?.cart);
+  const navigate = useNavigate()
   console.log(addressList[selectedAddress])
 
   const handleCashOnDelivery = async () => {
@@ -21,14 +23,26 @@ const CheckoutPage = () => {
       const response = await Axios({
         ...SummeryApi.cashOnDeliveryOrder,
         data: {
-          list_items:cartItemsList ,
-          totalAmount:totalPrice,
+          list_items: cartItemsList,
+          totalAmount: totalPrice,
           subTotalAmount: notDiscountPrice,
-          addressId:addressList[selectedAddress]?._id
+          addressId: addressList[selectedAddress]?._id
         }
       })
-      if(response.data?.success){
+      if (response.data?.success) {
         toast.success(response.data?.message)
+        if (fetchCartItems) {
+          fetchCartItems()
+        }
+        navigate("/success",{
+          state: {
+            text: "Order"
+          }
+        })
+        if(fetchOrders){
+          fetchOrders()
+        }
+
       }
     } catch (error) {
       AxiosToastError(error)
