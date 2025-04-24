@@ -15,28 +15,19 @@ const cartRouter = require("./routes/cart-routes.js");
 const addressRouter = require("./routes/address-routes.js");
 const orderRouter = require("./routes/order-routes.js");
 
-const allowedOrigins = [
-    "https://deshimotors.vercel.app",
-    "https://deshimotorsclient.vercel.app"
-];
+
+
 
 app.use(cors({
-    credentials: true,
-    origin: function (origin, callback) {
-        if (allowedOrigins.includes(origin) || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    }
-}));
-app.use(cookieParser());
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-app.use(morgan());
+    credentials : true,
+    origin : process.env.CLIENT_URL
+}))
+app.use(express.json())
+app.use(cookieParser())
+app.use(morgan())
 app.use(helmet({
-    contentSecurityPolicy: false
-}));
+    crossOriginResourcePolicy : false
+}))
 
 
 
@@ -49,4 +40,4 @@ app.use("/api/cart", cartRouter);
 app.use("/api/address", addressRouter);
 app.use("/api/order",orderRouter);
 
-module.exports = app;
+module.exports = app; 
