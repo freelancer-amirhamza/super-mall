@@ -86,24 +86,24 @@ const GlobalProvider = ({ children }) => {
             return preve + priceAfterDiscount * curr.quantity;
         }, 0);
         setTotalPrice(tPrice);
-        
-        const notDiscountPrice = cartItems.reduce((prev,curr)=>{
+
+        const notDiscountPrice = cartItems.reduce((prev, curr) => {
             return prev + (curr?.productId?.price * curr?.quantity);
-        },0)
+        }, 0)
         setNotDiscountPrice(notDiscountPrice);
     }, [cartItems]);
-    
-    const handleLogOut = ()=>{
+
+    const handleLogOut = () => {
         localStorage.clear()
         dispatch(setCartItems([]))
     }
 
-    const fetchAddress = async ()=>{
+    const fetchAddress = async () => {
         try {
             const response = await Axios({
                 ...SummeryApi.getAddress,
             });
-            if(response.data?.success){
+            if (response.data?.success) {
                 dispatch(handleAddressSlice(response.data?.data))
             }
         } catch (error) {
@@ -111,12 +111,12 @@ const GlobalProvider = ({ children }) => {
         }
     }
 
-    const fetchOrders = async ()=>{
+    const fetchOrders = async () => {
         try {
             const response = await Axios({
                 ...SummeryApi.getOrderDetails,
             })
-            if(response.data?.success){
+            if (response.data?.success) {
                 dispatch(handleOrderSlice(response.data?.data));
             }
         } catch (error) {
@@ -127,10 +127,10 @@ const GlobalProvider = ({ children }) => {
     useEffect(() => {
         if (user) {
             fetchCartItems();
+            handleLogOut()
+            fetchAddress()
+            fetchOrders()
         }
-        handleLogOut()
-        fetchAddress()
-        fetchOrders()
     }, [user]);
 
     return (
