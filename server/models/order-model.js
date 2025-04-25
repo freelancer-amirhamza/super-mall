@@ -6,19 +6,27 @@ const orderSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: "User",
     },
-    productId: {
-        type: mongoose.Schema.ObjectId,
-        ref: "Product"
-    },
     orderId: {
         type: String,
         required: [true, "Please Provide the order id!"],
         unique: true,
     },
-    product_details: {
-        name: String,
-        image: Array,
-    },
+    products:[ 
+        {
+            productId:{
+                type: mongoose.Schema.ObjectId,
+                ref: "Product",
+            },
+            product_details: {
+                name: String,
+                image: Array,
+            },
+            quantity: {
+                type: Number,
+                required: true,
+            }
+        }
+    ],
     paymentId: {
         type: String,
         default: "",
@@ -26,6 +34,10 @@ const orderSchema = new mongoose.Schema({
     payment_status: {
         type: String,
         default: ""
+    },
+    order_status: {
+        type: String,
+        default: "",
     },
     delivery_address: {
         type: mongoose.Schema.ObjectId,

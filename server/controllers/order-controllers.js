@@ -9,23 +9,27 @@ const cashOnDeliveryOrder = async (req, res) => {
         const userId = req.userId;
         const { list_items, totalAmount, subTotalAmount, addressId } = req.body;
 
-        const payload = list_items.map(el => {
-            return ({
-                userId: userId,
-                orderId: `ORD-${new mongoose.Types.ObjectId()}`,
-                productId: el.productId?._id,
-                product_details: {
-                    name:el.productId?.name,
-                    image:el.productId?.image,
+        const payload = {
+            userId: userId,
+            orderId: `ORD-${new mongoose.Types.ObjectId()}`,
+            products: list_items.map(el=>({
+                productId:el.productId?._id,
+                product_details:{
+                    name: el.productId?.name,
+                    image: el.productId?.image,
                 },
-                paymentId: "",
-                payment_status: "",
-                delivery_address: addressId,
-                subTotalAmount: subTotalAmount,
-                totalAmount:totalAmount,
-            })
-        }) 
-        const createOrder =await Order.insertMany(payload);
+                quantity: el.quantity,
+            })),
+            
+            subTotalAmount: subTotalAmount,
+            delivery_address:addressId,
+            totalAmount: totalAmount,
+            payment_status: "pending",
+            order_status: "pending",
+            paymentId: ""
+        }
+        // create an order
+        const createOrder = await Order.create(payload);
 
         // remove from the cart
         const removeCartItems = await Cart.deleteMany({userId:userId});

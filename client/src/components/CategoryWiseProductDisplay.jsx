@@ -68,7 +68,7 @@ const CategoryWiseProductDisplay = ({ id, name }) => {
                     </Link>
                 </div>
                 <div
-                    className="flex container mx-auto p-4 sm:gap-4 gap-2 items-center overflow-x-scroll no-scrollbar scroll-smooth"
+                    className="flex container p-4 sm:gap-4 gap-2 items-center overflow-x-scroll no-scrollbar scroll-smooth"
                     ref={containerRef}
                 >
                     {loading
@@ -76,8 +76,8 @@ const CategoryWiseProductDisplay = ({ id, name }) => {
                         : data?.map((product) => (
                             <ProductCard data={product} key={product._id + "product"} />
                         ))}
-                </div>
-                <div className="absolute w-full items-center sm:flex hidden left-0 right-0 container mx-auto justify-between">
+                
+                <div className="absolute w-full items-center sm:flex hidden left-0  right-0 container mx-auto justify-between">
                     <button
                         onClick={handleScrollLeft}
                         className="relative z-40 bg-gray-100 text-xl cursor-pointer hover:border border-neutral-500 text-neutral-700 hover:bg-gray-200 p-3 shadow-md rounded-full"
@@ -90,6 +90,7 @@ const CategoryWiseProductDisplay = ({ id, name }) => {
                     >
                         <FaAngleRight />
                     </button>
+                </div>
                 </div>
             </div>
         </div>
