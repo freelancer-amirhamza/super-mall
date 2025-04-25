@@ -3,7 +3,7 @@
     "name": "deshmotors",
     "builds": [
         {
-            "src": "./index.js",
+            "src": "./index.html",
             "use": "@vercel/node"
         }
     ],
