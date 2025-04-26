@@ -481,33 +481,47 @@ const refreshToken = async (req, res) => {
     }
 };
 
-const getUserDetails = async(req, res)=>{
+const getUserDetails = async (req, res) => {
     try {
         const userId = req.userId;
-        const user = await UserModal.findById(userId).select('-password -refresh_token ')
 
-        if(!user){
-            res.status(404).json({
+        // Check if userId is provided
+        if (!userId) {
+            return res.status(400).json({
                 success: false,
                 error: true,
-                message: "this user is not found"
-            })
+                message: "User ID is missing in the request.",
+            });
         }
 
-        res.status(200).json({
-            success:true,
+        // Fetch user details from the database
+        const user = await UserModal.findById(userId).select('-password -refresh_token');
+
+        // Check if user exists
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                error: true,
+                message: "User not found.",
+            });
+        }
+
+        // Return user details
+        return res.status(200).json({
+            success: true,
             error: false,
-            message: "the user found successfully!",
+            message: "User found successfully.",
             data: user,
-        })
+        });
     } catch (error) {
-        res.status(500).json({
+        // Handle unexpected errors
+        return res.status(500).json({
             success: false,
             error: true,
-            message: error.message || "something is wrong"
-        })
+            message: error.message || "Internal server error.",
+        });
     }
-}
+};
 module.exports = {
     registerUser,
     verifyEmail,
@@ -518,4 +532,4 @@ module.exports = {
     verifyForgotPasswordOtp,
     refreshToken,
     getUserDetails
-};    
+};
