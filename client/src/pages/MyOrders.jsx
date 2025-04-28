@@ -1,15 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import NoData from '../components/NoData';
 import Table from '../components/Table';
 import { createColumnHelper } from '@tanstack/react-table';
 import { MdDelete } from 'react-icons/md';
 import { ImPencil } from 'react-icons/im';
+import { TbListDetails } from "react-icons/tb";
 import { DisplayPriceInTaka } from '../utils/DisplayPriceInTaka';
+import OrderDetails from '../components/OrderDetails';
 
 const MyOrders = () => {
   const orderList = useSelector(state => state.orders?.orderList);
   const columnHelper = createColumnHelper();
+  const [openOrderDetails, setOpenOrderDetails] = useState(false);
+  const [orderData, setOrderData] = useState()
+  console.log(orderData, "order")
 
   const column = [
     columnHelper.accessor("orderId", {header: "Order ID"}),
@@ -55,11 +60,11 @@ const MyOrders = () => {
               <button
                 className="text-green-600 hover:text-green-800 bg-green-100 p-0.5 rounded cursor-pointer border"
                 onClick={() => {
-                  setOpenEditData(true);
-                  setEditData(row?.original);
+                  setOpenOrderDetails(true);
+                  setOrderData(row?.original);
                 }}
               >
-                <ImPencil size={18} />
+                <TbListDetails size={18} />
               </button>
               <button
                 onClick={() => {
@@ -74,7 +79,6 @@ const MyOrders = () => {
           ),
         }),
   ]
-  console.log(orderList, "order list")
   return (
     <section className="bg-white">
       <div className="">
@@ -87,17 +91,7 @@ const MyOrders = () => {
               <div className="overflow-auto w-full max-w-[92vw]">
                   <Table data={orderList} column={column} />
                 </div>
-              {/* {orderList.map((order,index)=>{
-                return(
-                  <div key={order?._id+index+"order"} className="">
-                    <p className="">Order ID: {order?._id}</p>
-                    <div className="flex items-center">
-                      <img className='w-16 h-16 object-scale-down' src={order?.product_details?.image[0]} alt={order?.product_details?.name} />
-                      <p className=""> {order?.product_details?.name} </p>
-                    </div>
-                  </div>
-                )
-              })} */}
+              
             </div>
           ) : (
             <div className="w-full relative flex flex-col items-center justify-center">
@@ -106,6 +100,7 @@ const MyOrders = () => {
             </div>)}
         </div>
       </div>
+      {openOrderDetails && <OrderDetails data={orderData} close={()=>setOpenOrderDetails(false)} />}
     </section>
   )
 }
