@@ -17,6 +17,9 @@ const cashOnDeliveryOrder = async (req, res) => {
                 product_details:{
                     name: el.productId?.name,
                     image: el.productId?.image,
+                    price: el.productId?.price,
+                    discount: el.productId?.discount,
+                    unit: el.productId?.unit,
                 },
                 quantity: el.quantity,
             })),
@@ -60,7 +63,12 @@ const getOrderDetails = async(req, res)=>{
                 message: "The user id not found!"
             })
         }
-        const orderList = await Order.find({userId:userId}).populate("delivery_address");
+        const orderList = await Order.find({userId:userId})
+        .populate("delivery_address")
+        .populate({
+            path: "userId",
+            select: "name email"
+        })
         return res.status(200).json({
             success: true,
             error: false,

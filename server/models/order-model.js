@@ -20,6 +20,9 @@ const orderSchema = new mongoose.Schema({
             product_details: {
                 name: String,
                 image: Array,
+                price: Number,
+                discount:Number,
+                unit: String,
             },
             quantity: {
                 type: Number,

@@ -10,13 +10,12 @@ import toast from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 
 const CheckoutPage = () => {
-  const { notDiscountPrice, totalPrice, totalQty, fetchCartItems } = useGlobalContext()
+  const { notDiscountPrice, totalPrice, totalQty, fetchCartItems, fetchOrders } = useGlobalContext()
   const [openAddAddress, setOpenAddAddress] = useState(false);
   const addressList = useSelector(state => state.address.addressList)
   const [selectedAddress, setSelectedAddress] = useState(0)
   const cartItemsList = useSelector(state => state.cartItems?.cart);
   const navigate = useNavigate()
-  console.log(cartItemsList, "cart")
 
   const handleCashOnDelivery = async () => {
     try {
@@ -42,7 +41,6 @@ const CheckoutPage = () => {
         if(fetchOrders){
           fetchOrders()
         }
-
       }
     } catch (error) {
       AxiosToastError(error)
