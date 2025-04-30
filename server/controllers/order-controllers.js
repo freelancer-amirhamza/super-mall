@@ -7,7 +7,7 @@ const UserModal = require("../models/user-model");
 const cashOnDeliveryOrder = async (req, res) => {
     try {
         const userId = req.userId;
-        const { list_items, totalAmount, subTotalAmount, addressId } = req.body;
+        const { list_items, totalAmount, subTotalAmount, deliveryFee, addressId } = req.body;
 
         const payload = {
             userId: userId,
@@ -27,6 +27,7 @@ const cashOnDeliveryOrder = async (req, res) => {
             subTotalAmount: subTotalAmount,
             delivery_address:addressId,
             totalAmount: totalAmount,
+            deliveryFee:deliveryFee,
             payment_status: "pending",
             order_status: "pending",
             paymentId: ""
@@ -81,6 +82,14 @@ const getOrderDetails = async(req, res)=>{
             error: true,
             message: error.message || "Internal server error!",
         })
+    }
+}
+
+const getAdminOrdersDetails = async (req,res)=>{
+    try {
+        
+    } catch (error) {
+        return
     }
 }
 

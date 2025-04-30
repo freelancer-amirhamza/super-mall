@@ -42,7 +42,7 @@ const MyOrders = () => {
     columnHelper.accessor("price", {
       header: "Total Price",
       cell: ({ row }) => (
-        <p className=" p-0 text-center"> {DisplayPriceInTaka(row.original?.totalAmount)}</p>
+        <p className=" p-0 text-center"> {DisplayPriceInTaka(row.original?.totalAmount + row.original?.deliveryFee)}</p>
       )
     }),
     columnHelper.accessor("quantity", {

@@ -107,20 +107,20 @@ const OrderDetails = ({close, data}) => {
           <div className="mt-4 flex flex-col py-5 border-y border-neutral-300 gap-2 items-end">
             <div className="flex w-full  justify-between items-center">
               <span className="font-semibold text-base ">Subtotal:</span>
-              <span className="font-medium text-end">{DisplayPriceInTaka(data?.subTotalAmount) || ""} </span>
+              <span className="font-medium text-end">{DisplayPriceInTaka(data?.subTotalAmount || 0) || ""} </span>
             </div>
             <div className="flex w-full  justify-between items-center">
               <span className="font-semibold text-base">Discount:</span>
-              <span className=""> {DisplayPriceInTaka(data?.subTotalAmount - data?.totalAmount ) || ""}</span>
+              <span className=""> {DisplayPriceInTaka(data?.subTotalAmount - data?.totalAmount || 0 ) || ""}</span>
             </div>
             <div className="flex w-full  justify-between items-center">
               <span className="font-semibold text-base">Delivery Fee:</span>
-              <span className=""> 00</span>
+              <span className="">{DisplayPriceInTaka(data?.deliveryFee || 0) || ""} </span>
             </div>
           </div>
           <div className="flex w-full mt-4  justify-between items-center">
               <span className="font-bold text-lg">Total:</span>
-              <span className="">{DisplayPriceInTaka(data?.totalAmount) || ""}</span>
+              <span className="">{DisplayPriceInTaka(data?.totalAmount + data?.deliveryFee || 0) || ""}</span>
             </div>
             <div className="mx-auto flex w-full justify-end  mt-12 ">
             <h1 className="font-semibold border-dotted border-t">Authorized Signture</h1>

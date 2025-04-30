@@ -15,17 +15,23 @@ const CheckoutPage = () => {
   const addressList = useSelector(state => state.address.addressList)
   const [selectedAddress, setSelectedAddress] = useState(0)
   const cartItemsList = useSelector(state => state.cartItems?.cart);
+  const [deliveryFee, setDeliveryFee] = useState(0)
   const navigate = useNavigate()
 
   const handleCashOnDelivery = async () => {
     try {
+      if(deliveryFee === 0){
+        toast.error("Please select your delivery method!")
+        return;
+      }
       const response = await Axios({
         ...SummeryApi.cashOnDeliveryOrder,
         data: {
           list_items: cartItemsList,
           totalAmount: totalPrice,
           subTotalAmount: notDiscountPrice,
-          addressId: addressList[selectedAddress]?._id
+          addressId: addressList[selectedAddress]?._id,
+          deliveryFee:deliveryFee,
         }
       })
       if (response.data?.success) {
@@ -33,12 +39,12 @@ const CheckoutPage = () => {
         if (fetchCartItems) {
           fetchCartItems()
         }
-        navigate("/success",{
+        navigate("/success", {
           state: {
             text: "Order"
           }
         })
-        if(fetchOrders){
+        if (fetchOrders) {
           fetchOrders()
         }
       }
@@ -59,9 +65,15 @@ const CheckoutPage = () => {
           </div>
           <div className="w-full flex flex-col gap-4 lg:flex-row">
             {addressList[0] && addressList.map((address, index) => {
-              return (<label key={index} htmlFor={index} className="w-full flex flex-row-reverse justify-between px-4 py-3 border-dashed border cursor-pointer bg-white hover:shadow-lg rounded ">
+              return (
+              <label key={index} htmlFor={index} className={`w-full flex flex-row-reverse justify-between px-4 py-3
+               border-dashed border ${selectedAddress == index ? "border-blue-700 bg-blue-100" : "bg-white"} cursor-pointer  hover:shadow-lg rounded `}>
                 <div>
-                  <input type="radio" value={index} className='w-4 h-4' onClick={(e) => setSelectedAddress(e.target.value)} name="address" id={index} />
+                  <input type="radio"
+                   value={index} 
+                   className='w-4 h-4'
+                   checked={selectedAddress == index} 
+                   onClick={(e) => setSelectedAddress(e.target.value)} name="address" id={index} />
                 </div>
                 <div>
                   <p className="text-neutral-700 font-semibold">Address: <span className='font-medium text-base'>{address?.addressLine}</span> </p>
@@ -78,8 +90,9 @@ const CheckoutPage = () => {
 
         {/* Summery */}
         <div className=" w-full lg:max-w-md flex flex-col  ">
+          
           <h2 className="text-lg font-semibold text-neutral-700 ">Order Summery</h2>
-          <div className="grid  px-4 py-1 bg-slate-200 rounded">
+          <div className="grid  px-4 max-sm:px-0.5 py-1 bg-slate-200 rounded">
             <h1 className='font-semibold text-neutral-900 '>Bill Details</h1>
             <div className="flex items-center justify-between font-semibold ">
               <p className='text-neutral-700 text-sm'>Sub Total:</p>
@@ -93,9 +106,20 @@ const CheckoutPage = () => {
               <p className='text-neutral-700 text-sm'>Total Quantity:</p>
               <p className="text-neutral-600 text-sm"> {totalQty} Items</p>
             </div>
+            <div className="flex flex-col py-1 justify-between font-semibold ">
+              <p className='text-neutral-900 '>Delivery Fee:</p>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span onClick={()=>setDeliveryFee(60)} className={`text-sm border-2 px-2 py-0.5 cursor-pointer ${deliveryFee === 60 ? "border-green-600 text-green-700" : "border-neutral-500 text-neutral-600"} font-medium rounded`}>Inside Dhaka</span>
+                  <span onClick={()=>setDeliveryFee(100)} className={`text-sm border-2 px-2 py-0.5 cursor-pointer ${deliveryFee === 100 ? "border-green-600 text-green-700" : "border-neutral-500 text-neutral-600"} font-medium rounded`}>Outside Dhaka</span>
+                </div>
+                <p className="text-neutral-600 text-sm"> {DisplayPriceInTaka(deliveryFee)}</p>
+              </div>
+            </div>
+
             <div className="flex items-center justify-between font-semibold ">
               <p className='text-neutral-00 '>Grand Total:</p>
-              <p className="text-neutral-00 "> {DisplayPriceInTaka(totalPrice)} </p>
+              <p className="text-neutral-00 "> { DisplayPriceInTaka(totalPrice + deliveryFee)} </p>
             </div>
           </div>
           <div className="w-full lg:max-w-md grid gap-2 py-4">

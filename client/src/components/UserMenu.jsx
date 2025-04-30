@@ -100,6 +100,14 @@ const UserMenu = ({ close }) => {
                     >
                         My Orders
                     </Link>
+                    {isAdmin(user?.role) && (
+                        <Link
+                            onClick={handleCloseMenu}
+                            to={"/dashboard/all-orders"}
+                        >
+                        View All Orders
+                        </Link>
+                    )}
                     <Link
                         onClick={handleCloseMenu}
                         to={"/dashboard/address"}

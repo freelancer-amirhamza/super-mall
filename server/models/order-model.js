@@ -46,6 +46,10 @@ const orderSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: "address"
     },
+    deliveryFee:{
+        type:Number,
+        default: 0,
+    },
     subTotalAmount: {
         type: Number,
         default:0,

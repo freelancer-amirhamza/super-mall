@@ -31,26 +31,33 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await Axios({
-        ...SummeryApi.login,
-        data: formData,
-      });
-      if (response.data.success) {
-        toast.success(response.data.message);
-        localStorage.setItem("accessToken", response?.data?.accessToken)
-        localStorage.setItem("refreshToken", response?.data?.refreshToken)
-        const userDetails = await fetchUserDetails();
-        dispatch(setUserDetails(userDetails.data));
-        setFormData(initialFormData);
-        navigate("/")
-      } else {
-        toast.error(response.data.message);
-      }
+        const response = await Axios({
+            ...SummeryApi.login,
+            data: formData,
+            withCredentials: true, // Allow cookies to be sent
+        });
 
+        if (response.data.success) {
+            toast.success(response.data.message);
+
+            // Store tokens in localStorage
+            localStorage.setItem("accessToken", response?.data?.accessToken);
+            localStorage.setItem("refreshToken", response?.data?.refreshToken);
+
+            // Fetch user details
+            const userDetails = await fetchUserDetails();
+            dispatch(setUserDetails(userDetails.data));
+
+            // Reset form and navigate
+            setFormData(initialFormData);
+            navigate("/");
+        } else {
+            toast.error(response.data.message);
+        }
     } catch (error) {
-      AxiosToastError(error);
+        AxiosToastError(error);
     }
-  };
+};
   return (
     <section className="container w-full mx-auto grid">
       <div className="grid w-full gap-2 max-w-lg p-8 mx-auto bg-white shadow-lg  rounded-lg mt- ">

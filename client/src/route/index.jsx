@@ -93,6 +93,10 @@ const router = createBrowserRouter([
           {
             path: "upload-product",
             element: <AdminPermission><UploadProduct/></AdminPermission>,
+          },
+          {
+            path: "admin-orders",
+            element: <AdminPermission> </AdminPermission>
           }
         ]
       },
