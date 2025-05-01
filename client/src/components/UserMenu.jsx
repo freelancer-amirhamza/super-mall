@@ -103,9 +103,10 @@ const UserMenu = ({ close }) => {
                     {isAdmin(user?.role) && (
                         <Link
                             onClick={handleCloseMenu}
-                            to={"/dashboard/all-orders"}
+                            to={"/dashboard/admin-orders"}
+                            className="text-neutral-600 px-2 font-medium cursor-pointer hover:bg-amber-200"
                         >
-                        View All Orders
+                        All Orders
                         </Link>
                     )}
                     <Link

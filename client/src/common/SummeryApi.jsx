@@ -144,6 +144,18 @@ const SummeryApi = {
     getOrderDetails: {
         url: "/api/order/get-order-details",
         method: "get",
+    },
+    getAdminOrdersDetails: {
+        url: "/api/order/get-admin-orders-details",
+        method: "get",
+    },
+    updateAdminOrder: {
+        url:"/api/order/update-admin-order",
+        method: "put",
+    },
+    deleteAdminOrder: {
+        url: "/api/order/delete-admin-order",
+        method: "delete",
     }
     
     

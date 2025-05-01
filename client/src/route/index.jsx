@@ -24,6 +24,7 @@ import MobileCartMenu from "../pages/MobileCartMenu.jsx";
 import CheckoutPage from "../pages/CheckoutPage.jsx";
 import Success from "../pages/Success.jsx";
 import Cancel from "../pages/Cancel.jsx";
+import AdminOrders from "../pages/AdminOrders.jsx";
 
 const router = createBrowserRouter([
   {
@@ -96,7 +97,7 @@ const router = createBrowserRouter([
           },
           {
             path: "admin-orders",
-            element: <AdminPermission> </AdminPermission>
+            element: <AdminPermission><AdminOrders/> </AdminPermission>
           }
         ]
       },

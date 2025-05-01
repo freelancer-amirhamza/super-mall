@@ -33,12 +33,43 @@ const MyOrders = () => {
             </div>
       )
     } }),
-    columnHelper.accessor("order_status", {
+    columnHelper.accessor("payment_status", {
+      header: "Payment Status",
+      cell: ({ row }) => (
+          <div className="flex items-center justify-center gap-2">
+              <span className={`h-3 w-3  rounded-full 
+              ${row.original?.payment_status === "pending" ? "bg-orange-500 text-orange-500" :
+                  row.original?.payment_status === "confirmed" ? "bg-green-600":
+                  row.original?.payment_status === "shipping" ? "bg-amber-400" :
+                  row.original?.payment_status === "returned" ? "bg-blue-400" :
+                  row.original?.payment_status === "paid" ? "bg-green-700" :
+                  row.original?.payment_status === "canceled" ? "bg-red-400" : "bg-black"} `} ></span>
+              <p className="uppercase p-0 text-center">
+              {row.original?.payment_status}
+              </p>
+          </div>
+          
+      ),
+  }),
+  columnHelper.accessor("order_status", {
       header: "Order Status",
       cell: ({ row }) => (
-        <p className="uppercase p-0 text-center"> {row.original?.order_status}</p>
-      )
-    }),
+          <div className="flex items-center justify-center gap-2">
+              <span className={`h-3 w-3  rounded-full 
+              ${row.original?.order_status === "pending" ? "bg-orange-500 text-orange-500" :
+                  row.original?.order_status === "confirmed" ? "bg-green-600":
+                  row.original?.order_status === "rejected" ? "bg-red-400" :
+                  row.original?.order_status === "shipping" ? "bg-amber-400" :
+                  row.original?.order_status === "returned" ? "bg-blue-400" :
+                  row.original?.order_status === "delivered" ? "bg-green-700" :
+                  row.original?.order_status === "canceled" ? "bg-gray-500" : "bg-black"} `} ></span>
+              <p className="uppercase p-0 text-center">
+              {row.original?.order_status}
+              </p>
+          </div>
+          
+      ),
+  }),
     columnHelper.accessor("price", {
       header: "Total Price",
       cell: ({ row }) => (
@@ -66,7 +97,7 @@ const MyOrders = () => {
               >
                 <TbListDetails size={18} />
               </button>
-              <button
+              {/* <button
                 onClick={() => {
                   setOpenConfirmBox(true);
                   setDeleteSubCategoryData(row.original);
@@ -74,7 +105,7 @@ const MyOrders = () => {
                 className="text-red-500 hover:text-red-600 bg-red-100 p-0.5 rounded cursor-pointer border"
               >
                 <MdDelete size={20} />
-              </button>
+              </button> */}
             </div>
           ),
         }),

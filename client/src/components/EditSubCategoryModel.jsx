@@ -19,7 +19,7 @@ const EditSubCategoryModel = ({ close, fetchData, data }) => {
     });
 
     const allCategory = useSelector(state => state?.product?.allCategory);
-    console.log("sub category page", allCategory)
+    
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         setFormData((formData) => {
