@@ -1,89 +1,98 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { Toaster } from "react-hot-toast";
 import fetchUserDetails from './utils/fetchUserDetails';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserDetails } from './store/userSlice';
 import { setAllCategory, setAllSubCategory } from './store/productSlice';
 import SummeryApi from './common/SummeryApi';
 import AxiosToastError from './utils/AxiosToastError';
 import Axios from './utils/Axios';
-import { setCartItems } from './store/cartSlice';
 import GlobalProvider from './provider/GlobalProvider';
 import MobileCart from './components/MobileCart';
+import { FaArrowUp } from 'react-icons/fa'; // Import an icon for the button
 
 const App = () => {
-  const dispatch = useDispatch()
-  const [loading, setLoading] = useState()
-  const location = useLocation()
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [showScrollToTop, setShowScrollToTop] = useState(false); // State for the scroll-to-top button
+  const location = useLocation();
+  const user = useSelector((state) => state.user?.user);
+
   const fetchUser = async () => {
-    const userData = await fetchUserDetails()
-    dispatch(setUserDetails(userData?.data))
-  }
+    const userData = await fetchUserDetails();
+    dispatch(setUserDetails(userData?.data));
+  };
 
   const fetchCategory = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       const response = await Axios({
         ...SummeryApi.getCategory,
-      })
+      });
       if (response?.data?.success) {
-        dispatch(setAllCategory(response?.data?.data))
+        dispatch(setAllCategory(response?.data?.data));
       }
-
     } catch (error) {
-      AxiosToastError(error)
+      AxiosToastError(error);
     } finally {
       setLoading(false);
     }
-  }
+  };
+
   const fetchSubCategory = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       const response = await Axios({
         ...SummeryApi.getSubCategory,
-      })
+      });
       if (response?.data?.success) {
-        dispatch(setAllSubCategory(response?.data?.data))
+        dispatch(setAllSubCategory(response?.data?.data));
       }
-
     } catch (error) {
-      AxiosToastError(error)
+      AxiosToastError(error);
     } finally {
       setLoading(false);
     }
-  }
-
+  };
 
   useEffect(() => {
-    fetchUser()
-    fetchCategory()
-    fetchSubCategory()
-    // fetchCartItems()
-  }, [])
+    
+    fetchCategory();
+    fetchSubCategory();
+  }, []);
+
   useEffect(() => {
-    const handleScroll = (event) => {
-      if (event.deltaY > 0) {
-        event.currentTarget.scrollLeft += 100;
+    const handleScroll = () => {
+      // Show the scroll-to-top button when scrolled down 300px
+      if (window.scrollY > 300) {
+        setShowScrollToTop(true);
       } else {
-        event.currentTarget.scrollLeft -= 100;
+        setShowScrollToTop(false);
       }
     };
 
-    window.addEventListener('wheel', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('wheel', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // Smooth scrolling
+    });
+  };
+
   return (
     <GlobalProvider>
       <Header />
-      <main className='min-h-[78vh]' >
+      <main className="min-h-[98vh]">
         <Outlet />
       </main>
       <Footer />
@@ -91,24 +100,30 @@ const App = () => {
         toastOptions={{
           success: {
             style: {
-              // background: '#DCEDC8',
-              // color:'white',
-              fontWeight: "bold"
+              fontWeight: "bold",
             },
           },
           error: {
             style: {
               background: '#FFCDD2',
-              // color:'white',
-              fontWeight: "bold"
+              fontWeight: "bold",
             },
           },
-        }} />
-      {
-        location.pathname !== "/checkout" && <MobileCart/>
-      }
+        }}
+      />
+      {location.pathname !== "/checkout" && <MobileCart />}
+      {/* Scroll to Top Button */}
+      {showScrollToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-5 cursor-pointer right-5 z-50
+        bg-orange-600 text-white p-3 rounded-full shadow-lg hover:bg-orange-700 transition"
+        >
+          <FaArrowUp size={20} />
+        </button>
+      )}
     </GlobalProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;

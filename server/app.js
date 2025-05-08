@@ -27,7 +27,7 @@ app.use(cookieParser())
 app.use(morgan())
 app.use(helmet({
     crossOriginResourcePolicy : false
-}))
+})); 
 
 
 

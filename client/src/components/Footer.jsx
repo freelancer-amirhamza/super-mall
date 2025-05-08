@@ -11,7 +11,7 @@ const Footer = () => {
         <footer className="bg-white w-full justify-center flex flex-col border-t">
             <div className="container mx-auto w-full px-5 md:px-10">
                 {/* footer infos */}
-                <div className="flex  flex-wrap space-y-4 pb-10 pt-8   border-b justify-between items-center">
+                <div className="flex  flex-wrap space-y-4 pb-10 pt-8    border-b justify-between items-center">
                     <FooterCard
                         image="/icons/f1.svg"
                         title="Free Shopping"
