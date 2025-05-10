@@ -14,6 +14,7 @@ const productRouter = require("./routes/product-routes.js");
 const cartRouter = require("./routes/cart-routes.js");
 const addressRouter = require("./routes/address-routes.js");
 const orderRouter = require("./routes/order-routes.js");
+const reviewRouter = require("./routes/review-routes.js");
 
 
 
@@ -39,5 +40,6 @@ app.use("/api/product", productRouter)
 app.use("/api/cart", cartRouter);
 app.use("/api/address", addressRouter);
 app.use("/api/order",orderRouter);
+app.use("/api/review", reviewRouter)
 
 module.exports = app; 

@@ -60,7 +60,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    
+    fetchUser()
     fetchCategory();
     fetchSubCategory();
   }, []);

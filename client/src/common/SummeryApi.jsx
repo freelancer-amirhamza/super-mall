@@ -156,7 +156,15 @@ const SummeryApi = {
     deleteAdminOrder: {
         url: "/api/order/delete-admin-order",
         method: "delete",
-    }
+    },
+    addProductReview:{
+        url: "/api/review/add-review",
+        method: "post"
+    },
+    getProductReview:{
+        url: "/api/review/get-review",
+        method: "post",
+    },
     
     
 };

@@ -11,10 +11,48 @@ import image2 from "../assets/Best_Prices_Offers-CbMh73zQ.png"
 import image3 from "../assets/Wide_Assortment-CbRiDBkF.png";
 import { priceWithDiscount } from '../utils/priceWithDiscount';
 import AddToCartButton from './AddToCartButton';
+import StarRating from '../common/star-rating';
+import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
+import { setReviewSlice } from '../store/reviewSlice';
 
 const ProductDetailsPage = () => {
   const params = useParams();
-  let productId = params?.product?.split("-")?.slice(-1)[0]
+  const [rating, setRating] = useState(0); 
+  const [reviewMessage, setReviewMessage]= useState("");
+  const user = useSelector((state)=>state.user?.user);
+  const dispatch = useDispatch()
+  const reviews =useSelector((state)=>state.reviewSlice?.reviews)
+  
+ const handleRatingChange = (getRating)=> {
+        setRating(getRating)
+    }
+  const handleAddReview =async ()=>{
+    try {
+      const response = await Axios({
+        ...SummeryApi.addProductReview,
+        data: {
+          userId: user?._id,
+          userName:user?.name,
+          productId:productId,
+          reviewMessage:reviewMessage,
+          reviewValue: rating,
+        }
+      });
+      if(response.data.success){
+        setRating(0);
+        setReviewMessage("")
+        dispatch(fetchProductReview())
+        toast.success(response.data?.message)
+      }
+    } catch (error) {
+      AxiosToastError(error)
+    }
+  }
+
+
+
+  const productId = params?.product?.split("-")?.slice(-1)[0]
   const [data, setData] = useState({
     name: "",
     image: [],
@@ -39,7 +77,25 @@ const ProductDetailsPage = () => {
     } finally {
       setLoading(false)
     }
-  }
+  };
+
+  // fetch reviews
+
+  const fetchProductReview = async () => {
+    try {
+      const response = await Axios({
+        ...SummeryApi.getProductReview,
+        data: {
+          productId:productId,
+        }
+      });
+      if(response.data?.success){
+        dispatch(setReviewSlice(response.data?.data))
+      }
+    } catch (error) {
+      AxiosToastError(error)
+    } 
+  };
 
   const handleScrollLeft = () => {
     if (image > 0) {
@@ -48,7 +104,7 @@ const ProductDetailsPage = () => {
     if (image < 0) {
       image(data?.image?.length - 1)
     }
-  }
+  };
   const handleScrollRight = () => {
     if (image < data?.image?.length - 1) {
       setImage(image + 1)
@@ -57,10 +113,14 @@ const ProductDetailsPage = () => {
       setImage(data?.image?.length - 1)
     }
   }
-
-  console.log(data, "data")
+  useEffect(()=>{
+    if(productId){
+      fetchProductReview()
+    }
+  },[productId])
   useEffect(() => {
     fetchProductDetails()
+    fetchProductReview()
   }, [params])
   return (
     <section className='container mx-auto p-4 grid lg:grid-cols-2 bg-slate-100 '>
@@ -122,7 +182,12 @@ const ProductDetailsPage = () => {
       <div className="col-span-1">
         <div className="text-base lg:text-lg gap-4 grid">
           <div className="">
-            <p className='bg-green-300 w-fit px-2 rounded-full'>10 Min</p>
+            <div className="flex gap-8 ">
+              <p className='bg-green-300 w-fit px-2 rounded-full'>10 Min</p>
+              <div className="">
+                <StarRating rating={rating}/>
+              </div>
+            </div>
             <h2 className='text-lg font-semibold text-neutral-700 lg:text-3xl'>{data.name}</h2>
             <p className=''>{data.unit}</p>
           </div>
@@ -164,6 +229,50 @@ const ProductDetailsPage = () => {
               </div>
             )
           })}
+          <Divider/>
+          <div className="grid gap-2">
+            <div className="grid">
+              <h1 className='font-semibold mb-2 text-xl text-neutral-600'>Customer Reviews</h1>
+              <div className="grid gap-2">
+                {reviews !== null ? reviews.map((reviewItem, index)=>(
+                  <div key={index} className="flex gap-2">
+                    <div className="bg-gray-600 text-white h-8 w-8 flex items-center justify-center rounded-full text-2xl font-semibold">
+                      {reviewItem.userName[0].toUpperCase() }
+                    </div>
+                    <div className="grid ">
+                      <h1 className="font-semibold ml-1 text-neutral-600"> {reviewItem.userName}</h1>
+                      <div className="flex max-sm:flex-col gap-4  ">
+                        <StarRating  rating={rating}/>
+                      <p className="capitalize text-neutral-600">
+                        {reviewItem.reviewMessage}
+                      </p>
+                      </div>
+
+                    </div>
+                  </div>
+                )) :
+                <p className="text-neutral-500">No Reveiew Found!</p>
+                }
+              </div>
+            </div>
+            <div className="grid gap-3">
+              <label className='text-lg text-neutral-700 font-medium' htmlFor="writeReview">Write a review..</label>
+              <div className="flex items-center gap-3">
+                <StarRating rating={rating} handleRatingChange={handleRatingChange}/>
+                <input type="text" 
+                className='border border-neutral-400 focus-within:border-amber-400 rounded outline-none w-full p-1'
+                placeholder='Write your review...'
+                value={reviewMessage}
+                onChange={(e)=>setReviewMessage(e.target.value)}
+                />
+              </div>
+              <button className='w-full border-2 text-green-700 font-medium transition-colors duration-300 cursor-pointer hover:bg-green-600 hover:text-white 
+               p-1  rounded border-green-600 text-xl' 
+              onClick={handleAddReview}
+              disabled={reviewMessage.trim() === ""}
+               type="submit">Submit</button>
+            </div>
+          </div>
           <div className="grid gap-2">
             <h1 className="text-2xl font-medium text-neutral-800">Why shop from binkeyit?</h1>
             <div className="flex  gap-2 items-center">
