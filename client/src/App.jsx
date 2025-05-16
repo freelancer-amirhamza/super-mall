@@ -116,8 +116,8 @@ const App = () => {
       {showScrollToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-5 cursor-pointer right-5 z-50
-        bg-orange-600 text-white p-3 rounded-full shadow-lg hover:bg-orange-700 transition"
+          className="fixed bottom-14 border-2 cursor-pointer right-5 z-50
+        bg-orange-600/80 text-white sm:p-3 p-2 rounded-full shadow-lg hover:bg-orange-700/95 transition"
         >
           <FaArrowUp size={20} />
         </button>

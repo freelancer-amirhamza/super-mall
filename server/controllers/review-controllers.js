@@ -78,7 +78,7 @@ const getAllReviews = async (req, res) => {
         }
 
         const reviews = await ProductReview.find({ productId: productId });
-        if (!reviews || reviews.length === 0) {
+        if (!reviews ) {
             return res.status(404).json({
                 success: false,
                 error: true,

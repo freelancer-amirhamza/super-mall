@@ -43,12 +43,12 @@ const Footer = () => {
                 <div className="my-10 flex flex-wrap gap-10 justify-between">
                     <div className="max-w-sm">
                         <h2 className="text-xl mb-5 font-bold">
-                            Deshimotors – Your Online Auto Mobile Parts.
+                            Super-Mall – Your Online Auto Mobile Parts.
                         </h2>
                         <p>
-                            Deshimotors is a leading e-commerce platform committed to delivering safe,
+                            Super-Mall is a leading e-commerce platform committed to delivering safe,
                             healthy, and organic food products across Bangladesh.
-                            Renowned for its dedication to quality, Deshimotors offers a diverse range of
+                            Renowned for its dedication to quality, Super-Mall offers a diverse range of
                             health-focused items, including premium mustard oil, pure ghee, organic honey,
                             dates, chia seeds, and an assortment of nuts.
                             Each product is carefully sourced and crafted to ensure maximum health benefits,
@@ -75,7 +75,7 @@ const Footer = () => {
 
                     {/* News */}
                     <div className="max-w-sm">
-                        <h2 className="text-lg mb-6 font-bold">Deshimotors Busines</h2>
+                        <h2 className="text-lg mb-6 font-bold">Super-Mall Busines</h2>
                         <p className="text-color">
                             Register now to get updates on promotions and coupns. Don&apos;t worry!
                             We not spam
@@ -85,14 +85,14 @@ const Footer = () => {
                             <div className="flex flex-col ml-4">
                                 <p className="text-2xl font-semibold text-muted-foreground">Hotline 24/7</p>
                                 <h3 className="text-2xl font-semibold text-muted-foreground">
-                                    <a href="tel:+8801921563031"> (+880) 1731-787755</a>
+                                    <a href="tel:+8801921563031"> (+880) 1792978577</a>
                                 </h3>
                             </div>
                         </span>
                         <span className="flex items-center mt-5">
                             <AiOutlineShop className="text-color  text-xl " />
                             <address className=" ml-4">
-                                <p className="">Merull Badda, Dhaka-1212 Bangladesh </p>
+                                <p className="">365/A, Diluroad, New Eskaton Dhaka-1217 Bangladesh </p>
                             </address>
                         </span>
                         <span className="flex items-center mt-5">
@@ -101,7 +101,7 @@ const Footer = () => {
                                 <p className="">
                                     <a href="mailto:kaziarifmaksud80@gmail.com">
                                         {" "}
-                                        deshimotors@gmail.com
+                                        contact@amirhamzadev.com
                                     </a>
                                 </p>
                             </div>
@@ -112,7 +112,7 @@ const Footer = () => {
 
             {/* Copyright */}
             <div className="py-8 max-sm:mb-12 bg-gray-200 flex w-full flex-wrap space-y-3 justify-center  items-center border-t">
-                <p className="text-sm  text-center">Developed & Maintain by
+                <p className="text-sm  text-center">Developed & Maintaind by
                     <Link className="hover:text-orange-800 font-bold  hover:underline" to="https://amirhamzadev.com">  Amir Hamza  </Link>
                     &copy;Copyrights: {new Date().getFullYear()} All rights reserved.
                 </p>

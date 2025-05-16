@@ -68,7 +68,7 @@ const CategoryWiseProductDisplay = ({ id, name }) => {
                     </Link>
                 </div>
                 <div
-                    className="flex container p-4 sm:gap-4 gap-2 items-center overflow-x-scroll no-scrollbar scroll-smooth"
+                    className="flex container sm:p-4 sm:gap-4 gap-1 items-center overflow-x-scroll no-scrollbar scroll-smooth"
                     ref={containerRef}
                 >
                     {loading

@@ -32,16 +32,7 @@ const Header = () => {
     navigate("/user")
   }
 
-  // useEffect(()=>{
-  //   const qty = cartItems.reduce((prev,curr)=>{
-  //     return prev + curr.quantity;
-  //   },0);
-  //   setTotalQty(qty);
-  //   const tPrice = cartItems.reduce((preve,curr)=>{
-  //             return preve + (curr.productId.price * curr.quantity)
-  //         },0)
-  //         setTotalPrice(tPrice)
-  // },[cartItems])
+
   return (
     <header>
       <div className="flex w-full bg-white flex-col h-28  justify-center lg:h-20 gap-1  shadow-md items-center sticky top-0  ">
@@ -50,8 +41,8 @@ const Header = () => {
             <div className="container mx-auto items-center justify-between max-sm:px-3  w-full flex  ">
               {/* logo */}
               <Link to={"/"} className="flex sm:text-4xl text-3xl font-bold font-display">
-                <span className="text-secondary">Deshi</span>
-                <span className="text-primary">Motors</span>
+                <span className="text-secondary">Super</span>
+                <span className="text-primary">Mall</span>
               </Link>
 
               {/* search box */}

@@ -11,8 +11,8 @@ const MobileCart = () => {
   return (
     <>
       {cartItems[0] && (
-        <div className="sticky bottom-4 mx-auto ">
-          <div className='bg-green-700 py-1 w-full px-2 lg:hidden flex gap-3 items-center justify-between text-white'>
+        <div className="sticky bottom-1 mx-auto ">
+          <div className='bg-green-700 py-1.5 rounded w-full px-2 lg:hidden flex gap-3 items-center justify-between text-white'>
             <div className="flex items-center gap-2">
               <div className="bg-green-600 p-2 rounded w-fit">
                 <FaShoppingCart />

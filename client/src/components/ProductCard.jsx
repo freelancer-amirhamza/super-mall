@@ -10,7 +10,7 @@ const ProductCard = ({data}) => {
     const url = `/product/${validURLConvert(data.name)}-${(data._id)}` 
     
   return (
-    <Link to={url} className=' border border-blue-200 p-2 grid hover:shadow-lg gap-1 hover:scale-105 duration-300 max-w-56 min-w-48 max-h-88 min-h-88 rounded '>
+    <Link to={url} className=' border border-blue-200 p-2 grid hover:shadow-lg gap-1 hover:scale-105 duration-300 max-w-56 min-w-42 max-h-88 min-h-80 rounded '>
         <div className="min-h-20 rounded">
         <img src={data.image[0] } alt={data?.name} className='w-full h-full object-scale-down' />
         </div>
