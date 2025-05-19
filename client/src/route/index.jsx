@@ -14,7 +14,6 @@ import MyOrders from "../pages/MyOrders.jsx";
 import Address from "../pages/Address.jsx";
 import CategoryPage from "../pages/CategoryPage.jsx";
 import SubCategoryPage from "../pages/SubCategoryPage.jsx";
-import Products from "../pages/AdminProducts.jsx";
 import UploadProduct from "../pages/UploadProduct.jsx";
 import AdminProducts from "../pages/AdminProducts.jsx";
 import AdminPermission from "../pages/AdminPermission.jsx";
