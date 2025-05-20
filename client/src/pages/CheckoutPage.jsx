@@ -17,7 +17,7 @@ const CheckoutPage = () => {
   const cartItemsList = useSelector(state => state.cartItems?.cart);
   const [deliveryFee, setDeliveryFee] = useState(0)
   const navigate = useNavigate()
-
+console.log(cartItemsList, "cartlist")
 
   const handleOnlinePayment = async () => {
     try {

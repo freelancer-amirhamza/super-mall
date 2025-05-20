@@ -60,14 +60,14 @@ const OrderDetails = ({close, data}) => {
 
 
           <div className="mt-6 border-dotted border-neutral-300 border-2   md:p-12 rounded-md sm:p-8 p-4">
-            <h1 className="text-neutral-700 font-semibold text-4xl pb-5 md:pb-10 uppercase text-center">deshimotors</h1>
+            <h1 className="text-neutral-700 font-semibold text-4xl pb-5 md:pb-10 uppercase text-center">SuperMall</h1>
             <div className="grid grid-cols-2 max-sm:text-sm mb-4 space-y-4 ">
               <div className="flex flex-col w-full  ">
-                <label className='font-bold' htmlFor="customarName">Customer Name:</label>
+                <label className='font-bold' htmlFor="customerName">Customer Name:</label>
                 <span className="font-semibold"> {data?.userId?.name} </span>
               </div>
               <div className="flex flex-col ">
-                <label className='font-bold' htmlFor="customarName">Email:</label>
+                <label className='font-bold' htmlFor="customerEmail">Email:</label>
                 <span className="font-semibold  w-full">{data?.userId?.email} </span>
               </div>
               <div className="flex flex-col w-full">
@@ -76,7 +76,7 @@ const OrderDetails = ({close, data}) => {
               </div>
               
               <div className="flex flex-col w-full">
-                <label className='font-bold' htmlFor="customarName">Address:</label>
+                <label className='font-bold' htmlFor="customerAddress">Address:</label>
                 <span className="font-semibold">{`${addressLine || ""}${city || ""}${state || ""}-${pinCode || ""}`}</span>
               </div>
             </div>
@@ -123,11 +123,10 @@ const OrderDetails = ({close, data}) => {
               <span className="">{DisplayPriceInTaka(data?.totalAmount + data?.deliveryFee || 0) || ""}</span>
             </div>
             <div className="mx-auto flex w-full justify-end  mt-12 ">
-            <h1 className="font-semibold border-dotted border-t">Authorized Signture</h1>
+            <h1 className="font-semibold border-dotted border-t">Authorized Signature</h1>
           </div>
           </div>
           </div>
-
 
           <div className="mt-4 flex space-x-2 px-4 pb-6">
                 <button

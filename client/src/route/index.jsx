@@ -24,6 +24,7 @@ import CheckoutPage from "../pages/CheckoutPage.jsx";
 import Success from "../pages/Success.jsx";
 import Cancel from "../pages/Cancel.jsx";
 import AdminOrders from "../pages/AdminOrders.jsx";
+import Failed from "../pages/Failed.jsx";
 
 const router = createBrowserRouter([
   {
@@ -126,7 +127,11 @@ const router = createBrowserRouter([
         element: <Success/>
       },
       {
-        path: "cancel",
+        path:"failed",
+        element: <Failed/>
+      },
+      {
+        path: "canceled",
         element: <Cancel/>
       }
     ],

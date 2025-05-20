@@ -4,6 +4,7 @@ const Cart = require("../models/cart-model");
 const UserModal = require("../models/user-model");
 const SSLCommerzPayment = require('sslcommerz-lts');
 const Address = require("../models/address-model");
+require("dotenv").config();
 const store_id = 'mysho65da069a5577d'
 const store_passwd = 'mysho65da069a5577d@ssl'
 const is_live = false //true for live, false for sandbox
@@ -11,12 +12,10 @@ const is_live = false //true for live, false for sandbox
 
 const onlinePayment = async (req, res) => {
     try {
-        const { list_items, totalAmount, subTotalAmount, deliveryFee, addressId } =
-            req.body;
+        const { list_items, totalAmount, subTotalAmount, deliveryFee, addressId } = req.body;
         const userId = req.userId;
         const tran_id = `ORD-${new mongoose.Types.ObjectId()}`
-        const user = await UserModal.findOne(userId);
-        const address = await Address.findById(addressId);
+
         const orderPayload = {
             userId: userId,
             orderId: tran_id,
@@ -39,17 +38,29 @@ const onlinePayment = async (req, res) => {
             order_status: "pending",
             paymentId: "",
         };
+        // create an order
+        await Order.create(orderPayload);
 
-        const createOrder = await Order.create(orderPayload);
 
+        // remove from the cart
+        await Cart.deleteMany({ userId: userId });
+        // update user
+        const updateInUser = UserModal.updateOne(
+            { _id: userId },
+            { shopping_cart: [] }
+        );
+
+
+        const user = await UserModal.findOne({ _id: userId });
+        const address = await Address.findById(addressId);
         const data = {
             total_amount: totalAmount + deliveryFee,
             currency: 'BDT',
             tran_id: tran_id,
-            success_url: 'http://localhost:5000/api/order/payment-success',
-            fail_url: 'http://localhost:5000/api/order/payment-cancel',
-            cancel_url: 'http://localhost:5000/api/order/payment-cancel',
-            ipn_url: 'http://localhost:5000/api/order/ipn',
+            success_url: `${process.env.SERVER_URL}/api/order/payment-success?tran_id=${tran_id}&userId=${userId}`,
+            fail_url: `${process.env.SERVER_URL}/api/order/payment-fail?tran_id=${tran_id}&userId=${userId}`,
+            cancel_url: `${process.env.SERVER_URL}/api/order/payment-cancel?tran_id=${tran_id}&userId=${userId}`,
+            ipn_url: `${process.env.SERVER_URL}/api/order/ipn`,
             shipping_method: 'Courier',
             product_name: 'Order Products',
             product_category: 'Mixed',
@@ -69,14 +80,41 @@ const onlinePayment = async (req, res) => {
             ship_postcode: address.pinCode,
             ship_country: address.country,
         };
-        const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live)
+
+        const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
         sslcz.init(data).then(apiResponse => {
             let GatewayPageURL = apiResponse.GatewayPageURL;
             res.status(200).json({
                 success: true,
-                gatewayUrl: GatewayPageURL
+                error: false,
+                message: "Payment gateway URL generated successfully!",
+                gatewayUrl: GatewayPageURL,
             });
         });
+
+
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: true,
+            message: error.message || "Internal server error!"
+        });
+    }
+}
+
+const handleSuccess = async (req, res) => {
+    try {
+        const { tran_id, userId } = req.query;
+        await Order.findOneAndUpdate(
+            { orderId: tran_id, userId: userId },
+            {
+                payment_status: "paid",
+                order_status: "pending",
+                paymentId: tran_id,
+            }
+        )
+        res.redirect(`${process.env.CLIENT_URL}/success`)
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -85,10 +123,39 @@ const onlinePayment = async (req, res) => {
         })
     }
 }
-
-const handleSuccess = async (req, res) => {
+const handleFailed = async (req, res) => {
     try {
-        res.redirect("http://localhost:5173/success")
+        const { tran_id, userId } = req.query;
+        await Order.findOneAndUpdate(
+            { orderId: tran_id, userId: userId },
+            {
+                order_status: "failed",
+                payment_status: "failed",
+                paymentId: tran_id,
+            }
+        )
+        res.redirect(`${process.env.CLIENT_URL}/failed`)
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: true,
+            message: error.message || "Internal server error!",
+        })
+    }
+};
+
+const handleCancel = async (req, res) => {
+    try {
+        const { tran_id, userId } = req.query;
+        await Order.findOneAndUpdate(
+            { orderId: tran_id, userId: userId },
+            {
+                order_status: "canceled",
+                payment_status: "canceled",
+                paymentId: tran_id,
+            }
+        )
+        res.redirect(`${process.env.CLIENT_URL}/canceled`)
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -275,4 +342,6 @@ module.exports = {
     deleteAdminOrder,
     onlinePayment,
     handleSuccess,
+    handleFailed,
+    handleCancel,
 };
