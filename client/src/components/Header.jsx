@@ -10,6 +10,7 @@ import UserMenu from './UserMenu'
 import { DisplayPriceInTaka } from '../utils/DisplayPriceInTaka'
 import { useGlobalContext } from '../provider/GlobalProvider'
 import CartMenu from './CartMenu'
+import logo from "../assets/labbiakmotors.png"
 
 const Header = () => {
   const isMobile = useMobile();
@@ -40,9 +41,13 @@ const Header = () => {
           !(isSearchPage && isMobile) && (
             <div className="container mx-auto items-center justify-between max-sm:px-3  w-full flex  ">
               {/* logo */}
-              <Link to={"/"} className="flex sm:text-4xl text-3xl font-bold font-display">
-                <span className="text-secondary">Super</span>
-                <span className="text-primary">Mall</span>
+              <Link to={"/"} className="flex  items-center justify-center ">
+              {/* <img src={logo} className='w-full object-cover max-h-20' alt="labbaikmotors" /> */}
+              <div className="flex sm:text-4xl text-3xl font-bold uppercase font-display">
+                  <span className="text-secondary">Labbaik</span>
+                <span className="text-primary">Motors</span>
+              </div>
+
               </Link>
 
               {/* search box */}
