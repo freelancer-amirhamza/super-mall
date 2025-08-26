@@ -21,7 +21,7 @@ const Header = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const cartItems = useSelector((state) => state.cartItems.cart);
   const { totalQty, totalPrice } = useGlobalContext()
-  const [openCartMenu, setOpentCartMenu] = useState(false)
+  const [openCartMenu, setOpenCartMenu] = useState(false)
   const handleCloseUserMenu = () => {
     setShowUserMenu(false)
   }
@@ -90,7 +90,7 @@ const Header = () => {
                   </div>
                   <div className=" font-bold text-sm">
                     {cartItems[0] ? (
-                      <div onClick={()=>setOpentCartMenu(true)}>
+                      <div onClick={()=>setOpenCartMenu(true)}>
                         <p>{totalQty} Items</p>
                         <p>{DisplayPriceInTaka(totalPrice)}</p>
                       </div>

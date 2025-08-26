@@ -65,7 +65,7 @@ const CategoryPage = () => {
         <div className="flex flex-wrap gap-2 md:gap-4 p-4 justify-center items-center">
           {categoryData.map((category, index) => (
             <div
-              className="w-full rounded max-w-34 border h-58 p-1 flex flex-col items-center justify-center border-dotted border-amber-600 hover:shadow-lg overflow-hidden"
+              className="w-full rounded max-w-34 border h-52 p-1 flex flex-col items-center justify-between border-dotted border-amber-600 hover:shadow-lg overflow-hidden"
               key={index}
             >
               <div className="w-full max-h-46 flex items-center">
@@ -75,13 +75,14 @@ const CategoryPage = () => {
                   className="object-scale-down h-full w-full rounded-t-sm"
                 />
               </div>
+              <span className="text-sm text-center font-medium text-slate-600">{category?.name}</span>
               <div className="flex items-center justify-between gap-1 px-1">
                 <button
                   onClick={() => {
                     setOpenEditData(true);
                     setEditData(category);
                   }}
-                  className="border border-green-600 transition-colors duration-300 px-2 py-1 rounded-sm hover:bg-green-500 hover:text-white font-medium"
+                  className="border border-green-600 transition-colors duration-300 px-2 py-0.5 cursor-pointer rounded-sm hover:bg-green-500 hover:text-white font-medium"
                 >
                   Edit
                 </button>
@@ -90,7 +91,7 @@ const CategoryPage = () => {
                     setOpenConfirmBox(true);
                     setDeleteCategoryData(category);
                   }}
-                  className="border border-red-600 transition-colors duration-300 px-2 py-1 rounded-sm hover:bg-red-500 hover:text-white font-medium"
+                  className="border border-red-600 transition-colors duration-300 px-2 py-0.5 cursor-pointer rounded-sm hover:bg-red-500 hover:text-white font-medium"
                 >
                   Delete
                 </button>
